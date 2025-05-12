@@ -133,7 +133,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ModeloVista\" />
     <Folder Include="Modelo\" />
     <Folder Include="Servicios\" />
     <Folder Include="Utilidades\" />
