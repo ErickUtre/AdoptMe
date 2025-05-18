@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,16 +16,21 @@ using System.Windows.Shapes;
 
 namespace Cliente_AdoptMe.Vista
 {
-    public partial class MenuPrincipal : Window
+    /// <summary>
+    /// Lógica de interacción para MascotaToolTip.xaml
+    /// </summary>
+    public partial class MascotaToolTip : UserControl
     {
-        public MenuPrincipal()
+        public event EventHandler EventoDetallesMascota;
+
+        public MascotaToolTip()
         {
             InitializeComponent();
         }
 
-        private void BtnCerrarMenuPrincipal(object sender, RoutedEventArgs e)
+        private void IrDetallesMascota(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            EventoDetallesMascota?.Invoke(this, EventArgs.Empty);
         }
     }
 }

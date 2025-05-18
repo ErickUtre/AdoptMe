@@ -47,9 +47,6 @@
     <Reference Include="GMap.NET.Core, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>packages\GMap.NET.Core.2.1.7\lib\net472\GMap.NET.Core.dll</HintPath>
     </Reference>
-    <Reference Include="GMap.NET.WindowsForms, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
-      <HintPath>packages\GMap.NET.WinForms.2.1.7\lib\net472\GMap.NET.WindowsForms.dll</HintPath>
-    </Reference>
     <Reference Include="GMap.NET.WindowsPresentation, Version=2.1.7.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>packages\GMap.NET.WinPresentation.2.1.7\lib\net472\GMap.NET.WindowsPresentation.dll</HintPath>
     </Reference>
@@ -92,7 +89,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Vista\MenuPrincipal.xaml">
+    <Compile Include="Utilidades\NavegadorPrincipal.cs" />
+    <Compile Include="Utilidades\ServicioNavegacion.cs" />
+    <Compile Include="Vista\ConsultarAdopcionExterna.xaml.cs">
+      <DependentUpon>ConsultarAdopcionExterna.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ImagenExpandida.xaml.cs">
+      <DependentUpon>ImagenExpandida.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\MapaPrincipal.xaml.cs">
+      <DependentUpon>MapaPrincipal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\MascotaToolTip.xaml.cs">
+      <DependentUpon>MascotaToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\MenuPrincipalAdministrador.xaml.cs">
+      <DependentUpon>MenuPrincipalAdministrador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistroDeUsuario.xaml.cs">
+      <DependentUpon>RegistroDeUsuario.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Vista\ConsultarAdopcionExterna.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ImagenExpandida.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\InicioDeSesion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\MapaPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\MascotaToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\MenuPrincipalAdministrador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\MenuPrincipalUsuario.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -100,10 +141,21 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Vista\MenuPrincipal.xaml.cs">
-      <DependentUpon>MenuPrincipal.xaml</DependentUpon>
+    <Compile Include="Utilidades\CadenaVisibilidadConverter.cs" />
+    <Compile Include="Utilidades\ContraseñaHelper.cs" />
+    <Compile Include="Utilidades\PasswordBoxExtensiones.cs" />
+    <Compile Include="Utilidades\TextBoxExtensiones.cs" />
+    <Compile Include="Vista\InicioDeSesion.xaml.cs">
+      <DependentUpon>InicioDeSesion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\MenuPrincipalUsuario.xaml.cs">
+      <DependentUpon>MenuPrincipalUsuario.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Vista\RegistroDeUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -135,7 +187,6 @@
   <ItemGroup>
     <Folder Include="Modelo\" />
     <Folder Include="Servicios\" />
-    <Folder Include="Utilidades\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Imagenes\IconoUsuario.png" />
@@ -151,6 +202,28 @@
     <Resource Include="Recursos\Imagenes\IconoMenuPrincipal.png" />
     <Resource Include="Recursos\Imagenes\IconoRegistrarAdopcion.png" />
     <Resource Include="Recursos\Imagenes\IconoVerAdopciones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\IconoRegresar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\IconoMostrar.png" />
+    <Resource Include="Recursos\Imagenes\IconoOcultar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\IconoInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\IconoGenerarReportes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\IconoCerrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\ImagenPrueba.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\IconoExpandirImagen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
