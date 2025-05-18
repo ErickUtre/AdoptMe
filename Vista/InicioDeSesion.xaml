@@ -1,0 +1,49 @@
+﻿<Window x:Class="Cliente_AdoptMe.Vista.InicioDeSesion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+        xmlns:utilidades="clr-namespace:Cliente_AdoptMe.Utilidades"
+        mc:Ignorable="d"
+        Title="InicioDeSesion" Height="700" Width="550"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#207766">
+        <StackPanel>
+            <Image Source="/Recursos/Imagenes/LogoAdoptMe.png"
+                   Height="230"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Margin="0,40"/>
+            <TextBlock Style="{StaticResource Subtitulo2}" 
+                       HorizontalAlignment="Center"
+                       Text="Inicio de sesión"/>
+
+            <TextBox x:Name="tbUsuario"
+                     utilidades:TextBoxExtensiones.TextoSugerido="Usuario"
+                     Margin="0,50,0,10"
+                     MaxLength="50"/>
+
+            <PasswordBox x:Name="pbContraseña"
+                         utilidades:PasswordBoxExtensiones.TextoSugerido="Contraseña"
+                         Margin="10"
+                         MaxLength="50"
+                         PasswordChanged="PbCambioDeContraseña"/>
+
+            <Button Style="{StaticResource BotonGeneral}"
+                    Content="REGISTRATE" 
+                    HorizontalAlignment="Center"
+                    Background="Transparent"
+                    Foreground="White"
+                    FontSize="24"
+                    FontWeight="ExtraLight"
+                    FontStyle="Italic"
+                    Margin="0,10" Click="BtnIrVentanaRegistro"
+                    />
+
+            <Button Style="{StaticResource BotonGeneral}" 
+                    Content="Iniciar sesión"
+                    Background="#187DAC" Click="BtnIniciarSesion"/>
+        </StackPanel>
+    </Grid>
+</Window>

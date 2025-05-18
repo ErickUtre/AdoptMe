@@ -1,0 +1,118 @@
+﻿<Window x:Class="Cliente_AdoptMe.Vista.RegistroDeUsuario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+        xmlns:utilidades="clr-namespace:Cliente_AdoptMe.Utilidades"
+        mc:Ignorable="d"
+        Title="RegistroDeUsuario" Height="700" Width="550"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#207766">
+        <StackPanel Margin="30,30,30,20">
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource EstiloBaseBoton}"
+                        Background="Transparent"
+                        Margin="0,0,40,0" Click="BtnIrVentanaInicioDeSesion">
+                    <Image Source="/Recursos/Imagenes/IconoRegresar.png" 
+                           Width="70"/>
+                </Button>
+                <TextBlock Style="{StaticResource Titulo}" 
+                           Text="Registro"
+                           Foreground="White"/>
+            </StackPanel>
+            <TextBox x:Name="tbNombre" 
+                     utilidades:TextBoxExtensiones.TextoSugerido="Nombre"
+                     Margin="0,20"/>
+
+            <TextBox x:Name="tbCorreo" 
+                     utilidades:TextBoxExtensiones.TextoSugerido="Correo"
+                     Margin="0,20"/>
+
+            <Grid Margin="0,20">
+                <TextBox x:Name="tbContraseña" 
+                         utilidades:TextBoxExtensiones.TextoSugerido="Contraseña"
+                         HorizontalAlignment="Center"
+                         Visibility="Hidden"/>
+                <PasswordBox x:Name="pbContraseña"
+                             utilidades:PasswordBoxExtensiones.TextoSugerido="Contraseña"
+                             HorizontalAlignment="Center"
+                             PasswordChanged="PbCambioDeContraseña"/>
+                <Button Style="{StaticResource EstiloBaseBoton}"
+                        HorizontalAlignment="Right"
+                        Margin="100,0">
+                    <Image x:Name="ImagenVisibilidadContraseña"
+                           Source="/Recursos/Imagenes/IconoOcultar.png"
+                           Width="35"/>
+                </Button>
+                
+                <Button Style="{StaticResource EstiloBaseBoton}" 
+                        Width="40" 
+                        HorizontalAlignment="Right" 
+                        Margin="45,0" 
+                        Cursor="Arrow">
+                    <Button.ToolTip>
+                        <ToolTip>
+                            <ToolTip.Template>
+                                <ControlTemplate TargetType="ToolTip">
+                                    <Border Background="#FF2D2D30" 
+                                            BorderBrush="#FF1C97EA" 
+                                            BorderThickness="2" 
+                                            CornerRadius="10" 
+                                            Padding="10">
+                                        <StackPanel>
+                                            <TextBlock Text="Reglas para la contraseña" Foreground="White" FontWeight="Bold" FontSize="14"/>
+                                            <Separator Margin="0,5"/>
+                                            <TextBlock Text="La contraseña debe tener:" Foreground="LightGray" FontSize="12" Margin="0,5"/>
+                                            <StackPanel Margin="10,5,0,0">
+                                                <TextBlock Text="- Mínimo una letra mayúscula" Foreground="LightGray" FontSize="12"/>
+                                                <TextBlock Text="- 8 caracteres" Foreground="LightGray" FontSize="12"/>
+                                                <TextBlock Text="- 2 números" Foreground="LightGray" FontSize="12"/>
+                                                <TextBlock Text="- No espacios" Foreground="LightGray" FontSize="12"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </ToolTip.Template>
+                        </ToolTip>
+                    </Button.ToolTip>
+
+                    <Image Source="/Recursos/Imagenes/IconoInfo.png" 
+                           Width="30"/>
+                </Button>
+            </Grid>
+
+            <Grid Margin="0,20">
+                <TextBox x:Name="tbConfirmarContraseña" 
+                         utilidades:TextBoxExtensiones.TextoSugerido="Confirmar contraseña"
+                         HorizontalAlignment="Center"
+                         Visibility="Hidden"/>
+                <PasswordBox x:Name="pbConfirmarContraseña"
+                             utilidades:PasswordBoxExtensiones.TextoSugerido="Contraseña"
+                             HorizontalAlignment="Center"
+                             PasswordChanged="PbCambioDeContraseña"/>
+                <Button Style="{StaticResource EstiloBaseBoton}"
+                        HorizontalAlignment="Right"
+                        Margin="100,0">
+                    <Image x:Name="ImagenVisibilidadConfirmarContraseña"
+                           Source="/Recursos/Imagenes/IconoOcultar.png"
+                           Width="35"/>
+                </Button>
+            </Grid>
+            
+
+            <TextBox x:Name="tbTelefono" 
+                     utilidades:TextBoxExtensiones.TextoSugerido="Teléfono"
+                     Margin="0,20"/>
+
+            <TextBox x:Name="tbCiudad" 
+                     utilidades:TextBoxExtensiones.TextoSugerido="Ciudad"
+                     Margin="0,20"/>
+
+            <Button Style="{StaticResource BotonGeneral}" 
+                    Content="Registrar"
+                    Margin="0,10"
+                    Background="#73EF41"/>
+        </StackPanel>
+    </Grid>
+</Window>

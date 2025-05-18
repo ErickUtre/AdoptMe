@@ -1,0 +1,99 @@
+﻿<Page x:Class="Cliente_AdoptMe.Vista.ConsultarAdopcionExterna"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+      mc:Ignorable="d" 
+      d:DesignHeight="940" d:DesignWidth="1518"
+      Title="ConsultarAdopcionExterna">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="40">
+            <TextBlock Style="{StaticResource Titulo}" 
+                       Text="Información de la mascota" 
+                       VerticalAlignment="Center"/>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="100,40">
+                <TextBlock Style="{StaticResource TextoInformacion}"
+                           Text="Nombre: Yummi"/>
+                <TextBlock Style="{StaticResource TextoInformacion}"
+                           Text="Especie: Gato"/>
+                <TextBlock Style="{StaticResource TextoInformacion}"
+                           Text="Raza: Angora"/>
+                <TextBlock Style="{StaticResource TextoInformacion}"
+                           Text="Edad: 1 año con 8 meses"/>
+                <TextBlock Style="{StaticResource TextoInformacion}"
+                           Text="Sexo: Hembra"/>
+                <TextBlock Style="{StaticResource TextoInformacion}"
+                           Text="Estatura: 55cm"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" 
+                        Margin="40">
+                <Grid>
+                    <Image x:Name="FotoMascota" 
+                           Source="/Recursos/Imagenes/ImagenPrueba.png" 
+                           Stretch="UniformToFill"
+                           MaxHeight="400">
+                        <Image.Effect>
+                            <BlurEffect Radius="15"/>
+                        </Image.Effect>
+                    </Image>
+
+                    <Image Source="/Recursos/Imagenes/ImagenPrueba.png" 
+                           Stretch="Uniform"
+                           Margin="80,0"/>
+
+                    <Button Style="{StaticResource EstiloBaseBoton}" 
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Width="50" Click="BtnExpandirImagen">
+                        <Image Source="/Recursos/Imagenes/IconoExpandirImagen.png"
+                               Opacity="0.8"/>
+                    </Button>
+                </Grid>
+                
+                <TextBlock Style="{StaticResource Normal}" 
+                           Margin="0,20"
+                           Text="Descripción: Yummi es una gatita muy juguetona que requiere de atención y mucho amor."/>
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="2"
+                Height="1"
+                Margin="40,0"
+                Background="#706363"/>
+        
+        <Grid Grid.Row="3"
+              Margin="50,40">
+            <Button Style="{StaticResource BotonGeneral}"
+                    Content="Enviar mensaje"
+                    Background="#3AC1CB"
+                    HorizontalAlignment="Left"/>
+            <Button Style="{StaticResource BotonGeneral}"
+                    Content="Solicitar"
+                    Background="#3FBD13"
+                    HorizontalAlignment="Right"
+                    Margin="150,0"/>
+            <Button Style="{StaticResource BotonGeneral}"
+                    Content="Cancelar"
+                    Background="#EA5959"
+                    HorizontalAlignment="Right" Click="BtnCancelar"/>
+        </Grid>
+    </Grid>
+</Page>
