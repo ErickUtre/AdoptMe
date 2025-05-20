@@ -53,7 +53,12 @@ namespace Cliente_AdoptMe.Vista
 
         private void BtnIrMensajes(object sender, RoutedEventArgs e)
         {
+            var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
 
+            if (paginaActual == null || paginaActual.GetType() != typeof(Mensajes))
+            {
+                NavegadorPrincipal.Instancia.Navegar(new Mensajes());
+            }
         }
 
         private void Btn_IconoUsuario(object sender, RoutedEventArgs e)
