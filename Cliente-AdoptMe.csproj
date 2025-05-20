@@ -89,10 +89,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Logica\Mascota.cs" />
+    <Compile Include="Logica\Usuario.cs" />
     <Compile Include="Utilidades\NavegadorPrincipal.cs" />
     <Compile Include="Utilidades\ServicioNavegacion.cs" />
+    <Compile Include="Vista\ConsultarAdopcion.xaml.cs">
+      <DependentUpon>ConsultarAdopcion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ConsultarAdopciones.xaml.cs">
+      <DependentUpon>ConsultarAdopciones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\ConsultarAdopcionExterna.xaml.cs">
       <DependentUpon>ConsultarAdopcionExterna.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ConsultarUsuario.xaml.cs">
+      <DependentUpon>ConsultarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EditarCampo.xaml.cs">
+      <DependentUpon>EditarCampo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\ImagenExpandida.xaml.cs">
       <DependentUpon>ImagenExpandida.xaml</DependentUpon>
@@ -106,10 +120,38 @@
     <Compile Include="Vista\MenuPrincipalAdministrador.xaml.cs">
       <DependentUpon>MenuPrincipalAdministrador.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\RegistrarAdopcion.xaml.cs">
+      <DependentUpon>RegistrarAdopcion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\RegistroDeUsuario.xaml.cs">
       <DependentUpon>RegistroDeUsuario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Reporte.xaml.cs">
+      <DependentUpon>Reporte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Reportes.xaml.cs">
+      <DependentUpon>Reportes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\SolicitudesAdopcion.xaml.cs">
+      <DependentUpon>SolicitudesAdopcion.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Vista\ConsultarAdopcion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ConsultarAdopciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\ConsultarAdopcionExterna.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ConsultarUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\EditarCampo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,7 +194,23 @@
       <DependentUpon>MenuPrincipalUsuario.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Vista\RegistrarAdopcion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\RegistroDeUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Reporte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Reportes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\SolicitudesAdopcion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,6 +282,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Imagenes\IconoExpandirImagen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\Dalmata.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\Editar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\Bongo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\Dog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\Cat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\Download.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

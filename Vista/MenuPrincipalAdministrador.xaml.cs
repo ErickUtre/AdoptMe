@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cliente_AdoptMe.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,12 +23,34 @@ namespace Cliente_AdoptMe.Vista
         public MenuPrincipalAdministrador()
         {
             InitializeComponent();
-            MarcoPrincipal.NavigationService.Content = new MapaPrincipal();
+            //MarcoPrincipal.NavigationService.Content = new MapaPrincipal();
+            NavegadorPrincipal.Instancia.SetMarco(MarcoPrincipal);
+            NavegadorPrincipal.Instancia.Navegar(new MapaPrincipal());
         }
 
         private void BtnCerrarMenuPrincipal(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnIrMapaPrincipal(object sender, RoutedEventArgs e)
+        {
+            var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
+
+            if (paginaActual == null || paginaActual.GetType() != typeof(MapaPrincipal))
+            {
+                NavegadorPrincipal.Instancia.Navegar(new MapaPrincipal());
+            }
+        }
+
+        private void BtnIReportes(object sender, RoutedEventArgs e)
+        {
+            NavegadorPrincipal.Instancia.Navegar(new Reportes());
+        }
+
+        private void Btn_IconoUsuario(object sender, RoutedEventArgs e)
+        {
+            NavegadorPrincipal.Instancia.Navegar(new ConsultarUsuario());
         }
     }
 }

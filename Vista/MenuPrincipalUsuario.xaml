@@ -24,10 +24,15 @@
             <Grid Background="#207766">
                 <StackPanel Margin="25">
                     <Grid>
-                        <Image Source="/Recursos/Imagenes/IconoUsuario.png"
-                               Width="50"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Top"/>
+                        <Button Width="50" Height="50"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Click="Btn_IconoUsuario">
+                            <Image Source="/Recursos/Imagenes/IconoUsuario.png"/>
+                        </Button>
+
                         <TextBlock Text="Bienvenido:"
                                    VerticalAlignment="Top"
                                    Margin="50,5"
