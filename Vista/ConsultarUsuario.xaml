@@ -1,0 +1,100 @@
+﻿<Page x:Class="Cliente_AdoptMe.Vista.ConsultarUsuario"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+      mc:Ignorable="d" 
+      d:DesignHeight="940" d:DesignWidth="1518"
+      Title="ConsultarUsuario">
+
+    <Grid Background="#EEEEEE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="40">
+            <TextBlock Style="{StaticResource Titulo}" 
+                       Text="Información del usuario" 
+                       VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="100,40" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Name="Txt_Nombre" Style="{StaticResource TextoInformacion}" Text="Nombre: "/>
+                    <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarNombre">
+                        <Image Source="/Recursos/Imagenes/Editar.png"/>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Name="Txt_Correo" Style="{StaticResource TextoInformacion}" Text="Correo: "/>
+                    <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarCorreo">
+                        <Image Source="/Recursos/Imagenes/Editar.png"/>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Name="Txt_Telefono" Style="{StaticResource TextoInformacion}" Text="Teléfono: "/>
+                    <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarTelefono">
+                        <Image Source="/Recursos/Imagenes/Editar.png"/>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Name="Txt_Ciudad" Style="{StaticResource TextoInformacion}" Text="Ciudad: "/>
+                    <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarCiudad">
+                        <Image Source="/Recursos/Imagenes/Editar.png"/>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5"/>
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="1" 
+                        Margin="40">
+                <Grid>
+                    <Image x:Name="Foto" 
+                           Stretch="UniformToFill"
+                           MaxHeight="400">
+                        <Image.Effect>
+                            <BlurEffect Radius="15"/>
+                        </Image.Effect>
+                    </Image>
+
+                    <Button Width="40" Height="40" Margin="639,302,0,58" Click="Btn_EditarFoto">
+                        <Image Source="/Recursos/Imagenes/Editar.png"/>
+                    </Button>
+
+                    <Image Name="FotoComplemento"  
+                           Stretch="Uniform"
+                           Margin="80,0"/>
+
+                    <Button Style="{StaticResource EstiloBaseBoton}" 
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Width="50" Click="BtnExpandirImagen">
+                        <Image Source="/Recursos/Imagenes/IconoExpandirImagen.png"
+                               Opacity="0.8"/>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="2"
+                Height="1"
+                Margin="40,0"
+                Background="#706363"/>
+    </Grid>
+</Page>
