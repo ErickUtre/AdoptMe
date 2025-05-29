@@ -1,0 +1,60 @@
+﻿<Window x:Class="Cliente_AdoptMe.Vista.Video"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        mc:Ignorable="d"
+        Title="Video" Height="450" Width="700">
+    <Grid Background="#207766">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Reproductor de video -->
+        <MediaElement x:Name="mediaPlayer"
+                      Grid.Row="0"
+                      LoadedBehavior="Manual"
+                      UnloadedBehavior="Stop"
+                      Stretch="Uniform"
+                      MediaOpened="mediaPlayer_MediaOpened"/>
+
+        <!-- Barra de progreso -->
+        <Slider x:Name="sliderProgreso"
+                Grid.Row="1"
+                Height="25"
+                Margin="10"
+                Minimum="0"
+                PreviewMouseDown="Slider_PreviewMouseDown"
+                PreviewMouseUp="Slider_PreviewMouseUp"/>
+
+        <!-- Controles -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+            <Button Content="▶ Reproducir" Width="100" Margin="5" Click="BtnReproducir_Click" Background="#FFE5EDE3">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button Content="⏸ Pausar" Width="100" Margin="5" Click="BtnPausar_Click" Background="#FFE5EDE3">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button Content="⏹ Detener" Width="100" Margin="5" Click="BtnDetener_Click" Background="#FFE5EDE3">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button Content="❌ Cerrar" Width="100" Margin="5" Click="BtnCerrar_Click" Background="#FFE5EDE3">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

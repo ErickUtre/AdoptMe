@@ -168,5 +168,24 @@ namespace Cliente_AdoptMe.Vista
             }
             //SE GUARDA EN LA BASE DE DATOS
         }
+
+        private void Btn_VerVideo(object sender, RoutedEventArgs e)
+        {
+            string rutaVideo = @"C:\Users\Erick\Downloads\videoplayback.mp4";
+            Video reproductor = new Video(rutaVideo);
+            reproductor.ShowDialog();
+
+            /*if (!string.IsNullOrEmpty(rutaVideoSeleccionado))
+            {
+                VentanaReproductor reproductor = new VentanaReproductor(rutaVideoSeleccionado);
+                reproductor.Owner = this;
+                reproductor.ShowDialog(); // Modal
+            }
+            else
+            {
+                MessageBox.Show("Primero selecciona un video.");
+            }*/
+
+        }
     }
 }

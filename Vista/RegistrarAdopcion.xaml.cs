@@ -21,6 +21,8 @@ namespace Cliente_AdoptMe.Vista
     /// </summary>
     public partial class RegistrarAdopcion : Page
     {
+        private string rutaVideoSeleccionado;
+
         public RegistrarAdopcion()
         {
             InitializeComponent();
@@ -101,6 +103,21 @@ namespace Cliente_AdoptMe.Vista
             else
             {
                 //PROCESO DE REGISTRO EN LA BD
+            }
+        }
+
+        private void Btn_SubirVideo(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialogo = new OpenFileDialog();
+            dialogo.Title = "Selecciona un video";
+            dialogo.Filter = "Archivos de video|*.mp4;*.avi;*.mov;*.wmv;*.mkv|Todos los archivos|*.*";
+            dialogo.Multiselect = false;
+
+            if (dialogo.ShowDialog() == true)
+            {
+                rutaVideoSeleccionado = dialogo.FileName;
+                MessageBox.Show("Video seleccionado: " + rutaVideoSeleccionado);
+                lb_RutaVideo.Content = "Ruta: " + rutaVideoSeleccionado;
             }
         }
     }

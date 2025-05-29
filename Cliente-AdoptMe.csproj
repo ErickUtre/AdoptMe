@@ -98,7 +98,7 @@
     </Compile>
     <Compile Include="Vista\ConsultarAdopciones.xaml.cs">
       <DependentUpon>ConsultarAdopciones.xaml</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Vista\Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
@@ -141,14 +141,17 @@
     <Compile Include="Vista\SolicitudesAdopcion.xaml.cs">
       <DependentUpon>SolicitudesAdopcion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Video.xaml.cs">
+      <DependentUpon>Video.xaml</DependentUpon>
+    </Compile>
     <Page Include="Vista\ConsultarAdopcion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ConsultarAdopciones.xaml">
-		<SubType>Designer</SubType>
-		<Generator>MSBuild:Compile</Generator>
-	</Page>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Chat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -225,6 +228,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\SolicitudesAdopcion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Video.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

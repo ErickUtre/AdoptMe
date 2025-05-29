@@ -21,14 +21,14 @@
                        Text="Información de la mascota" 
                        VerticalAlignment="Center"/>
         </Grid>
-        
+
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="100,40">
+            <StackPanel Margin="100,40,10,40">
                 <TextBlock Style="{StaticResource TextoInformacion}"
                            Text="Nombre: Yummi"/>
                 <TextBlock Style="{StaticResource TextoInformacion}"
@@ -67,7 +67,7 @@
                                Opacity="0.8"/>
                     </Button>
                 </Grid>
-                
+
                 <TextBlock Style="{StaticResource Normal}" 
                            Margin="0,20"
                            Text="Descripción: Yummi es una gatita muy juguetona que requiere de atención y mucho amor."/>
@@ -78,7 +78,7 @@
                 Height="1"
                 Margin="40,0"
                 Background="#706363"/>
-        
+
         <Grid Grid.Row="3"
               Margin="50,40">
             <Button Style="{StaticResource BotonGeneral}"
@@ -98,5 +98,10 @@
                     Background="#EA5959"
                     HorizontalAlignment="Right" Click="BtnCancelar"/>
         </Grid>
+        <Button Style="{StaticResource BotonGeneral}"
+            Content="Ver video"
+            Background="#FFF8C420"
+            HorizontalAlignment="Left"
+            Margin="254,40,0,40" Width="150" Click="Btn_VerVideo" Grid.Row="3"/>
     </Grid>
 </Page>
