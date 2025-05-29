@@ -28,43 +28,43 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="100,40" VerticalAlignment="Top">
-                <StackPanel Orientation="Horizontal" Margin="0,5">
+            <StackPanel Margin="100,40,10,0" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" Margin="0,5" Width="670">
                     <TextBlock Name="Txt_Nombre" Style="{StaticResource TextoInformacion}" Text="Nombre: "/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarNombre">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5">
+                <StackPanel Orientation="Horizontal" Margin="0,5" Width="669">
                     <TextBlock Name="Txt_Especie" Style="{StaticResource TextoInformacion}" Text="Especie: "/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarEspecie">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5">
+                <StackPanel Orientation="Horizontal" Margin="0,5" Width="672">
                     <TextBlock Name="Txt_Raza" Style="{StaticResource TextoInformacion}" Text="Raza: "/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarRaza">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5">
+                <StackPanel Orientation="Horizontal" Margin="0,5" Width="665">
                     <TextBlock Name="Txt_Edad" Style="{StaticResource TextoInformacion}" Text="Edad: "/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarEdad">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5">
+                <StackPanel Orientation="Horizontal" Margin="0,5" Width="689">
                     <TextBlock Name="Txt_Sexo" Style="{StaticResource TextoInformacion}" Text="Sexo: "/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarSexo">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5">
+                <StackPanel Orientation="Horizontal" Margin="0,5" Width="645">
                     <TextBlock Name="Txt_Tamaño" Style="{StaticResource TextoInformacion}" Text="Tamaño: "/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarTamaño">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
@@ -114,6 +114,11 @@
                 </StackPanel>
 
             </StackPanel>
+            <Button Style="{StaticResource BotonGeneral}"
+                Content="Ver video"
+                Background="#FFF8C420"
+                HorizontalAlignment="Left"
+                Margin="569,715,0,-62" Width="150" Click="Btn_VerVideo" Grid.Column="1"/>
         </Grid>
 
         <Border Grid.Row="2"

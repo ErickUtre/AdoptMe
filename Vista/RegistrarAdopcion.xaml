@@ -39,7 +39,12 @@
                 Content="Subir foto"
                 Background="#FF3AC1CB"
                 HorizontalAlignment="Left"
-                Margin="813,-179,0,158" Width="138" Click="Btn_SubirFoto"/>
+                Margin="813,-206,0,185" Width="138" Click="Btn_SubirFoto"/>
+            <Button Style="{StaticResource BotonGeneral}"
+                Content="Subir video"
+                Background="#FFF8C420"
+                HorizontalAlignment="Left"
+                Margin="813,-154,0,134" Width="151" Click="Btn_SubirVideo"/>
         </Grid>
         <TextBlock HorizontalAlignment="Left" Margin="101,130,0,0" TextWrapping="Wrap" Text="Información de la mascota" VerticalAlignment="Top" FontSize="36" Grid.RowSpan="2"/>
         <TextBox Name="tbNombreMascota" HorizontalAlignment="Left" Margin="147,66,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="511" Height="68" utilidades:TextBoxExtensiones.TextoSugerido="Nombre de la mascota" MaxLength="45"/>
@@ -51,5 +56,6 @@
         <TextBox Name="tbTamaño" HorizontalAlignment="Left" Margin="861,66,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="511" Height="68" utilidades:TextBoxExtensiones.TextoSugerido="Tamaño" MaxLength="4"/>
         <TextBox Name="tbDescripcion" HorizontalAlignment="Left" Margin="861,179,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="511" Height="288" utilidades:TextBoxExtensiones.TextoSugerido="Descripción" MaxLength="500"/>
         <Image Name="Foto" HorizontalAlignment="Left" Height="136" Margin="1033,510,0,0" Grid.Row="1" VerticalAlignment="Top" Width="330"/>
+        <Label Name="lb_RutaVideo" Content="" HorizontalAlignment="Left" Margin="867,611,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </Page>
