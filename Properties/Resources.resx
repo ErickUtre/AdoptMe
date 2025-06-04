@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,186 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn_Video_Reproducir" xml:space="preserve">
+    <value>▶ Reproducir</value>
+  </data>
+  <data name="btn_Video_Pausar" xml:space="preserve">
+    <value>⏸ Pausar</value>
+  </data>
+  <data name="btn_Video_Detener" xml:space="preserve">
+    <value>⏹ Detener</value>
+  </data>
+  <data name="btn_Video_Cerrar" xml:space="preserve">
+    <value>❌ Cerrar</value>
+  </data>
+  <data name="global_Aceptar" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="global_Cerrar" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="txtbl_ReporteMascotasAdoptadas" xml:space="preserve">
+    <value>Reporte de mascotas adoptadas</value>
+  </data>
+  <data name="txtbl_ReporteMascotasEnAdopcion" xml:space="preserve">
+    <value>Reporte de mascotas en adopción</value>
+  </data>
+  <data name="txtbl_PrevisualizacionReporte" xml:space="preserve">
+    <value>Previsualización reporte</value>
+  </data>
+  <data name="btn_Descargar" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="txtbl_Registro" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="global_Nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="global_Correo" xml:space="preserve">
+    <value>Correo</value>
+  </data>
+  <data name="global_Contrasena" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="global_ConfirmarContrasena" xml:space="preserve">
+    <value>Confirmar contraseña</value>
+  </data>
+  <data name="global_Telefono" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="global_Ciudad" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="btn_Registrar" xml:space="preserve">
+    <value>Registrar</value>
+  </data>
+  <data name="txtbl_RegistrarAdopcion" xml:space="preserve">
+    <value>Registrar adopción</value>
+  </data>
+  <data name="txtbl_InformacionMascota" xml:space="preserve">
+    <value>Información de la mascota</value>
+  </data>
+  <data name="txtbl_NombreMascota" xml:space="preserve">
+    <value>Nombre de la mascota</value>
+  </data>
+  <data name="global_Especie" xml:space="preserve">
+    <value>Especie</value>
+  </data>
+  <data name="global_Raza" xml:space="preserve">
+    <value>Raza</value>
+  </data>
+  <data name="global_Anio" xml:space="preserve">
+    <value>Año</value>
+  </data>
+  <data name="global_Mes" xml:space="preserve">
+    <value>Mes</value>
+  </data>
+  <data name="global_Sexo" xml:space="preserve">
+    <value>Sexo</value>
+  </data>
+  <data name="global_Tamano" xml:space="preserve">
+    <value>Tamaño</value>
+  </data>
+  <data name="global_Descripcion" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="btn_SubirFoto" xml:space="preserve">
+    <value>Subir foto</value>
+  </data>
+  <data name="btn_SubirVideo" xml:space="preserve">
+    <value>Subir video</value>
+  </data>
+  <data name="txtbl_Bienvenido" xml:space="preserve">
+    <value>Bienvenido:</value>
+  </data>
+  <data name="btn_CerrarSesion" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="btn_MenuPrincipal" xml:space="preserve">
+    <value>Menú Principal</value>
+  </data>
+  <data name="btn_RegistrarAdopcion" xml:space="preserve">
+    <value>Registrar adopción</value>
+  </data>
+  <data name="btn_VerAdopciones" xml:space="preserve">
+    <value>Ver adopciones</value>
+  </data>
+  <data name="global_Mensajes" xml:space="preserve">
+    <value>Mensajes</value>
+  </data>
+  <data name="btn_GenerarReportes" xml:space="preserve">
+    <value>Generar reportes</value>
+  </data>
+  <data name="btn_VerDetalles" xml:space="preserve">
+    <value>Ver detalles</value>
+  </data>
+  <data name="txtbl_InicioSesion" xml:space="preserve">
+    <value>Inicio de sesión</value>
+  </data>
+  <data name="global_Usuario" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="btn_Registrate" xml:space="preserve">
+    <value>REGISTRATE</value>
+  </data>
+  <data name="btn_IniciarSesion" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="txtbl_ModificarCampo" xml:space="preserve">
+    <value>Modificar campo</value>
+  </data>
+  <data name="global_Guardar" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="txtbl_NuevoValor" xml:space="preserve">
+    <value>Nuevo valor</value>
+  </data>
+  <data name="global_Cancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="txtbl_InformacionUsuario" xml:space="preserve">
+    <value>Información del usuario</value>
+  </data>
+  <data name="global_Edad" xml:space="preserve">
+    <value>Edad</value>
+  </data>
+  <data name="global_Estatura" xml:space="preserve">
+    <value>Estatura</value>
+  </data>
+  <data name="btn_EnviarMensaje" xml:space="preserve">
+    <value>Enviar mensaje</value>
+  </data>
+  <data name="btn_Solicitar" xml:space="preserve">
+    <value>Solicitar</value>
+  </data>
+  <data name="btn_VerVideo" xml:space="preserve">
+    <value>Ver video</value>
+  </data>
+  <data name="txtbl_AdopcionesRegistradas" xml:space="preserve">
+    <value>Adopciones registradas</value>
+  </data>
+  <data name="txtbl_BuscarAdopciones" xml:space="preserve">
+    <value>Buscar adopciones</value>
+  </data>
+  <data name="btn_Eliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="btn_Consultar" xml:space="preserve">
+    <value>Consultar</value>
+  </data>
+  <data name="btn_SolicitudesPendientes" xml:space="preserve">
+    <value>Solicitudes pendientes</value>
+  </data>
+  <data name="global_Estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="txtbl_EnviaUnMensaje" xml:space="preserve">
+    <value>Envía un mensaje</value>
+  </data>
 </root>

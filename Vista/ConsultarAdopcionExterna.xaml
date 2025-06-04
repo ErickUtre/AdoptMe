@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+      xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="940" d:DesignWidth="1518"
       Title="ConsultarAdopcionExterna">
@@ -18,7 +19,7 @@
 
         <Grid Margin="40">
             <TextBlock Style="{StaticResource Titulo}" 
-                       Text="Información de la mascota" 
+                       Text="{x:Static p:Resources.txtbl_InformacionMascota}" 
                        VerticalAlignment="Center"/>
         </Grid>
 
@@ -30,17 +31,17 @@
 
             <StackPanel Margin="100,40,10,40">
                 <TextBlock Style="{StaticResource TextoInformacion}"
-                           Text="Nombre: Yummi"/>
+                           Text="{x:Static p:Resources.global_Nombre}"/>
                 <TextBlock Style="{StaticResource TextoInformacion}"
-                           Text="Especie: Gato"/>
+                           Text="{x:Static p:Resources.global_Especie}"/>
                 <TextBlock Style="{StaticResource TextoInformacion}"
-                           Text="Raza: Angora"/>
+                           Text="{x:Static p:Resources.global_Raza}"/>
                 <TextBlock Style="{StaticResource TextoInformacion}"
-                           Text="Edad: 1 año con 8 meses"/>
+                           Text="{x:Static p:Resources.global_Edad}"/>
                 <TextBlock Style="{StaticResource TextoInformacion}"
-                           Text="Sexo: Hembra"/>
+                           Text="{x:Static p:Resources.global_Sexo}"/>
                 <TextBlock Style="{StaticResource TextoInformacion}"
-                           Text="Estatura: 55cm"/>
+                           Text="{x:Static p:Resources.global_Estatura}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" 
@@ -70,7 +71,7 @@
 
                 <TextBlock Style="{StaticResource Normal}" 
                            Margin="0,20"
-                           Text="Descripción: Yummi es una gatita muy juguetona que requiere de atención y mucho amor."/>
+                           Text="{x:Static p:Resources.global_Descripcion}"/>
             </StackPanel>
         </Grid>
 
@@ -83,23 +84,23 @@
               Margin="50,40">
             <Button Style="{StaticResource BotonGeneral}"
                     Name="Btn_EnviarMensaje"
-                    Content="Enviar mensaje"
+                    Content="{x:Static p:Resources.btn_EnviarMensaje}"
                     Background="#3AC1CB"
                     HorizontalAlignment="Left"/>
             <Button Style="{StaticResource BotonGeneral}"
                     Name="Btn_Solicitar"
-                    Content="Solicitar"
+                    Content="{x:Static p:Resources.btn_Solicitar}"
                     Background="#3FBD13"
                     HorizontalAlignment="Right"
                     Margin="150,0"/>
             <Button Style="{StaticResource BotonGeneral}"
                     Name="Btn_Cancelar"
-                    Content="Cancelar"
+                    Content="{x:Static p:Resources.global_Cancelar}"
                     Background="#EA5959"
                     HorizontalAlignment="Right" Click="BtnCancelar"/>
         </Grid>
         <Button Style="{StaticResource BotonGeneral}"
-            Content="Ver video"
+            Content="{x:Static p:Resources.btn_VerVideo}"
             Background="#FFF8C420"
             HorizontalAlignment="Left"
             Margin="254,40,0,40" Width="150" Click="Btn_VerVideo" Grid.Row="3"/>

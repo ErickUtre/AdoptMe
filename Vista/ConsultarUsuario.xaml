@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+      xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="940" d:DesignWidth="1518"
       Title="ConsultarUsuario">
@@ -18,7 +19,7 @@
 
         <Grid Margin="40">
             <TextBlock Style="{StaticResource Titulo}" 
-                       Text="Información del usuario" 
+                       Text="{x:Static p:Resources.txtbl_InformacionUsuario}" 
                        VerticalAlignment="Center"/>
         </Grid>
 
@@ -30,28 +31,28 @@
 
             <StackPanel Margin="100,40,10,0" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <TextBlock Name="Txt_Nombre" Style="{StaticResource TextoInformacion}" Text="Nombre: "/>
+                    <TextBlock Name="Txt_Nombre" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Nombre}"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarNombre">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <TextBlock Name="Txt_Correo" Style="{StaticResource TextoInformacion}" Text="Correo: "/>
+                    <TextBlock Name="Txt_Correo" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Correo}"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarCorreo">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <TextBlock Name="Txt_Telefono" Style="{StaticResource TextoInformacion}" Text="Teléfono: "/>
+                    <TextBlock Name="Txt_Telefono" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Telefono}"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarTelefono">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <TextBlock Name="Txt_Ciudad" Style="{StaticResource TextoInformacion}" Text="Ciudad: "/>
+                    <TextBlock Name="Txt_Ciudad" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Ciudad}"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarCiudad">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>

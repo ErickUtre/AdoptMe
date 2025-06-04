@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+             xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="420" d:DesignWidth="380"
              Background="Transparent">
@@ -20,36 +21,36 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0">
-                <TextBlock x:Name="Nombre" 
+                <TextBlock x:Name="txtbl_Nombre" 
                            Style="{StaticResource Subtitulo2}" 
                            Text="Max"
                            Foreground="White"
                            HorizontalAlignment="Center"/>
-                <TextBlock x:Name="Edad"
+                <TextBlock x:Name="txtbl_Edad"
                            Style="{StaticResource Normal}"
-                           Text="Edad: 2 años y 4 meses"
+                           Text="{x:Static p:Resources.global_Edad}"
                            Foreground="White"
                            Margin="0,15,0,5"/>
-                <TextBlock x:Name="Sexo"
+                <TextBlock x:Name="txtbl_Sexo"
                            Style="{StaticResource Normal}"
-                           Text="Sexo: Macho"
+                           Text="{x:Static p:Resources.global_Sexo}"
                            Foreground="White"
                            Margin="0,5"/>
-                <TextBlock x:Name="Especie"
+                <TextBlock x:Name="txtbl_Especie"
                            Style="{StaticResource Normal}"
-                           Text="Especie: Perro"
+                           Text="{x:Static p:Resources.global_Especie}"
                            Foreground="White"
                            Margin="0,5"/>
-                <TextBlock x:Name="Raza"
+                <TextBlock x:Name="txtbl_Raza"
                            Style="{StaticResource Normal}"
-                           Text="Raza: Pitbull"
+                           Text="{x:Static p:Resources.global_Raza}"
                            Foreground="White"
                            Margin="0,5,0,20"/>
             </StackPanel>
 
             <Button Style="{StaticResource BotonGeneral}"
                     Grid.Row="1"
-                    Content="Ver detalles"
+                    Content="{x:Static p:Resources.btn_VerDetalles}"
                     Foreground="Black"
                     Background="#FAFAFA"
                     VerticalAlignment="Center" Click="IrDetallesMascota"/>
