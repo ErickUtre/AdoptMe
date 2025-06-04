@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
         xmlns:utilidades="clr-namespace:Cliente_AdoptMe.Utilidades"
+        xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
         mc:Ignorable="d"
         Title="RegistroDeUsuario" Height="700" Width="550"
         WindowStartupLocation="CenterScreen">
@@ -18,24 +19,24 @@
                            Width="70"/>
                 </Button>
                 <TextBlock Style="{StaticResource Titulo}" 
-                           Text="Registro"
+                           Text="{x:Static p:Resources.txtbl_Registro}"
                            Foreground="White"/>
             </StackPanel>
             <TextBox x:Name="tbNombre" 
-                     utilidades:TextBoxExtensiones.TextoSugerido="Nombre"
+                     utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Nombre}"
                      Margin="0,20"/>
 
             <TextBox x:Name="tbCorreo" 
-                     utilidades:TextBoxExtensiones.TextoSugerido="Correo"
+                     utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Correo}"
                      Margin="0,20"/>
 
             <Grid Margin="0,20">
                 <TextBox x:Name="tbContraseña" 
-                         utilidades:TextBoxExtensiones.TextoSugerido="Contraseña"
+                         utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Contrasena}"
                          HorizontalAlignment="Center"
                          Visibility="Hidden"/>
                 <PasswordBox x:Name="pbContraseña"
-                             utilidades:PasswordBoxExtensiones.TextoSugerido="Contraseña"
+                             utilidades:PasswordBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Contrasena}"
                              HorizontalAlignment="Center"
                              PasswordChanged="PbCambioDeContraseña"/>
                 <Button Style="{StaticResource EstiloBaseBoton}"
@@ -84,11 +85,11 @@
 
             <Grid Margin="0,20">
                 <TextBox x:Name="tbConfirmarContraseña" 
-                         utilidades:TextBoxExtensiones.TextoSugerido="Confirmar contraseña"
+                         utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_ConfirmarContrasena}"
                          HorizontalAlignment="Center"
                          Visibility="Hidden"/>
                 <PasswordBox x:Name="pbConfirmarContraseña"
-                             utilidades:PasswordBoxExtensiones.TextoSugerido="Contraseña"
+                             utilidades:PasswordBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_ConfirmarContrasena}"
                              HorizontalAlignment="Center"
                              PasswordChanged="PbCambioDeContraseña"/>
                 <Button Style="{StaticResource EstiloBaseBoton}"
@@ -102,15 +103,15 @@
             
 
             <TextBox x:Name="tbTelefono" 
-                     utilidades:TextBoxExtensiones.TextoSugerido="Teléfono"
+                     utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Telefono}"
                      Margin="0,20"/>
 
             <TextBox x:Name="tbCiudad" 
-                     utilidades:TextBoxExtensiones.TextoSugerido="Ciudad"
+                     utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Ciudad}"
                      Margin="0,20"/>
 
             <Button Style="{StaticResource BotonGeneral}" 
-                    Content="Registrar"
+                    Content="{x:Static p:Resources.btn_Registrar}"
                     Margin="0,10"
                     Background="#73EF41"/>
         </StackPanel>

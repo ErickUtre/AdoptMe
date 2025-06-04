@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+      xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="940" d:DesignWidth="1518"
       Title="ConsultarAdopcion">
@@ -18,7 +19,7 @@
 
         <Grid Margin="40">
             <TextBlock Style="{StaticResource Titulo}" 
-                       Text="Información de la mascota" 
+                       Text="{x:Static p:Resources.txtbl_InformacionMascota}" 
                        VerticalAlignment="Center"/>
         </Grid>
 
@@ -30,42 +31,42 @@
 
             <StackPanel Margin="100,40,10,0" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="670">
-                    <TextBlock Name="Txt_Nombre" Style="{StaticResource TextoInformacion}" Text="Nombre: "/>
+                    <TextBlock Name="Txt_Nombre" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Nombre}"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarNombre">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="669">
-                    <TextBlock Name="Txt_Especie" Style="{StaticResource TextoInformacion}" Text="Especie: "/>
+                    <TextBlock Name="Txt_Especie" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Especie}"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarEspecie">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="672">
-                    <TextBlock Name="Txt_Raza" Style="{StaticResource TextoInformacion}" Text="Raza: "/>
+                    <TextBlock Name="Txt_Raza" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Raza}"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarRaza">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="665">
-                    <TextBlock Name="Txt_Edad" Style="{StaticResource TextoInformacion}" Text="Edad: "/>
+                    <TextBlock Name="Txt_Edad" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Edad}"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarEdad">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="689">
-                    <TextBlock Name="Txt_Sexo" Style="{StaticResource TextoInformacion}" Text="Sexo: "/>
+                    <TextBlock Name="Txt_Sexo" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Sexo}"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarSexo">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="645">
-                    <TextBlock Name="Txt_Tamaño" Style="{StaticResource TextoInformacion}" Text="Tamaño: "/>
+                    <TextBlock Name="Txt_Tamaño" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Tamano}"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarTamaño">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
@@ -109,13 +110,13 @@
 
                     <TextBlock Name="Txt_Descripcion" Style="{StaticResource Normal}" 
                            Margin="0,20"
-                           Text="Descripción: " Width="607" Height="131" FontSize="20"/>
+                           Text="{x:Static p:Resources.global_Descripcion}" Width="607" Height="131" FontSize="20"/>
 
                 </StackPanel>
 
             </StackPanel>
             <Button Style="{StaticResource BotonGeneral}"
-                Content="Ver video"
+                Content="{x:Static p:Resources.btn_VerVideo}"
                 Background="#FFF8C420"
                 HorizontalAlignment="Left"
                 Margin="569,715,0,-62" Width="150" Click="Btn_VerVideo" Grid.Column="1"/>

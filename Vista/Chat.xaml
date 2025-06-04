@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
       xmlns:utilidades="clr-namespace:Cliente_AdoptMe.Utilidades"
+      xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="940" d:DesignWidth="1518"
       Title="Chat">
@@ -47,7 +48,7 @@
             <StackPanel Orientation="Horizontal"
                         Margin="30">
                 <TextBox x:Name="tbMensaje" 
-                         utilidades:TextBoxExtensiones.TextoSugerido="Envía un mensaje"
+                         utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.txtbl_EnviaUnMensaje}"
                          FontSize="32"
                          Width="1300"
                          Margin="0,0,75,0"

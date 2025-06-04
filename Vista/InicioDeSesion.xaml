@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
         xmlns:utilidades="clr-namespace:Cliente_AdoptMe.Utilidades"
+        xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
         mc:Ignorable="d"
         Title="InicioDeSesion" Height="700" Width="550"
         WindowStartupLocation="CenterScreen">
@@ -17,21 +18,21 @@
                    Margin="0,40"/>
             <TextBlock Style="{StaticResource Subtitulo2}" 
                        HorizontalAlignment="Center"
-                       Text="Inicio de sesión"/>
+                       Text="{x:Static p:Resources.txtbl_InicioSesion}"/>
 
             <TextBox x:Name="tbUsuario"
-                     utilidades:TextBoxExtensiones.TextoSugerido="Usuario"
+                     utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Usuario}"
                      Margin="0,50,0,10"
                      MaxLength="50"/>
 
             <PasswordBox x:Name="pbContraseña"
-                         utilidades:PasswordBoxExtensiones.TextoSugerido="Contraseña"
+                         utilidades:PasswordBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Contrasena}"
                          Margin="10"
                          MaxLength="50"
                          PasswordChanged="PbCambioDeContraseña"/>
 
             <Button Style="{StaticResource BotonGeneral}"
-                    Content="REGISTRATE" 
+                    Content="{x:Static p:Resources.btn_Registrate}" 
                     HorizontalAlignment="Center"
                     Background="Transparent"
                     Foreground="White"
@@ -42,7 +43,7 @@
                     />
 
             <Button Style="{StaticResource BotonGeneral}" 
-                    Content="Iniciar sesión"
+                    Content="{x:Static p:Resources.btn_IniciarSesion}"
                     Background="#187DAC" Click="BtnIniciarSesion"/>
         </StackPanel>
     </Grid>

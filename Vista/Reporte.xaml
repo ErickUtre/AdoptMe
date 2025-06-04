@@ -4,13 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+      xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="940" d:DesignWidth="1518"
       Title="Reporte">
 
     <Grid Background="#EEEEEE">
         <TextBlock Style="{StaticResource Titulo}" 
-                       Text="Previsualización reporte" 
+                       Text="{x:Static p:Resources.txtbl_PrevisualizacionReporte}" 
                        VerticalAlignment="Top" Margin="51,48,618,0" FontSize="60"/>
 
         <Button Style="{StaticResource EstiloBaseBoton}"
@@ -23,7 +24,7 @@
                         <DropShadowEffect/>
                     </Image.Effect>
                 </Image>
-                <TextBlock Text="Descargar"
+                <TextBlock Text="{x:Static p:Resources.btn_Descargar}"
                    Foreground="Black" HorizontalAlignment="Center" FontSize="14"/>
             </StackPanel>
         </Button>

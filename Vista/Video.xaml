@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+        xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
@@ -16,7 +17,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- Reproductor de video -->
         <MediaElement x:Name="mediaPlayer"
                       Grid.Row="0"
                       LoadedBehavior="Manual"
@@ -24,7 +24,6 @@
                       Stretch="Uniform"
                       MediaOpened="mediaPlayer_MediaOpened"/>
 
-        <!-- Barra de progreso -->
         <Slider x:Name="sliderProgreso"
                 Grid.Row="1"
                 Height="25"
@@ -33,24 +32,23 @@
                 PreviewMouseDown="Slider_PreviewMouseDown"
                 PreviewMouseUp="Slider_PreviewMouseUp"/>
 
-        <!-- Controles -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
-            <Button Content="▶ Reproducir" Width="100" Margin="5" Click="BtnReproducir_Click" Background="#FFE5EDE3">
+            <Button Content="{x:Static p:Resources.btn_Video_Reproducir}" Width="100" Margin="5" Click="BtnReproducir_Click" Background="#FFE5EDE3">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
             </Button>
-            <Button Content="⏸ Pausar" Width="100" Margin="5" Click="BtnPausar_Click" Background="#FFE5EDE3">
+            <Button Content="{x:Static p:Resources.btn_Video_Pausar}" Width="100" Margin="5" Click="BtnPausar_Click" Background="#FFE5EDE3">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
             </Button>
-            <Button Content="⏹ Detener" Width="100" Margin="5" Click="BtnDetener_Click" Background="#FFE5EDE3">
+            <Button Content="{x:Static p:Resources.btn_Video_Detener}" Width="100" Margin="5" Click="BtnDetener_Click" Background="#FFE5EDE3">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
             </Button>
-            <Button Content="❌ Cerrar" Width="100" Margin="5" Click="BtnCerrar_Click" Background="#FFE5EDE3">
+            <Button Content="{x:Static p:Resources.btn_Video_Cerrar}" Width="100" Margin="5" Click="BtnCerrar_Click" Background="#FFE5EDE3">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>

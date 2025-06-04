@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+      xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="940" d:DesignWidth="1518"
       Title="Mensajes">
@@ -16,7 +17,7 @@
 
         <Grid Background="#1E1E1E">
             <TextBlock Style="{StaticResource Titulo}"
-                       Text="Mensajes"
+                       Text="{x:Static p:Resources.global_Mensajes}"
                        Foreground="White"
                        Margin="50"/>
         </Grid>
