@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Cliente_AdoptMe.Logica;
+using Cliente_AdoptMe.Modelo;
 
 namespace Cliente_AdoptMe.Vista
 {
@@ -40,8 +40,7 @@ namespace Cliente_AdoptMe.Vista
                 Nombre = "Bongo",
                 Especie = "Perro",
                 Raza = "Dalmata",
-                Edad = "3 años con 2 meses",
-                EstadoAdopcion = false,
+                Edad = "3 años con 2 meses"
             };
 
             //SE MUESTRAN EN LA INTERFAZ GRÁFICA COMO ELEMENTOS
@@ -50,7 +49,7 @@ namespace Cliente_AdoptMe.Vista
             Tb_Raza.Text += mascotas[mascotas.Length - 1].Raza;
             Tb_Edad.Text += mascotas[mascotas.Length - 1].Edad;
             Foto.Source = new BitmapImage(new Uri("pack://application:,,,/Recursos/Imagenes/Bongo.png"));
-
+            /*
             if (mascotas[mascotas.Length - 1].EstadoAdopcion)
             {
                 Tb_Estado.Text += "Sin adoptar";
@@ -62,6 +61,7 @@ namespace Cliente_AdoptMe.Vista
                 Tb_Estado.Text += "Adoptado/a";
                 Ell_Estado.Fill = new SolidColorBrush(Colors.Red);
             }
+            */
         }
 
         private void Btn_SolicitudesPendientes(object sender, RoutedEventArgs e)

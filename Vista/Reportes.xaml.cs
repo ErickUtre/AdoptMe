@@ -1,4 +1,4 @@
-﻿using Cliente_AdoptMe.Logica;
+﻿using Cliente_AdoptMe.Modelo;
 using Cliente_AdoptMe.Utilidades;
 using System;
 using System.Collections.Generic;

@@ -294,4 +294,25 @@
   <data name="txtbl_EnviaUnMensaje" xml:space="preserve">
     <value>Envía un mensaje</value>
   </data>
+  <data name="btn_ObtenerUbicacion" xml:space="preserve">
+    <value>Obtener ubicación</value>
+  </data>
+  <data name="txtbl_Opcional" xml:space="preserve">
+    <value>Opcional*</value>
+  </data>
+  <data name="titulo_ConfirmarModificacion" xml:space="preserve">
+    <value>Confirmar modificación</value>
+  </data>
+  <data name="txtbl_SeguroDeModificarUbicacion" xml:space="preserve">
+    <value>¿Seguro qué deseas modificar la ubicación?</value>
+  </data>
+  <data name="txtbl_UbicacionImprecisa" xml:space="preserve">
+    <value>La ubicación no es precisa, por favor, seleccione su ubicación dando doble clic de ser necesario.</value>
+  </data>
+  <data name="mensaje_ErrorUbicacion" xml:space="preserve">
+    <value>Error al obtener la ubicación, favor de intentarlo más tarde.</value>
+  </data>
+  <data name="txtbl_CampoVacioIncorrecto" xml:space="preserve">
+    <value>Campo vacio o incorrecto</value>
+  </data>
 </root>

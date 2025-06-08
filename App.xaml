@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Cliente_AdoptMe"
              xmlns:utilidades="clr-namespace:Cliente_AdoptMe.Utilidades"
-             StartupUri="/Vista/MenuPrincipalUsuario.xaml">
+             StartupUri="/Vista/InicioDeSesion.xaml">
     <Application.Resources>
         <utilidades:CadenaVisibilidadConverter x:Key="CadenaVisibilidadConverter" />
 
@@ -12,7 +12,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
                         <Border Background="White" 
-                                CornerRadius="15">
+                                CornerRadius="15"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="2">
                             <Grid>
                                 <TextBlock x:Name="TextoSugerido"
                                            Text="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, 
@@ -38,6 +40,7 @@
             <Setter Property="Padding" Value="15,5,15,5" />
             <Setter Property="Width" Value="300" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="BorderBrush" Value="Transparent" />
         </Style>
 
         <Style TargetType="PasswordBox">
@@ -45,7 +48,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="PasswordBox">
                         <Border Background="White" 
-                                CornerRadius="15">
+                                CornerRadius="15"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="2">
                             <Grid>
                                 <TextBlock x:Name="TextoSugerido"
                                            Text="{Binding RelativeSource={RelativeSource AncestorType=PasswordBox}, 
@@ -68,10 +73,10 @@
                 </Setter.Value>
             </Setter>
             <Setter Property="FontSize" Value="20" />
-            <Setter Property="Padding" Value="15,0,15,0" />
+            <Setter Property="Padding" Value="15,5,15,5" />
             <Setter Property="Width" Value="300" />
-            <Setter Property="Height" Value="36.6" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="BorderBrush" Value="Transparent" />
         </Style>
 
         <Style x:Key="FuenteBase" TargetType="TextBlock">

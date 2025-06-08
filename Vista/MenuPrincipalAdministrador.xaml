@@ -38,7 +38,7 @@
                                    VerticalAlignment="Top"
                                    Margin="50,5"
                                    Foreground="White"/>
-                        <TextBlock Text="Killeresh"
+                        <TextBlock x:Name="txtblNombreUsuario"
                                    Margin="50,20"
                                    Foreground="White"
                                    FontWeight="Bold"/>
