@@ -1,4 +1,5 @@
-﻿using Cliente_AdoptMe.Utilidades;
+﻿using Cliente_AdoptMe.Servicios;
+using Cliente_AdoptMe.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,15 @@ namespace Cliente_AdoptMe.Vista
             InitializeComponent();
             NavegadorPrincipal.Instancia.SetMarco(MarcoPrincipal);
             NavegadorPrincipal.Instancia.Navegar(new MapaPrincipal());
+            txtblNombreUsuario.Text = UsuarioSingleton.Instancia.UsuarioActual.Nombre;
         }
 
 
         private void BtnCerrarMenuPrincipal(object sender, RoutedEventArgs e)
         {
+            UsuarioSingleton.Instancia.CerrarSesion();
+            InicioDeSesion inicioDeSesion = new InicioDeSesion();
+            inicioDeSesion.Show();
             this.Close();
         }
 
@@ -43,12 +48,22 @@ namespace Cliente_AdoptMe.Vista
 
         private void BtnIrRegistrarAdopcion(object sender, RoutedEventArgs e)
         {
-            NavegadorPrincipal.Instancia.Navegar(new RegistrarAdopcion());
+            var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
+
+            if (paginaActual == null || paginaActual.GetType() != typeof(RegistrarAdopcion))
+            {
+                NavegadorPrincipal.Instancia.Navegar(new RegistrarAdopcion());
+            }
         }
 
         private void BtnIrVerAdopciones(object sender, RoutedEventArgs e)
         {
-            NavegadorPrincipal.Instancia.Navegar(new ConsultarAdopciones());
+            var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
+
+            if (paginaActual == null || paginaActual.GetType() != typeof(ConsultarAdopciones))
+            {
+                NavegadorPrincipal.Instancia.Navegar(new ConsultarAdopciones());
+            }
         }
 
         private void BtnIrMensajes(object sender, RoutedEventArgs e)
@@ -63,7 +78,12 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_IconoUsuario(object sender, RoutedEventArgs e)
         {
-            NavegadorPrincipal.Instancia.Navegar(new ConsultarUsuario());
+            var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
+
+            if (paginaActual == null || paginaActual.GetType() != typeof(ConsultarUsuario))
+            {
+                NavegadorPrincipal.Instancia.Navegar(new ConsultarUsuario());
+            }
         }
     }
 }

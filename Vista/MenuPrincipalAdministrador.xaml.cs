@@ -23,13 +23,16 @@ namespace Cliente_AdoptMe.Vista
         public MenuPrincipalAdministrador()
         {
             InitializeComponent();
-            //MarcoPrincipal.NavigationService.Content = new MapaPrincipal();
             NavegadorPrincipal.Instancia.SetMarco(MarcoPrincipal);
             NavegadorPrincipal.Instancia.Navegar(new MapaPrincipal());
+            txtblNombreUsuario.Text = UsuarioSingleton.Instancia.UsuarioActual.Nombre;
         }
 
         private void BtnCerrarMenuPrincipal(object sender, RoutedEventArgs e)
         {
+            UsuarioSingleton.Instancia.CerrarSesion();
+            InicioDeSesion inicioDeSesion = new InicioDeSesion();
+            inicioDeSesion.Show();
             this.Close();
         }
 

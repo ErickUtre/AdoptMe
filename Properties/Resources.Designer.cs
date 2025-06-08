@@ -133,6 +133,15 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Obtener ubicación.
+        /// </summary>
+        public static string btn_ObtenerUbicacion {
+            get {
+                return ResourceManager.GetString("btn_ObtenerUbicacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Registrar.
         /// </summary>
         public static string btn_Registrar {
@@ -457,6 +466,24 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error al obtener la ubicación, favor de intentarlo más tarde..
+        /// </summary>
+        public static string mensaje_ErrorUbicacion {
+            get {
+                return ResourceManager.GetString("mensaje_ErrorUbicacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirmar modificación.
+        /// </summary>
+        public static string titulo_ConfirmarModificacion {
+            get {
+                return ResourceManager.GetString("titulo_ConfirmarModificacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Adopciones registradas.
         /// </summary>
         public static string txtbl_AdopcionesRegistradas {
@@ -480,6 +507,15 @@ namespace Cliente_AdoptMe.Properties {
         public static string txtbl_BuscarAdopciones {
             get {
                 return ResourceManager.GetString("txtbl_BuscarAdopciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Campo vacio o incorrecto.
+        /// </summary>
+        public static string txtbl_CampoVacioIncorrecto {
+            get {
+                return ResourceManager.GetString("txtbl_CampoVacioIncorrecto", resourceCulture);
             }
         }
         
@@ -547,6 +583,15 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Opcional*.
+        /// </summary>
+        public static string txtbl_Opcional {
+            get {
+                return ResourceManager.GetString("txtbl_Opcional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Previsualización reporte.
         /// </summary>
         public static string txtbl_PrevisualizacionReporte {
@@ -588,6 +633,24 @@ namespace Cliente_AdoptMe.Properties {
         public static string txtbl_ReporteMascotasEnAdopcion {
             get {
                 return ResourceManager.GetString("txtbl_ReporteMascotasEnAdopcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Seguro qué deseas modificar la ubicación?.
+        /// </summary>
+        public static string txtbl_SeguroDeModificarUbicacion {
+            get {
+                return ResourceManager.GetString("txtbl_SeguroDeModificarUbicacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La ubicación no es precisa, por favor, seleccione su ubicación dando doble clic de ser necesario..
+        /// </summary>
+        public static string txtbl_UbicacionImprecisa {
+            get {
+                return ResourceManager.GetString("txtbl_UbicacionImprecisa", resourceCulture);
             }
         }
     }

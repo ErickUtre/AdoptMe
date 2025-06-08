@@ -14,7 +14,8 @@
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource EstiloBaseBoton}"
                         Background="Transparent"
-                        Margin="0,0,40,0" Click="BtnIrVentanaInicioDeSesion">
+                        Margin="0,0,40,0" 
+                        Click="BtnIrVentanaInicioDeSesion_Click">
                     <Image Source="/Recursos/Imagenes/IconoRegresar.png" 
                            Width="70"/>
                 </Button>
@@ -24,29 +25,52 @@
             </StackPanel>
             <TextBox x:Name="tbNombre" 
                      utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Nombre}"
-                     Margin="0,20"/>
+                     Margin="0,20"
+                     MaxLength="100"/>
 
             <TextBox x:Name="tbCorreo" 
                      utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Correo}"
-                     Margin="0,20"/>
+                     Margin="0,20"
+                     MaxLength="100"/>
 
             <Grid Margin="0,20">
                 <TextBox x:Name="tbContraseña" 
                          utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Contrasena}"
                          HorizontalAlignment="Center"
-                         Visibility="Hidden"/>
+                         Visibility="Hidden"
+                         MaxLength="100"/>
                 <PasswordBox x:Name="pbContraseña"
                              utilidades:PasswordBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Contrasena}"
                              HorizontalAlignment="Center"
-                             PasswordChanged="PbCambioDeContraseña"/>
-                <Button Style="{StaticResource EstiloBaseBoton}"
-                        HorizontalAlignment="Right"
-                        Margin="100,0">
-                    <Image x:Name="ImagenVisibilidadContraseña"
-                           Source="/Recursos/Imagenes/IconoOcultar.png"
+                             PasswordChanged="PbCambioDeContraseña"
+                             MaxLength="100"/>
+                <ToggleButton x:Name="tbtn_VisibilidadContraseña" 
+                              Background="Transparent"
+                              BorderThickness="0"
+                              Width="50"
+                              VerticalAlignment="Center"
+                              Margin="250,0,0,0"
+                              Checked="CambiarVisibilidadContraseña_Click"
+                              Unchecked="CambiarVisibilidadContraseña_Click">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ToggleButton.Style>
+                    <Image x:Name="img_VisibilidadContraseña" 
+                           Source="/Recursos/Imagenes/IconoOcultar.png" 
                            Width="35"/>
-                </Button>
-                
+                </ToggleButton>
+
                 <Button Style="{StaticResource EstiloBaseBoton}" 
                         Width="40" 
                         HorizontalAlignment="Right" 
@@ -87,33 +111,65 @@
                 <TextBox x:Name="tbConfirmarContraseña" 
                          utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_ConfirmarContrasena}"
                          HorizontalAlignment="Center"
-                         Visibility="Hidden"/>
+                         Visibility="Hidden"
+                         MaxLength="100"/>
                 <PasswordBox x:Name="pbConfirmarContraseña"
                              utilidades:PasswordBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_ConfirmarContrasena}"
                              HorizontalAlignment="Center"
-                             PasswordChanged="PbCambioDeContraseña"/>
-                <Button Style="{StaticResource EstiloBaseBoton}"
-                        HorizontalAlignment="Right"
-                        Margin="100,0">
-                    <Image x:Name="ImagenVisibilidadConfirmarContraseña"
-                           Source="/Recursos/Imagenes/IconoOcultar.png"
+                             PasswordChanged="PbCambioDeContraseña"
+                             MaxLength="100"/>
+
+                <ToggleButton x:Name="tbtn_VisibilidadConfirmarContraseña" 
+                              Background="Transparent"
+                              BorderThickness="0"
+                              Width="50"
+                              VerticalAlignment="Center"
+                              Margin="250,0,0,0"
+                              Checked="CambiarVisibilidadConfirmarContraseña_Click"
+                              Unchecked="CambiarVisibilidadConfirmarContraseña_Click">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ToggleButton.Style>
+                    <Image x:Name="img_VisibilidadConfirmarContraseña" 
+                           Source="/Recursos/Imagenes/IconoOcultar.png" 
                            Width="35"/>
-                </Button>
+                </ToggleButton>
             </Grid>
             
 
             <TextBox x:Name="tbTelefono" 
                      utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Telefono}"
-                     Margin="0,20"/>
+                     Margin="0,20"
+                     MaxLength="10"/>
 
-            <TextBox x:Name="tbCiudad" 
-                     utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Ciudad}"
-                     Margin="0,20"/>
+            <TextBlock Style="{StaticResource FuenteBase}" 
+                       Text="{x:Static p:Resources.txtbl_Opcional}"
+                       FontSize="15"
+                       Margin="150,0"
+                       Foreground="White"/>
+
+            <Button Style="{StaticResource BotonGeneral}" 
+                    Content="{x:Static p:Resources.btn_ObtenerUbicacion}"
+                    Margin="0,0,0,10"
+                    Background="#00DF82" 
+                    Click="ObtenerUbicacion_Click"/>
 
             <Button Style="{StaticResource BotonGeneral}" 
                     Content="{x:Static p:Resources.btn_Registrar}"
                     Margin="0,10"
-                    Background="#73EF41"/>
+                    Background="#73EF41" 
+                    Click="Registrar_Click"/>
         </StackPanel>
     </Grid>
 </Window>

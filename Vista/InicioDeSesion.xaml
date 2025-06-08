@@ -20,16 +20,49 @@
                        HorizontalAlignment="Center"
                        Text="{x:Static p:Resources.txtbl_InicioSesion}"/>
 
-            <TextBox x:Name="tbUsuario"
-                     utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Usuario}"
+            <TextBox x:Name="tbCorreo"
+                     utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Correo}"
                      Margin="0,50,0,10"
-                     MaxLength="50"/>
+                     MaxLength="100"/>
 
-            <PasswordBox x:Name="pbContraseña"
-                         utilidades:PasswordBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Contrasena}"
-                         Margin="10"
-                         MaxLength="50"
-                         PasswordChanged="PbCambioDeContraseña"/>
+            <Grid Margin="0,10">
+                <TextBox x:Name="tbContraseña" 
+                         utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Contrasena}"
+                         HorizontalAlignment="Center"
+                         Visibility="Hidden"
+                         MaxLength="100"/>
+                <PasswordBox x:Name="pbContraseña"
+                             utilidades:PasswordBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Contrasena}"
+                             HorizontalAlignment="Center"
+                             PasswordChanged="PbCambioDeContraseña"
+                             MaxLength="100"/>
+                <ToggleButton x:Name="tbtn_VisibilidadContraseña" 
+                              Background="Transparent"
+                              BorderThickness="0"
+                              Width="50"
+                              VerticalAlignment="Center"
+                              Margin="250,0,0,0"
+                              Checked="CambiarVisibilidadContraseña_Click"
+                              Unchecked="CambiarVisibilidadContraseña_Click">
+                    <ToggleButton.Style>
+                        <Style TargetType="ToggleButton">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ToggleButton.Style>
+                    <Image x:Name="img_VisibilidadContraseña" 
+                           Source="/Recursos/Imagenes/IconoOcultar.png" 
+                           Width="35"/>
+                </ToggleButton>
+            </Grid>
 
             <Button Style="{StaticResource BotonGeneral}"
                     Content="{x:Static p:Resources.btn_Registrate}" 
@@ -39,12 +72,12 @@
                     FontSize="24"
                     FontWeight="ExtraLight"
                     FontStyle="Italic"
-                    Margin="0,10" Click="BtnIrVentanaRegistro"
-                    />
+                    Margin="0,10" 
+                    Click="BtnIrVentanaRegistro_Click"/>
 
             <Button Style="{StaticResource BotonGeneral}" 
                     Content="{x:Static p:Resources.btn_IniciarSesion}"
-                    Background="#187DAC" Click="BtnIniciarSesion"/>
+                    Background="#187DAC" Click="BtnIniciarSesion_Click"/>
         </StackPanel>
     </Grid>
 </Window>
