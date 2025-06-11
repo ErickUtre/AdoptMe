@@ -50,8 +50,8 @@ namespace Cliente_AdoptMe.Vista
             }
 
             ResultadoUbicacion = ubicacionPorIP;
-            double latitud = ubicacionPorIP.Latitud;
-            double longitud = ubicacionPorIP.Longitud;
+            double latitud = ubicacionPorIP.Latitud.Value;
+            double longitud = ubicacionPorIP.Longitud.Value;
             MostrarDatosUbicacion(ubicacionPorIP);
 
             var posicion = new PointLatLng(latitud, longitud);

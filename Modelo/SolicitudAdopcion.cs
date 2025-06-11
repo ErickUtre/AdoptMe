@@ -20,4 +20,16 @@ namespace Cliente_AdoptMe.Modelo
         [JsonProperty("AdoptanteID")]
         public int AdoptanteID { get; set; }
     }
+
+    public class SolicitudAdopcionCercana
+    {
+        [JsonProperty("solicitudAdopcionId")]
+        public string SolicitudAdopcionId { get; set; }
+        [JsonProperty("distancia")]
+        public double? Distancia { get; set; }
+        [JsonProperty("latitud")]
+        public double? Latitud { get; set; }
+        [JsonProperty("longitud")]
+        public double? Longitud { get; set; }
+    }
 }
