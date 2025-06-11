@@ -10,6 +10,11 @@ using System.Windows.Shapes;
 using GMap.NET.WindowsPresentation;
 using System.Windows.Controls.Primitives;
 using Cliente_AdoptMe.Utilidades;
+using Cliente_AdoptMe.Modelo;
+using System.Windows.Media.Imaging;
+using System.Threading.Tasks;
+using Cliente_AdoptMe.Servicios;
+using Newtonsoft.Json;
 
 namespace Cliente_AdoptMe.Vista
 {
@@ -18,17 +23,39 @@ namespace Cliente_AdoptMe.Vista
     /// </summary>
     public partial class MapaPrincipal : Page
     {
-        private List<GMapMarker> marcadores = new List<GMapMarker>();
-        private const int ZoomVisible = 10;
+        private List<GMapMarker> _marcadores = new List<GMapMarker>();
+        private const int ZOOM_VISIBLE = 10;
 
         public MapaPrincipal()
         {
             InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            CargarMapaUbicacionDefecto();
+            Ubicacion ubicacionUsuario = UsuarioSingleton.Instancia.UsuarioActual.Ubicacion;
+
+            if (ubicacionUsuario != null)
+            {
+                double? latitud = ubicacionUsuario.Latitud;
+                double? longitud = ubicacionUsuario.Longitud;
+
+                if (latitud.HasValue && longitud.HasValue)
+                {
+                    PointLatLng coordenadasUbicacion = new PointLatLng(latitud.Value, longitud.Value);
+                    AgregarMarcadorUbicacionUsuario(coordenadasUbicacion);
+                    MostrarMapaPrincipal(coordenadasUbicacion);
+                    await MostrarUsuariosCercanos(latitud.Value, longitud.Value);
+                }
+                else
+                {
+                    MostrarMapaPrincipal();
+                }
+            }
+            else
+            {
+                MostrarMapaPrincipal();
+            }
         }
         
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -38,28 +65,56 @@ namespace Cliente_AdoptMe.Vista
             GMaps.Instance.CancelTileCaching();
         }
         
-        private void CargarMapaUbicacionDefecto()
+        private void MostrarMapaPrincipal(PointLatLng? ubicacionUsuario = null)
         {
             mapaPrincipal.MapProvider = GMapProviders.GoogleMap;
+
+            var zoomInicial = 6;
             var posicionDefectoMexico = new PointLatLng(23.6345, -102.5528);
+            var posicionAMostrar = posicionDefectoMexico;
+
+            if (ubicacionUsuario.HasValue)
+            {
+                posicionAMostrar = ubicacionUsuario.Value;
+                zoomInicial = 17;
+            }
 
             mapaPrincipal.MinZoom = 2;
             mapaPrincipal.MaxZoom = 19;
-            mapaPrincipal.Zoom = 11;
-            mapaPrincipal.Position = posicionDefectoMexico;
+            mapaPrincipal.Zoom = zoomInicial;
+            mapaPrincipal.Position = posicionAMostrar;
             mapaPrincipal.ShowCenter = false;
             mapaPrincipal.MouseWheelZoomEnabled = true;
             mapaPrincipal.CanDragMap = true;
-            mapaPrincipal.DragButton = MouseButton.Left;
+            mapaPrincipal.DragButton = MouseButton.Right;
 
-            AgregarMarcador(23.6345, -102.5528);
-
+            mapaPrincipal.OnMapZoomChanged -= MapaPrincipal_OnMapZoomChanged;
             mapaPrincipal.OnMapZoomChanged += MapaPrincipal_OnMapZoomChanged;
 
             ActualizarVisibilidadMarcadores();
         }
 
-        private void AgregarMarcador(double lat, double lon)
+        private void AgregarMarcadorUbicacionUsuario(PointLatLng ubicacionUsuario)
+        {
+            var imagen = new Image
+            {
+                Width = 50,
+                Height = 50,
+                Source = new BitmapImage(new Uri("pack://application:,,,/Recursos/Imagenes/IconoUbicacion.png")),
+                RenderTransformOrigin = new Point(0.5, 0.5)
+            };
+
+            var marcador = new GMapMarker(ubicacionUsuario)
+            {
+                Shape = imagen,
+                Offset = new Point(-25, -25)
+            };
+
+            mapaPrincipal.Markers.Add(marcador);
+            _marcadores.Add(marcador);
+        }
+
+        private void AgregarMarcador(PointLatLng ubicacion)
         {
             var ellipse = new Ellipse
             {
@@ -95,14 +150,14 @@ namespace Cliente_AdoptMe.Vista
                 popup.IsOpen = false;
             };
 
-            var marcador = new GMapMarker(new PointLatLng(lat, lon))
+            var marcador = new GMapMarker(ubicacion)
             {
                 Shape = ellipse,
                 Offset = new Point(-15, -15)
             };
 
             mapaPrincipal.Markers.Add(marcador);
-            marcadores.Add(marcador);
+            _marcadores.Add(marcador);
         }
 
         private void MapaPrincipal_OnMapZoomChanged()
@@ -112,14 +167,44 @@ namespace Cliente_AdoptMe.Vista
 
         private void ActualizarVisibilidadMarcadores()
         {
-            bool visible = mapaPrincipal.Zoom >= ZoomVisible;
+            bool visible = mapaPrincipal.Zoom >= ZOOM_VISIBLE;
 
-            foreach (var marcador in marcadores)
+            foreach (var marcador in _marcadores)
             {
                 if (marcador.Shape != null)
                 {
                     marcador.Shape.Visibility = visible ? Visibility.Visible : Visibility.Hidden;
                 }
+            }
+        }
+
+        private async Task MostrarUsuariosCercanos(double latitud, double longitud)
+        {
+            UbicacionServicios ubicacionServicios = new UbicacionServicios();
+            string token = UsuarioSingleton.Instancia.Token;
+            var respuesta = await ubicacionServicios.ObtenerSolicitudesCercanasAsync(latitud, longitud, token);
+            string contenido = await respuesta.Content.ReadAsStringAsync();
+
+            if (respuesta.IsSuccessStatusCode)
+            {
+                var solicitudesAdopcion = JsonConvert.DeserializeObject<List<SolicitudAdopcionCercana>>(contenido);
+
+                foreach (var solicitudAdopcion in solicitudesAdopcion)
+                {
+                    if (solicitudAdopcion.Latitud.HasValue && solicitudAdopcion.Longitud.HasValue)
+                    {
+                        PointLatLng ubicacion = new PointLatLng(solicitudAdopcion.Latitud.Value, solicitudAdopcion.Longitud.Value);
+                        AgregarMarcador(ubicacion);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "No se pudieron obtener los usuarios cercanos.", 
+                    "Error", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Warning);
             }
         }
     }

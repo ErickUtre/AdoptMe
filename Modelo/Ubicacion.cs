@@ -18,9 +18,9 @@ namespace Cliente_AdoptMe.Modelo
         [JsonProperty("Pais")]
         public string Pais { get; set; }
         [JsonProperty("Longitud")]
-        public double Longitud {  get; set; }
+        public double? Longitud {  get; set; }
         [JsonProperty("Latitud")]
-        public double Latitud { get; set; }
+        public double? Latitud { get; set; }
 
         override
         public string ToString()
