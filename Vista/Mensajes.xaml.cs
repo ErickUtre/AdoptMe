@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Cliente_AdoptMe.Grpc;
+using Cliente_AdoptMe.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +26,18 @@ namespace Cliente_AdoptMe.Vista
         public Mensajes()
         {
             InitializeComponent();
+            CargarContactos();
+        }
+
+        private async void CargarContactos()
+        {
+            ServicioMensajeGrpc servicioMensajeGrpc = new ServicioMensajeGrpc();
+            var contactos = await servicioMensajeGrpc.ObtenerContactosAsync(UsuarioSingleton.Instancia.UsuarioActual.UsuarioId);
+
+            foreach (var contacto in contactos)
+            {
+                lbContactos.Items.Add(contacto);
+            }
         }
     }
 }

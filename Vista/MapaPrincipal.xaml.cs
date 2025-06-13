@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Threading.Tasks;
 using Cliente_AdoptMe.Servicios;
 using Newtonsoft.Json;
+using Cliente_AdoptMe.Grpc;
 
 namespace Cliente_AdoptMe.Vista
 {
@@ -33,7 +34,7 @@ namespace Cliente_AdoptMe.Vista
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Ubicacion ubicacionUsuario = UsuarioSingleton.Instancia.UsuarioActual.Ubicacion;
+            Modelo.Ubicacion ubicacionUsuario = UsuarioSingleton.Instancia.UsuarioActual.Ubicacion;
 
             if (ubicacionUsuario != null)
             {
@@ -180,31 +181,16 @@ namespace Cliente_AdoptMe.Vista
 
         private async Task MostrarUsuariosCercanos(double latitud, double longitud)
         {
-            UbicacionServicios ubicacionServicios = new UbicacionServicios();
-            string token = UsuarioSingleton.Instancia.Token;
-            var respuesta = await ubicacionServicios.ObtenerSolicitudesCercanasAsync(latitud, longitud, token);
-            string contenido = await respuesta.Content.ReadAsStringAsync();
+            ServicioUbicacionGrpc servicioUbicacionGrpc = new ServicioUbicacionGrpc();
+            var resultados = await servicioUbicacionGrpc.ObtenerSolicitudesCercanasAsync(latitud, longitud);
 
-            if (respuesta.IsSuccessStatusCode)
+            if (resultados.Count > 0)
             {
-                var solicitudesAdopcion = JsonConvert.DeserializeObject<List<SolicitudAdopcionCercana>>(contenido);
-
-                foreach (var solicitudAdopcion in solicitudesAdopcion)
+                foreach (var solicitud in resultados)
                 {
-                    if (solicitudAdopcion.Latitud.HasValue && solicitudAdopcion.Longitud.HasValue)
-                    {
-                        PointLatLng ubicacion = new PointLatLng(solicitudAdopcion.Latitud.Value, solicitudAdopcion.Longitud.Value);
-                        AgregarMarcador(ubicacion);
-                    }
+                    PointLatLng ubicacion = new PointLatLng(solicitud.Latitud, solicitud.Longitud);
+                    AgregarMarcador(ubicacion);
                 }
-            }
-            else
-            {
-                MessageBox.Show(
-                    "No se pudieron obtener los usuarios cercanos.", 
-                    "Error", 
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Warning);
             }
         }
     }
