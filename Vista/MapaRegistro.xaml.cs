@@ -78,9 +78,16 @@ namespace Cliente_AdoptMe.Vista
 
             if (datosUbicacion.UbicacionID != -1)
             {
-                ResultadoUbicacion = datosUbicacion;
-                AgregarMarcador(posicion.Lat, posicion.Lng);
-                MostrarDatosUbicacion(datosUbicacion);
+                if (datosUbicacion.Pais != "Mexico")
+                {
+                    ResultadoUbicacion = datosUbicacion;
+                    AgregarMarcador(posicion.Lat, posicion.Lng);
+                    MostrarDatosUbicacion(datosUbicacion);
+                }
+                else
+                {
+                    MessageBox.Show("Lo sentimos, actualmente no tenemos soporte para otros paises fuera de México.");
+                }
             }
             else
             {

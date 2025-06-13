@@ -9,5 +9,6 @@ namespace Cliente_AdoptMe.Utilidades
     public static class Constantes
     {
         public const string URL_BASE = "http://localhost:8080/api/";
+        public const string URL_GRPC = "localhost:50051";
     }
 }

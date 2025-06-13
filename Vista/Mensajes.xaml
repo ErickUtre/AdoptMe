@@ -24,7 +24,7 @@
 
         <Grid Grid.Row="1"
               Background="#507663">
-            <ListBox x:Name="ListaMensajes"
+            <ListBox x:Name="lbContactos"
                      Margin="50,30"
                      Background="Transparent"
                      BorderThickness="0">
@@ -52,7 +52,7 @@
                             </Image>
                             <TextBlock Style="{StaticResource Subtitulo1}" 
                                        Grid.Column="1"
-                                       Text="{Binding}"
+                                       Text="{Binding Nombre}"
                                        Foreground="White"
                                        VerticalAlignment="Center"/>
                             <Separator Grid.ColumnSpan="2"
@@ -63,14 +63,6 @@
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                <ListBox.ItemsSource>
-                    <x:Array Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                        <sys:String>Miguel HS -- Luna</sys:String>
-                        <sys:String>Laura Gutiérrez -- Yummi</sys:String>
-                        <sys:String>TheShy -- Chispitas</sys:String>
-                        <sys:String>Alejandro -- Nieve</sys:String>
-                    </x:Array>
-                </ListBox.ItemsSource>
             </ListBox>
         </Grid>
     </Grid>

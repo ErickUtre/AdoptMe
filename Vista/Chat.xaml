@@ -34,13 +34,19 @@
                            Grid.Column="1"
                            Text="Laura Gutiérrez -- Yummi"
                            Foreground="White"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center"
+                           Width="1060"/>
+                <Button Style="{StaticResource BotonGeneral}"
+                        Click="Regresar_Click">
+                    <Image Source="/Recursos/Imagenes/IconoRegresar.png"/>
+                </Button>
             </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1" 
               Background="#507663">
-            
+            <ListBox Name="lbMensajes" 
+                     Margin="50,10,50,30"/>
         </Grid>
 
         <Grid Grid.Row="2"
@@ -55,7 +61,8 @@
                          Padding="15,20"/>
 
                 <Button Style="{StaticResource EstiloBaseBoton}"
-                        Height="80">
+                        Height="80"
+                        Click="EnviarMensaje_Click">
                     <Image Source="/Recursos/Imagenes/IconoEnviar.png"/>
                 </Button>
             </StackPanel>
