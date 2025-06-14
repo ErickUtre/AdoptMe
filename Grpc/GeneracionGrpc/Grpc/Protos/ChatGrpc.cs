@@ -7,7 +7,7 @@
 
 using grpc = global::Grpc.Core;
 
-namespace Chat {
+namespace ChatGrpc {
   public static partial class ServicioChat
   {
     static readonly string __ServiceName = "chat.ServicioChat";
@@ -46,20 +46,20 @@ namespace Chat {
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Chat.MensajeChat> __Marshaller_chat_MensajeChat = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Chat.MensajeChat.Parser));
+    static readonly grpc::Marshaller<global::ChatGrpc.MensajeChat> __Marshaller_chat_MensajeChat = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::ChatGrpc.MensajeChat.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Chat.Empty> __Marshaller_chat_Empty = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Chat.Empty.Parser));
+    static readonly grpc::Marshaller<global::ChatGrpc.Empty> __Marshaller_chat_Empty = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::ChatGrpc.Empty.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Chat.SolicitudMensajes> __Marshaller_chat_SolicitudMensajes = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Chat.SolicitudMensajes.Parser));
+    static readonly grpc::Marshaller<global::ChatGrpc.SolicitudMensajes> __Marshaller_chat_SolicitudMensajes = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::ChatGrpc.SolicitudMensajes.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Chat.RespuestaMensajes> __Marshaller_chat_RespuestaMensajes = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Chat.RespuestaMensajes.Parser));
+    static readonly grpc::Marshaller<global::ChatGrpc.RespuestaMensajes> __Marshaller_chat_RespuestaMensajes = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::ChatGrpc.RespuestaMensajes.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Chat.SolicitudObtenerContactos> __Marshaller_chat_SolicitudObtenerContactos = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Chat.SolicitudObtenerContactos.Parser));
+    static readonly grpc::Marshaller<global::ChatGrpc.SolicitudObtenerContactos> __Marshaller_chat_SolicitudObtenerContactos = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::ChatGrpc.SolicitudObtenerContactos.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::Chat.RespuestaContactos> __Marshaller_chat_RespuestaContactos = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Chat.RespuestaContactos.Parser));
+    static readonly grpc::Marshaller<global::ChatGrpc.RespuestaContactos> __Marshaller_chat_RespuestaContactos = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::ChatGrpc.RespuestaContactos.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Chat.MensajeChat, global::Chat.Empty> __Method_PublicarMensaje = new grpc::Method<global::Chat.MensajeChat, global::Chat.Empty>(
+    static readonly grpc::Method<global::ChatGrpc.MensajeChat, global::ChatGrpc.Empty> __Method_PublicarMensaje = new grpc::Method<global::ChatGrpc.MensajeChat, global::ChatGrpc.Empty>(
         grpc::MethodType.Unary,
         __ServiceName,
         "PublicarMensaje",
@@ -67,7 +67,7 @@ namespace Chat {
         __Marshaller_chat_Empty);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Chat.Empty, global::Chat.MensajeChat> __Method_SuscribirMensajes = new grpc::Method<global::Chat.Empty, global::Chat.MensajeChat>(
+    static readonly grpc::Method<global::ChatGrpc.Empty, global::ChatGrpc.MensajeChat> __Method_SuscribirMensajes = new grpc::Method<global::ChatGrpc.Empty, global::ChatGrpc.MensajeChat>(
         grpc::MethodType.ServerStreaming,
         __ServiceName,
         "SuscribirMensajes",
@@ -75,7 +75,7 @@ namespace Chat {
         __Marshaller_chat_MensajeChat);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Chat.SolicitudMensajes, global::Chat.RespuestaMensajes> __Method_ObtenerMensajes = new grpc::Method<global::Chat.SolicitudMensajes, global::Chat.RespuestaMensajes>(
+    static readonly grpc::Method<global::ChatGrpc.SolicitudMensajes, global::ChatGrpc.RespuestaMensajes> __Method_ObtenerMensajes = new grpc::Method<global::ChatGrpc.SolicitudMensajes, global::ChatGrpc.RespuestaMensajes>(
         grpc::MethodType.Unary,
         __ServiceName,
         "ObtenerMensajes",
@@ -83,7 +83,7 @@ namespace Chat {
         __Marshaller_chat_RespuestaMensajes);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::Chat.SolicitudObtenerContactos, global::Chat.RespuestaContactos> __Method_ObtenerContactos = new grpc::Method<global::Chat.SolicitudObtenerContactos, global::Chat.RespuestaContactos>(
+    static readonly grpc::Method<global::ChatGrpc.SolicitudObtenerContactos, global::ChatGrpc.RespuestaContactos> __Method_ObtenerContactos = new grpc::Method<global::ChatGrpc.SolicitudObtenerContactos, global::ChatGrpc.RespuestaContactos>(
         grpc::MethodType.Unary,
         __ServiceName,
         "ObtenerContactos",
@@ -93,7 +93,7 @@ namespace Chat {
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
-      get { return global::Chat.ChatReflection.Descriptor.Services[0]; }
+      get { return global::ChatGrpc.ChatReflection.Descriptor.Services[0]; }
     }
 
     /// <summary>Client for ServicioChat</summary>
@@ -124,72 +124,72 @@ namespace Chat {
       }
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Chat.Empty PublicarMensaje(global::Chat.MensajeChat request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::ChatGrpc.Empty PublicarMensaje(global::ChatGrpc.MensajeChat request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return PublicarMensaje(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Chat.Empty PublicarMensaje(global::Chat.MensajeChat request, grpc::CallOptions options)
+      public virtual global::ChatGrpc.Empty PublicarMensaje(global::ChatGrpc.MensajeChat request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_PublicarMensaje, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Chat.Empty> PublicarMensajeAsync(global::Chat.MensajeChat request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::ChatGrpc.Empty> PublicarMensajeAsync(global::ChatGrpc.MensajeChat request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return PublicarMensajeAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Chat.Empty> PublicarMensajeAsync(global::Chat.MensajeChat request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::ChatGrpc.Empty> PublicarMensajeAsync(global::ChatGrpc.MensajeChat request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_PublicarMensaje, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::Chat.MensajeChat> SuscribirMensajes(global::Chat.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncServerStreamingCall<global::ChatGrpc.MensajeChat> SuscribirMensajes(global::ChatGrpc.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return SuscribirMensajes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::Chat.MensajeChat> SuscribirMensajes(global::Chat.Empty request, grpc::CallOptions options)
+      public virtual grpc::AsyncServerStreamingCall<global::ChatGrpc.MensajeChat> SuscribirMensajes(global::ChatGrpc.Empty request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncServerStreamingCall(__Method_SuscribirMensajes, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Chat.RespuestaMensajes ObtenerMensajes(global::Chat.SolicitudMensajes request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::ChatGrpc.RespuestaMensajes ObtenerMensajes(global::ChatGrpc.SolicitudMensajes request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ObtenerMensajes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Chat.RespuestaMensajes ObtenerMensajes(global::Chat.SolicitudMensajes request, grpc::CallOptions options)
+      public virtual global::ChatGrpc.RespuestaMensajes ObtenerMensajes(global::ChatGrpc.SolicitudMensajes request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_ObtenerMensajes, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Chat.RespuestaMensajes> ObtenerMensajesAsync(global::Chat.SolicitudMensajes request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::ChatGrpc.RespuestaMensajes> ObtenerMensajesAsync(global::ChatGrpc.SolicitudMensajes request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ObtenerMensajesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Chat.RespuestaMensajes> ObtenerMensajesAsync(global::Chat.SolicitudMensajes request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::ChatGrpc.RespuestaMensajes> ObtenerMensajesAsync(global::ChatGrpc.SolicitudMensajes request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_ObtenerMensajes, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Chat.RespuestaContactos ObtenerContactos(global::Chat.SolicitudObtenerContactos request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::ChatGrpc.RespuestaContactos ObtenerContactos(global::ChatGrpc.SolicitudObtenerContactos request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ObtenerContactos(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::Chat.RespuestaContactos ObtenerContactos(global::Chat.SolicitudObtenerContactos request, grpc::CallOptions options)
+      public virtual global::ChatGrpc.RespuestaContactos ObtenerContactos(global::ChatGrpc.SolicitudObtenerContactos request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_ObtenerContactos, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Chat.RespuestaContactos> ObtenerContactosAsync(global::Chat.SolicitudObtenerContactos request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::ChatGrpc.RespuestaContactos> ObtenerContactosAsync(global::ChatGrpc.SolicitudObtenerContactos request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ObtenerContactosAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::Chat.RespuestaContactos> ObtenerContactosAsync(global::Chat.SolicitudObtenerContactos request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::ChatGrpc.RespuestaContactos> ObtenerContactosAsync(global::ChatGrpc.SolicitudObtenerContactos request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_ObtenerContactos, null, options, request);
       }

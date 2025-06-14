@@ -24,11 +24,16 @@ namespace Cliente_AdoptMe.Vista
             InitializeComponent();
             NavegadorPrincipal.Instancia.SetMarco(MarcoPrincipal);
             NavegadorPrincipal.Instancia.Navegar(new MapaPrincipal());
-            txtblNombreUsuario.Text = UsuarioSingleton.Instancia.UsuarioActual.Nombre;
+            InicializarDatos();
         }
 
+        private async void InicializarDatos()
+        {
+            txtblNombreUsuario.Text = UsuarioSingleton.Instancia.UsuarioActual.Nombre;
+            await MostrarFotoAsync();
+        }
 
-        private void BtnCerrarMenuPrincipal(object sender, RoutedEventArgs e)
+        private void Btn_CerrarMenuPrincipal(object sender, RoutedEventArgs e)
         {
             UsuarioSingleton.Instancia.CerrarSesion();
             InicioDeSesion inicioDeSesion = new InicioDeSesion();
@@ -36,7 +41,7 @@ namespace Cliente_AdoptMe.Vista
             this.Close();
         }
 
-        private void BtnIrMapaPrincipal(object sender, RoutedEventArgs e)
+        private void Btn_IrMapaPrincipal(object sender, RoutedEventArgs e)
         {
             var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
 
@@ -46,7 +51,7 @@ namespace Cliente_AdoptMe.Vista
             }
         }
 
-        private void BtnIrRegistrarAdopcion(object sender, RoutedEventArgs e)
+        private void Btn_IrRegistrarAdopcion(object sender, RoutedEventArgs e)
         {
             var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
 
@@ -56,7 +61,7 @@ namespace Cliente_AdoptMe.Vista
             }
         }
 
-        private void BtnIrVerAdopciones(object sender, RoutedEventArgs e)
+        private void Btn_IrVerAdopciones(object sender, RoutedEventArgs e)
         {
             var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
 
@@ -66,7 +71,7 @@ namespace Cliente_AdoptMe.Vista
             }
         }
 
-        private void BtnIrMensajes(object sender, RoutedEventArgs e)
+        private void Btn_IrMensajes(object sender, RoutedEventArgs e)
         {
             var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
 
@@ -83,6 +88,20 @@ namespace Cliente_AdoptMe.Vista
             if (paginaActual == null || paginaActual.GetType() != typeof(ConsultarUsuario))
             {
                 NavegadorPrincipal.Instancia.Navegar(new ConsultarUsuario());
+            }
+        }
+
+        private async Task MostrarFotoAsync()
+        {
+            var imagen = await InterfazUsuarioHelper.ObtenerFotoPerfilAsync(UsuarioSingleton.Instancia.Token);
+            if (imagen != null)
+            {
+                FotoPerfil.Source = imagen;
+                UsuarioSingleton.Instancia.UsuarioActual.FotoPerfil = imagen;
+            }
+            else
+            {
+                FotoPerfil.Source = null;
             }
         }
     }

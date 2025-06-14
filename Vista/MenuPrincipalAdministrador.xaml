@@ -25,21 +25,28 @@
             <Grid Background="#207766">
                 <StackPanel Margin="25">
                     <Grid>
-                        <Button Width="50" Height="50"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Click="Btn_IconoUsuario">
-                            <Image Source="/Recursos/Imagenes/IconoUsuario.png"/>
+                        <Button Style="{StaticResource EstiloBaseBoton}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Click="Btn_IconoUsuario">
+                            <Image x:Name="FotoPerfil" 
+                                   Source="/Recursos/Imagenes/IconoUsuario.png"
+                                   Stretch="UniformToFill"
+                                   Width="50"
+                                   Height="50"
+                                   ClipToBounds="True">
+                                <Image.Clip>
+                                    <EllipseGeometry RadiusX="25" RadiusY="25" Center="25,25"/>
+                                </Image.Clip>
+                            </Image>
                         </Button>
 
                         <TextBlock Text="{x:Static p:Resources.txtbl_Bienvenido}"
                                    VerticalAlignment="Top"
-                                   Margin="50,5"
+                                   Margin="60,5"
                                    Foreground="White"/>
                         <TextBlock x:Name="txtblNombreUsuario"
-                                   Margin="50,20"
+                                   Margin="60,20"
                                    Foreground="White"
                                    FontWeight="Bold"/>
                         <Button Style="{StaticResource EstiloBaseBoton}" 

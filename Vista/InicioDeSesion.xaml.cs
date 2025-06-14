@@ -97,7 +97,7 @@ namespace Cliente_AdoptMe.Vista
                     default:
                         MessageBox.Show(
                             "Hubo un error al iniciar sesión. Por favor, intenta más tarde.",
-                            "Error del servidor",
+                            Properties.Resources.global_ErrorServidor,
                             MessageBoxButton.OK,
                             MessageBoxImage.Error);
                         Registro.Error($"Error con el servidor {cuerpoRespuesta}");
@@ -109,8 +109,8 @@ namespace Cliente_AdoptMe.Vista
             {
                 Registro.Error($"Excepción: {ex.Message}\nTraza: {ex.StackTrace}");
                 MessageBox.Show(
-                    $"Ocurrió un error inesperado con el servidor. Por favor, intenta más tarde.",
-                    "Error con el servidor",
+                    Properties.Resources.mensaje_ErrorServidor,
+                    Properties.Resources.global_ErrorServidor,
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }

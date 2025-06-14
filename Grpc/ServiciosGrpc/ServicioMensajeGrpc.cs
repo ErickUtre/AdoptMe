@@ -1,4 +1,4 @@
-﻿using Chat;
+﻿using ChatGrpc;
 using Cliente_AdoptMe.Utilidades;
 using Grpc.Core;
 using System;

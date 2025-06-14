@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Chat {
+namespace ChatGrpc {
 
   /// <summary>Holder for reflection information generated from Grpc/Protos/chat.proto</summary>
   public static partial class ChatReflection {
@@ -38,18 +38,18 @@ namespace Chat {
             "dC5FbXB0eRoRLmNoYXQuTWVuc2FqZUNoYXQwARJDCg9PYnRlbmVyTWVuc2Fq",
             "ZXMSFy5jaGF0LlNvbGljaXR1ZE1lbnNhamVzGhcuY2hhdC5SZXNwdWVzdGFN",
             "ZW5zYWplcxJNChBPYnRlbmVyQ29udGFjdG9zEh8uY2hhdC5Tb2xpY2l0dWRP",
-            "YnRlbmVyQ29udGFjdG9zGhguY2hhdC5SZXNwdWVzdGFDb250YWN0b3NCB6oC",
-            "BENoYXRiBnByb3RvMw=="));
+            "YnRlbmVyQ29udGFjdG9zGhguY2hhdC5SZXNwdWVzdGFDb250YWN0b3NCC6oC",
+            "CENoYXRHcnBjYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Chat.MensajeChat), global::Chat.MensajeChat.Parser, new[]{ "RemitenteID", "ReceptorID", "Contenido", "Fecha" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Chat.SolicitudMensajes), global::Chat.SolicitudMensajes.Parser, new[]{ "UsuarioID", "OtroUsuarioID" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Chat.RespuestaMensajes), global::Chat.RespuestaMensajes.Parser, new[]{ "Mensajes" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Chat.SolicitudObtenerContactos), global::Chat.SolicitudObtenerContactos.Parser, new[]{ "UsuarioID" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Chat.RespuestaContactos), global::Chat.RespuestaContactos.Parser, new[]{ "Contactos" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Chat.Usuario), global::Chat.Usuario.Parser, new[]{ "UsuarioID", "Nombre" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Chat.Empty), global::Chat.Empty.Parser, null, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::ChatGrpc.MensajeChat), global::ChatGrpc.MensajeChat.Parser, new[]{ "RemitenteID", "ReceptorID", "Contenido", "Fecha" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ChatGrpc.SolicitudMensajes), global::ChatGrpc.SolicitudMensajes.Parser, new[]{ "UsuarioID", "OtroUsuarioID" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ChatGrpc.RespuestaMensajes), global::ChatGrpc.RespuestaMensajes.Parser, new[]{ "Mensajes" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ChatGrpc.SolicitudObtenerContactos), global::ChatGrpc.SolicitudObtenerContactos.Parser, new[]{ "UsuarioID" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ChatGrpc.RespuestaContactos), global::ChatGrpc.RespuestaContactos.Parser, new[]{ "Contactos" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ChatGrpc.Usuario), global::ChatGrpc.Usuario.Parser, new[]{ "UsuarioID", "Nombre" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ChatGrpc.Empty), global::ChatGrpc.Empty.Parser, null, null, null, null, null)
           }));
     }
     #endregion
@@ -71,7 +71,7 @@ namespace Chat {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Chat.ChatReflection.Descriptor.MessageTypes[0]; }
+      get { return global::ChatGrpc.ChatReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -380,7 +380,7 @@ namespace Chat {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Chat.ChatReflection.Descriptor.MessageTypes[1]; }
+      get { return global::ChatGrpc.ChatReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -615,7 +615,7 @@ namespace Chat {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Chat.ChatReflection.Descriptor.MessageTypes[2]; }
+      get { return global::ChatGrpc.ChatReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -647,12 +647,12 @@ namespace Chat {
 
     /// <summary>Field number for the "mensajes" field.</summary>
     public const int MensajesFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Chat.MensajeChat> _repeated_mensajes_codec
-        = pb::FieldCodec.ForMessage(10, global::Chat.MensajeChat.Parser);
-    private readonly pbc::RepeatedField<global::Chat.MensajeChat> mensajes_ = new pbc::RepeatedField<global::Chat.MensajeChat>();
+    private static readonly pb::FieldCodec<global::ChatGrpc.MensajeChat> _repeated_mensajes_codec
+        = pb::FieldCodec.ForMessage(10, global::ChatGrpc.MensajeChat.Parser);
+    private readonly pbc::RepeatedField<global::ChatGrpc.MensajeChat> mensajes_ = new pbc::RepeatedField<global::ChatGrpc.MensajeChat>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::Chat.MensajeChat> Mensajes {
+    public pbc::RepeatedField<global::ChatGrpc.MensajeChat> Mensajes {
       get { return mensajes_; }
     }
 
@@ -802,7 +802,7 @@ namespace Chat {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Chat.ChatReflection.Descriptor.MessageTypes[3]; }
+      get { return global::ChatGrpc.ChatReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1000,7 +1000,7 @@ namespace Chat {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Chat.ChatReflection.Descriptor.MessageTypes[4]; }
+      get { return global::ChatGrpc.ChatReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1032,12 +1032,12 @@ namespace Chat {
 
     /// <summary>Field number for the "contactos" field.</summary>
     public const int ContactosFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Chat.Usuario> _repeated_contactos_codec
-        = pb::FieldCodec.ForMessage(10, global::Chat.Usuario.Parser);
-    private readonly pbc::RepeatedField<global::Chat.Usuario> contactos_ = new pbc::RepeatedField<global::Chat.Usuario>();
+    private static readonly pb::FieldCodec<global::ChatGrpc.Usuario> _repeated_contactos_codec
+        = pb::FieldCodec.ForMessage(10, global::ChatGrpc.Usuario.Parser);
+    private readonly pbc::RepeatedField<global::ChatGrpc.Usuario> contactos_ = new pbc::RepeatedField<global::ChatGrpc.Usuario>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::Chat.Usuario> Contactos {
+    public pbc::RepeatedField<global::ChatGrpc.Usuario> Contactos {
       get { return contactos_; }
     }
 
@@ -1187,7 +1187,7 @@ namespace Chat {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Chat.ChatReflection.Descriptor.MessageTypes[5]; }
+      get { return global::ChatGrpc.ChatReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1422,7 +1422,7 @@ namespace Chat {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Chat.ChatReflection.Descriptor.MessageTypes[6]; }
+      get { return global::ChatGrpc.ChatReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

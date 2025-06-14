@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Cliente_AdoptMe.Modelo
 {
@@ -21,5 +22,6 @@ namespace Cliente_AdoptMe.Modelo
         public Ubicacion Ubicacion { get; set; }
         [JsonProperty("Acceso")]
         public Acceso Acceso { get; set; }
+        public BitmapImage FotoPerfil { get; set; }
     }
 }
