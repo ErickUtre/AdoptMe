@@ -149,10 +149,13 @@
     </ApplicationDefinition>
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Chat.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\ChatGrpc.cs" />
+    <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Multimedia.cs" />
+    <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\MultimediaGrpc.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Ubicacion.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\UbicacionGrpc.cs" />
-    <Compile Include="Grpc\ServicioMensajeGrpc.cs" />
-    <Compile Include="Grpc\ServicioUbicacionGrpc.cs" />
+    <Compile Include="Grpc\ServiciosGrpc\ServicioMensajeGrpc.cs" />
+    <Compile Include="Grpc\ServiciosGrpc\ServicioMultimediaGrpc.cs" />
+    <Compile Include="Grpc\ServiciosGrpc\ServicioUbicacionGrpc.cs" />
     <Compile Include="Modelo\Acceso.cs" />
     <Compile Include="Modelo\Mascota.cs" />
     <Compile Include="Modelo\Mensaje.cs" />
@@ -349,6 +352,7 @@
   <ItemGroup>
     <Protobuf Include="Grpc\Protos\chat.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
     <Protobuf Include="Grpc\Protos\ubicacion.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
+    <Protobuf Include="Grpc\Protos\multimedia.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

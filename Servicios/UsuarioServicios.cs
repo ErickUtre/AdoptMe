@@ -35,5 +35,25 @@ namespace Cliente_AdoptMe.Servicios
             HttpResponseMessage respuesta = await _httpClient.PostAsync(_httpClient.BaseAddress + "usuarios", contenido);
             return respuesta;
         }
+
+        public async Task<HttpResponseMessage> SolicitarFotoPerfil(string token)
+        {
+            using (var request = new HttpRequestMessage(HttpMethod.Get, "usuarios/foto-perfil"))
+            {
+                request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                HttpResponseMessage response = await _httpClient.SendAsync(request);
+                return response;
+            }
+        }
+
+        public async Task<byte[]> ObtenerContenidoFotoPerfil(HttpResponseMessage response)
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsByteArrayAsync();
+            }
+            return null;
+        }
     }
 }

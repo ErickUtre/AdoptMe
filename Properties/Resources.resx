@@ -315,4 +315,10 @@
   <data name="txtbl_CampoVacioIncorrecto" xml:space="preserve">
     <value>Campo vacio o incorrecto</value>
   </data>
+  <data name="global_ErrorServidor" xml:space="preserve">
+    <value>Error con el servidor</value>
+  </data>
+  <data name="mensaje_ErrorServidor" xml:space="preserve">
+    <value>Ocurrió un error inesperado con el servidor. Por favor, intenta más tarde.</value>
+  </data>
 </root>

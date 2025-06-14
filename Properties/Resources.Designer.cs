@@ -358,6 +358,15 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error con el servidor.
+        /// </summary>
+        public static string global_ErrorServidor {
+            get {
+                return ResourceManager.GetString("global_ErrorServidor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Especie.
         /// </summary>
         public static string global_Especie {
@@ -462,6 +471,15 @@ namespace Cliente_AdoptMe.Properties {
         public static string global_Usuario {
             get {
                 return ResourceManager.GetString("global_Usuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ocurrió un error inesperado con el servidor. Por favor, intenta más tarde..
+        /// </summary>
+        public static string mensaje_ErrorServidor {
+            get {
+                return ResourceManager.GetString("mensaje_ErrorServidor", resourceCulture);
             }
         }
         

@@ -25,27 +25,34 @@
             <Grid Background="#207766">
                 <StackPanel Margin="25">
                     <Grid>
-                        <Button Width="50" Height="50"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Click="Btn_IconoUsuario">
-                            <Image Source="/Recursos/Imagenes/IconoUsuario.png"/>
+                        <Button Style="{StaticResource EstiloBaseBoton}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Click="Btn_IconoUsuario">
+                            <Image x:Name="FotoPerfil" 
+                                   Source="/Recursos/Imagenes/IconoUsuario.png"
+                                   Stretch="UniformToFill"
+                                   Width="50" 
+                                   Height="50"
+                                   ClipToBounds="True">
+                                <Image.Clip>
+                                    <EllipseGeometry RadiusX="25" RadiusY="25" Center="25,25"/>
+                                </Image.Clip>
+                            </Image>
                         </Button>
 
                         <TextBlock Text="{x:Static p:Resources.txtbl_Bienvenido}"
                                    VerticalAlignment="Top"
-                                   Margin="50,5"
+                                   Margin="60,5"
                                    Foreground="White"/>
                         <TextBlock x:Name="txtblNombreUsuario"
-                                   Margin="50,20"
+                                   Margin="60,20"
                                    Foreground="White"
                                    FontWeight="Bold"/>
                         <Button Style="{StaticResource EstiloBaseBoton}"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
-                                Click="BtnCerrarMenuPrincipal">
+                                Click="Btn_CerrarMenuPrincipal">
                             <StackPanel>
                                 <Image Source="/Recursos/Imagenes/IconoCerrarSesion.png"
                                        Width="30"
@@ -71,7 +78,7 @@
                             Margin="-25,50,-25,20"/>
 
                     <Button Style="{StaticResource BotonMenu}" 
-                            Click="BtnIrMapaPrincipal">
+                            Click="Btn_IrMapaPrincipal">
                         <StackPanel Orientation="Horizontal"
                                     Width="360">
                             <Image Style="{StaticResource IconosMenu}"
@@ -84,7 +91,7 @@
                     <Border Style="{StaticResource BordeGris}"/>
 
                     <Button Style="{StaticResource BotonMenu}" 
-                            Click="BtnIrRegistrarAdopcion">
+                            Click="Btn_IrRegistrarAdopcion">
                         <StackPanel Orientation="Horizontal"
                                     Width="360">
                             <Image Style="{StaticResource IconosMenu}"
@@ -97,7 +104,7 @@
                     <Border Style="{StaticResource BordeGris}"/>
 
                     <Button Style="{StaticResource BotonMenu}" 
-                            Click="BtnIrVerAdopciones">
+                            Click="Btn_IrVerAdopciones">
                         <StackPanel Orientation="Horizontal"
                                     Width="360">
                             <Image Style="{StaticResource IconosMenu}"
@@ -112,7 +119,7 @@
                     <Button Style="{StaticResource BotonMenu}"
                             Margin="0,20" 
                             Cursor="Hand" 
-                            Click="BtnIrMensajes">
+                            Click="Btn_IrMensajes">
                         <StackPanel Orientation="Horizontal" 
                                     Width="360">
                             <Image Style="{StaticResource IconosMenu}"

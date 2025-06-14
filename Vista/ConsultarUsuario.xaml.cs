@@ -1,7 +1,14 @@
-﻿using Microsoft.Win32;
+﻿using Cliente_AdoptMe.Grpc.ServiciosGrpc;
+using Cliente_AdoptMe.Servicios;
+using Cliente_AdoptMe.Utilidades;
+using Microsoft.Win32;
+using MultimediaGrpc;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,6 +43,7 @@ namespace Cliente_AdoptMe.Vista
         private void InicializarDatosUsuario()
         {
             //LOGICA PARA INICIALIZAR LOS DATOS DEL USUARIO
+            FotoComplemento.Source = UsuarioSingleton.Instancia.UsuarioActual.FotoPerfil;
         }
 
         private void Btn_EditarNombre(object sender, RoutedEventArgs e)
@@ -90,8 +98,9 @@ namespace Cliente_AdoptMe.Vista
             //SE GUARDA EN LA BASE DE DATOS
         }
 
-        private void Btn_EditarFoto(object sender, RoutedEventArgs e)
+        private async void Btn_EditarFoto(object sender, RoutedEventArgs e)
         {
+            /*
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "Imágenes (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png",
@@ -119,6 +128,69 @@ namespace Cliente_AdoptMe.Vista
                 }
             }
             //SE GUARDA EN LA BASE DE DATOS
+            */
+            string rutaArchivo;
+            
+            var dlg = new OpenFileDialog();
+            dlg.Filter = "Imágenes (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+            if (dlg.ShowDialog() == true)
+            {
+                rutaArchivo = dlg.FileName;
+
+                if (!File.Exists(rutaArchivo))
+                {
+                    MessageBox.Show("El archivo no existe.");
+                    return;
+                }
+
+                await SubirArchivoAsync(rutaArchivo);
+                await MostrarFotoAsync();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un archivo primero.");
+                return;
+            }
         }
+
+        private async Task MostrarFotoAsync()
+        {
+            var imagen = await InterfazUsuarioHelper.ObtenerFotoPerfilAsync(UsuarioSingleton.Instancia.Token);
+            if (imagen != null)
+            {
+                FotoComplemento.Source = imagen;
+                UsuarioSingleton.Instancia.UsuarioActual.FotoPerfil = imagen;
+            }
+            else
+            {
+                FotoComplemento.Source = null;
+            }
+        }
+
+        private async Task SubirArchivoAsync(string rutaArchivo)
+        {
+            try
+            {
+                ServicioMultimediaGrpc servicioMultimedia = new ServicioMultimediaGrpc();
+                await servicioMultimedia.SubirArchivoAsync(
+                            rutaArchivo,
+                            UsuarioSingleton.Instancia.UsuarioActual.UsuarioId,
+                            UsuarioSingleton.Instancia.Token,
+                            metadata => servicioMultimedia.Cliente.SubirFotoUsuario(metadata),
+                            new[] { ".jpg", ".jpeg", ".png" }
+                        );
+
+            }
+            catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
+            {
+                Registro.Error($"Excepción: {ex.Message}\nTraza: {ex.StackTrace}");
+                MessageBox.Show(
+                    Properties.Resources.mensaje_ErrorServidor,
+                    Properties.Resources.global_ErrorServidor,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+
     }
 }
