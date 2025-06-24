@@ -42,7 +42,6 @@ namespace Cliente_AdoptMe.Vista
 
         private void InicializarDatosUsuario()
         {
-            //LOGICA PARA INICIALIZAR LOS DATOS DEL USUARIO
             FotoComplemento.Source = UsuarioSingleton.Instancia.UsuarioActual.FotoPerfil;
         }
 
@@ -55,8 +54,6 @@ namespace Cliente_AdoptMe.Vista
             {
                 Txt_Nombre.Text = "Nombre: " + editarCampo.nuevoValor;  
             }
-
-            //SE GUARDA EN LA BASE DE DATOS
         }
 
         private void Btn_EditarCorreo(object sender, RoutedEventArgs e)
@@ -68,8 +65,6 @@ namespace Cliente_AdoptMe.Vista
             {
                 Txt_Correo.Text = "Correo: " + editarCampo.nuevoValor;
             }
-
-            //SE GUARDA EN LA BASE DE DATOS
         }
 
         private void Btn_EditarTelefono(object sender, RoutedEventArgs e)
@@ -81,8 +76,6 @@ namespace Cliente_AdoptMe.Vista
             {
                 Txt_Telefono.Text = "Teléfono: " + editarCampo.nuevoValor;
             }
-
-            //SE GUARDA EN LA BASE DE DATOS
         }
 
         private void Btn_EditarCiudad(object sender, RoutedEventArgs e)
@@ -94,41 +87,10 @@ namespace Cliente_AdoptMe.Vista
             {
                 Txt_Ciudad.Text = "Ciudad: " + editarCampo.nuevoValor;
             }
-
-            //SE GUARDA EN LA BASE DE DATOS
         }
 
         private async void Btn_EditarFoto(object sender, RoutedEventArgs e)
         {
-            /*
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Imágenes (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png",
-                Title = "Selecciona una imagen"
-            };
-
-            // Mostrar el diálogo y verificar si se seleccionó un archivo
-            if (openFileDialog.ShowDialog() == true)
-            {
-                try
-                {
-                    // Cargar la imagen en el control Image
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(openFileDialog.FileName);
-                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmap.EndInit();
-
-                    Foto.Source = bitmap;
-                    FotoComplemento.Source = bitmap;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar la imagen: " + ex.Message);
-                }
-            }
-            //SE GUARDA EN LA BASE DE DATOS
-            */
             string rutaArchivo;
             
             var dlg = new OpenFileDialog();

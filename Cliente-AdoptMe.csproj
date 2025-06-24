@@ -147,18 +147,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Chat.cs" />
-    <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\ChatGrpc.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Multimedia.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\MultimediaGrpc.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Ubicacion.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\UbicacionGrpc.cs" />
-    <Compile Include="Grpc\ServiciosGrpc\ServicioMensajeGrpc.cs" />
     <Compile Include="Grpc\ServiciosGrpc\ServicioMultimediaGrpc.cs" />
     <Compile Include="Grpc\ServiciosGrpc\ServicioUbicacionGrpc.cs" />
     <Compile Include="Modelo\Acceso.cs" />
     <Compile Include="Modelo\Mascota.cs" />
-    <Compile Include="Modelo\Mensaje.cs" />
     <Compile Include="Modelo\RespuestaLogin.cs" />
     <Compile Include="Modelo\SolicitudAdopcion.cs" />
     <Compile Include="Modelo\Ubicacion.cs" />
@@ -180,9 +176,6 @@
     <Compile Include="Vista\ConsultarAdopciones.xaml.cs">
       <DependentUpon>ConsultarAdopciones.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\Chat.xaml.cs">
-      <DependentUpon>Chat.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vista\ConsultarAdopcionExterna.xaml.cs">
       <DependentUpon>ConsultarAdopcionExterna.xaml</DependentUpon>
     </Compile>
@@ -203,9 +196,6 @@
     </Compile>
     <Compile Include="Vista\MascotaToolTip.xaml.cs">
       <DependentUpon>MascotaToolTip.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vista\Mensajes.xaml.cs">
-      <DependentUpon>Mensajes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\MenuPrincipalAdministrador.xaml.cs">
       <DependentUpon>MenuPrincipalAdministrador.xaml</DependentUpon>
@@ -233,10 +223,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ConsultarAdopciones.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\Chat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,10 +255,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\MascotaToolTip.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\Mensajes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -350,7 +332,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="Grpc\Protos\chat.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
     <Protobuf Include="Grpc\Protos\ubicacion.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
     <Protobuf Include="Grpc\Protos\multimedia.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
   </ItemGroup>
