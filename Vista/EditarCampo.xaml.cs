@@ -1,83 +1,182 @@
-﻿using Cliente_AdoptMe.Utilidades;
+﻿using Cliente_AdoptMe.Modelo;
+using Cliente_AdoptMe.Servicios;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Cliente_AdoptMe.Vista
 {
-    /// <summary>
-    /// Lógica de interacción para EditarCampo.xaml
-    /// </summary>
     public partial class EditarCampo : Window
     {
         public string NuevoValor { get; private set; }
-        private string _tipoValor;
+        private string _atributoAModificar;
+        private Adopcion _adopcion;
+        private AdopcionServicios _adopcionServicios = new AdopcionServicios();
 
-        public EditarCampo(string tipoValor)
+        public EditarCampo(string atributoAModificar)
         {
             InitializeComponent();
-            _tipoValor = tipoValor;
+            _atributoAModificar = atributoAModificar;
+            _adopcion = null;
+            ConfigurarInterfaz();
+        }
+
+        public EditarCampo(string atributoAModificar, Adopcion adopcion)
+        {
+            InitializeComponent();
+            _atributoAModificar = atributoAModificar;
+            _adopcion = adopcion;
+            ConfigurarInterfaz();
+        }
+
+        private void ConfigurarInterfaz()
+        {
+            Tb_NuevoValor.Visibility = Visibility.Collapsed;
+            Cb_Sexo.Visibility = Visibility.Collapsed;
+            PanelEdad.Visibility = Visibility.Collapsed;
+
+            switch (_atributoAModificar.ToLower())
+            {
+                case "sexo":
+                    Cb_Sexo.Visibility = Visibility.Visible;
+                    break;
+                case "edad":
+                    PanelEdad.Visibility = Visibility.Visible;
+                    break;
+                case "tamaño":
+                    Tb_NuevoValor.Visibility = Visibility.Visible;
+                    Tb_NuevoValor.MaxLength = 3;
+                    Tb_NuevoValor.PreviewTextInput += (s, e) =>
+                    {
+                        e.Handled = !int.TryParse(e.Text, out _);
+                    };
+                    break;
+                default:
+                    Tb_NuevoValor.Visibility = Visibility.Visible;
+                    break;
+            }
         }
 
         private bool ValidarCampo()
         {
-            string valor = Tb_NuevoValor.Text.Trim();
-            bool esValido = false;
+            string valor = "";
 
-            switch (_tipoValor)
+            switch (_atributoAModificar.ToLower())
             {
-                case var tipo when tipo == Properties.Resources.global_Nombre:
-                    esValido = Validador.ValidarNombre(valor) &&
-                        !valor.Equals(UsuarioSingleton.Instancia.UsuarioActual.Nombre);
+                case "sexo":
+                    if (Cb_Sexo.SelectedItem == null)
+                    {
+                        MessageBox.Show("Seleccione una opción válida.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return false;
+                    }
+                    valor = ((ComboBoxItem)Cb_Sexo.SelectedItem).Content.ToString();
+                    if (valor == "Sexo")
+                    {
+                        MessageBox.Show("Seleccione una opción válida.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return false;
+                    }
                     break;
-                case var tipo when tipo == Properties.Resources.global_Correo:
-                    esValido = Validador.ValidarCorreo(valor) &&
-                        !valor.Equals(UsuarioSingleton.Instancia.UsuarioActual.Acceso.Correo); 
+
+                case "edad":
+                    if (Cb_Anios.SelectedItem == null || Cb_Meses.SelectedItem == null)
+                    {
+                        MessageBox.Show("Seleccione año y mes.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return false;
+                    }
+                    string aniosStr = ((ComboBoxItem)Cb_Anios.SelectedItem).Content.ToString();
+                    string mesesStr = ((ComboBoxItem)Cb_Meses.SelectedItem).Content.ToString();
+
+                    if (aniosStr == "Año" || mesesStr == "Mes")
+                    {
+                        MessageBox.Show("Seleccione un valor válido para año y mes.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return false;
+                    }
+
+                    valor = $"{aniosStr} año(s) con {mesesStr} mes(es)";
                     break;
-                case var tipo when tipo == Properties.Resources.global_Telefono:
-                    esValido = Validador.ValidarTelefono(valor) &&
-                        !valor.Equals(UsuarioSingleton.Instancia.UsuarioActual.Telefono);
+
+                case "tamaño":
+                    valor = Tb_NuevoValor.Text.Trim();
+                    if (!int.TryParse(valor, out int numero) || numero < 0 || numero > 300)
+                    {
+                        MessageBox.Show("Ingrese un número entre 0 y 300.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return false;
+                    }
                     break;
+
                 default:
-                    esValido = false;
+                    valor = Tb_NuevoValor.Text.Trim();
+                    if (string.IsNullOrEmpty(valor))
+                    {
+                        MessageBox.Show("No puede estar vacío.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return false;
+                    }
                     break;
             }
 
-            if (!esValido)
-            {
-                Tb_NuevoValor.BorderBrush = Brushes.Red;
-                MessageBox.Show(
-                    "Debes ingresar un valor válido y diferente al actual.", 
-                    "Validación", 
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Warning
-                );
-            }
-            else
-            {
-                Tb_NuevoValor.BorderBrush = Brushes.Transparent;
-            }
-
-            return esValido;
+            NuevoValor = valor;
+            return true;
         }
 
-        private void Btn_Guardar(object sender, RoutedEventArgs e)
-        {
-            if (!ValidarCampo()) { return; }
 
-            NuevoValor = Tb_NuevoValor.Text;
-            this.DialogResult = true;  
-            this.Close();
+        private async void Btn_Guardar(object sender, RoutedEventArgs e)
+        {
+            if (!ValidarCampo()) return;
+
+            if (_adopcion?.Mascota == null)
+            {
+                this.DialogResult = true;
+                this.Close();
+                return;
+            }
+
+            switch (_atributoAModificar.ToLowerInvariant())
+            {
+                case "nombre":
+                    _adopcion.Mascota.Nombre = NuevoValor;
+                    break;
+                case "especie":
+                    _adopcion.Mascota.Especie = NuevoValor;
+                    break;
+                case "raza":
+                    _adopcion.Mascota.Raza = NuevoValor;
+                    break;
+                case "edad":
+                    _adopcion.Mascota.Edad = NuevoValor;
+                    break;
+                case "sexo":
+                    _adopcion.Mascota.Sexo = NuevoValor;
+                    break;
+                case "tamaño":
+                    _adopcion.Mascota.Tamaño = NuevoValor;
+                    break;
+                case "descripcion":
+                    _adopcion.Mascota.Descripcion = NuevoValor;
+                    break;
+                default:
+                    MessageBox.Show("Atributo no reconocido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+            }
+
+            try
+            {
+                var response = await _adopcionServicios.ModificarAdopcionAsync(_adopcion.AdopcionID, _adopcion);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Campo actualizado correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.DialogResult = true;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show($"Error al actualizar: {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Btn_Cancelar(object sender, RoutedEventArgs e)

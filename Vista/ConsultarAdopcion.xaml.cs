@@ -1,4 +1,5 @@
 ﻿using Cliente_AdoptMe.Modelo;
+using Cliente_AdoptMe.Servicios;
 using Microsoft.Win32;
 using System;
 using System.Windows;
@@ -13,6 +14,7 @@ namespace Cliente_AdoptMe.Vista
     public partial class ConsultarAdopcion : Page
     {
         private Adopcion _adopcion;
+        private readonly AdopcionServicios _adopcionServicios = new AdopcionServicios();
 
         public ConsultarAdopcion(Adopcion adopcion)
         {
@@ -48,7 +50,6 @@ namespace Cliente_AdoptMe.Vista
                 }
                 else
                 {
-                    // Imagen por defecto si no hay foto
                     var defaultUri = new Uri("pack://application:,,,/Recursos/Imagenes/MascotaDefault.png");
                     FotoMascota.Source = new BitmapImage(defaultUri);
                     FotoComplemento.Source = new BitmapImage(defaultUri);
@@ -68,9 +69,26 @@ namespace Cliente_AdoptMe.Vista
             imagenExpandida.ShowDialog();
         }
 
-        private void Btn_EditarNombre(object sender, RoutedEventArgs e)
+        private async System.Threading.Tasks.Task GuardarCambiosAsync()
         {
-            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Nombre);
+            try
+            {
+                var response = await _adopcionServicios.ModificarAdopcionAsync(_adopcion.AdopcionID, _adopcion);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show($"Error al actualizar adopción: {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado al actualizar adopción: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private async void Btn_EditarNombre(object sender, RoutedEventArgs e)
+        {
+            EditarCampo editarCampo = new EditarCampo("nombre", _adopcion);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
@@ -79,13 +97,13 @@ namespace Cliente_AdoptMe.Vista
                 if (_adopcion.Mascota != null)
                     _adopcion.Mascota.Nombre = editarCampo.NuevoValor;
 
-                // TODO: Guardar cambio en base de datos
+                await GuardarCambiosAsync();
             }
         }
 
-        private void Btn_EditarEspecie(object sender, RoutedEventArgs e)
+        private async void Btn_EditarEspecie(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Especie);
+            EditarCampo editarCampo = new EditarCampo("especie", _adopcion);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
@@ -94,13 +112,13 @@ namespace Cliente_AdoptMe.Vista
                 if (_adopcion.Mascota != null)
                     _adopcion.Mascota.Especie = editarCampo.NuevoValor;
 
-                // TODO: Guardar cambio en base de datos
+                await GuardarCambiosAsync();
             }
         }
 
-        private void Btn_EditarRaza(object sender, RoutedEventArgs e)
+        private async void Btn_EditarRaza(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Raza);
+            EditarCampo editarCampo = new EditarCampo("raza", _adopcion);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
@@ -109,13 +127,13 @@ namespace Cliente_AdoptMe.Vista
                 if (_adopcion.Mascota != null)
                     _adopcion.Mascota.Raza = editarCampo.NuevoValor;
 
-                // TODO: Guardar cambio en base de datos
+                await GuardarCambiosAsync();
             }
         }
 
-        private void Btn_EditarEdad(object sender, RoutedEventArgs e)
+        private async void Btn_EditarEdad(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Edad);
+            EditarCampo editarCampo = new EditarCampo("edad", _adopcion);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
@@ -124,13 +142,13 @@ namespace Cliente_AdoptMe.Vista
                 if (_adopcion.Mascota != null)
                     _adopcion.Mascota.Edad = editarCampo.NuevoValor;
 
-                // TODO: Guardar cambio en base de datos
+                await GuardarCambiosAsync();
             }
         }
 
-        private void Btn_EditarSexo(object sender, RoutedEventArgs e)
+        private async void Btn_EditarSexo(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Sexo);
+            EditarCampo editarCampo = new EditarCampo("sexo", _adopcion);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
@@ -139,13 +157,13 @@ namespace Cliente_AdoptMe.Vista
                 if (_adopcion.Mascota != null)
                     _adopcion.Mascota.Sexo = editarCampo.NuevoValor;
 
-                // TODO: Guardar cambio en base de datos
+                await GuardarCambiosAsync();
             }
         }
 
-        private void Btn_EditarTamaño(object sender, RoutedEventArgs e)
+        private async void Btn_EditarTamaño(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Tamaño);
+            EditarCampo editarCampo = new EditarCampo("tamaño", _adopcion);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
@@ -154,13 +172,13 @@ namespace Cliente_AdoptMe.Vista
                 if (_adopcion.Mascota != null)
                     _adopcion.Mascota.Tamaño = editarCampo.NuevoValor;
 
-                // TODO: Guardar cambio en base de datos
+                await GuardarCambiosAsync();
             }
         }
 
-        private void Btn_EditarDescripcion(object sender, RoutedEventArgs e)
+        private async void Btn_EditarDescripcion(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Descripcion);
+            EditarCampo editarCampo = new EditarCampo("descripcion", _adopcion);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
@@ -169,7 +187,7 @@ namespace Cliente_AdoptMe.Vista
                 if (_adopcion.Mascota != null)
                     _adopcion.Mascota.Descripcion = editarCampo.NuevoValor;
 
-                // TODO: Guardar cambio en base de datos
+                await GuardarCambiosAsync();
             }
         }
 

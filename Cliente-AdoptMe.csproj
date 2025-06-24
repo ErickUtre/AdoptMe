@@ -159,10 +159,12 @@
     <Compile Include="Modelo\RespuestaLogin.cs" />
     <Compile Include="Modelo\ResultadoHttp.cs" />
     <Compile Include="Modelo\Adopcion.cs" />
+    <Compile Include="Modelo\Solicitud.cs" />
     <Compile Include="Modelo\Ubicacion.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Servicios\AccesoServicios.cs" />
     <Compile Include="Servicios\AdopcionServicios.cs" />
+    <Compile Include="Servicios\SolicitudServicios.cs" />
     <Compile Include="Servicios\UbicacionServicios.cs" />
     <Compile Include="Servicios\UsuarioServicios.cs" />
     <Compile Include="Utilidades\Constantes.cs" />

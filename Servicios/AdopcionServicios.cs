@@ -1,14 +1,9 @@
 ﻿using Cliente_AdoptMe.Modelo;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,11 +24,11 @@ namespace Cliente_AdoptMe.Servicios
         {
             string json = JsonConvert.SerializeObject(nuevaAdopcion);
 
-            Debug.WriteLine("JSON enviado:");
+            Debug.WriteLine("JSON enviado (registrar):");
             Debug.WriteLine(json);
 
             var contenido = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage respuesta = await _httpClient.PostAsync(_httpClient.BaseAddress + "adopciones", contenido);
+            HttpResponseMessage respuesta = await _httpClient.PostAsync("adopciones", contenido);
             return respuesta;
         }
 
@@ -59,6 +54,43 @@ namespace Cliente_AdoptMe.Servicios
             {
                 MessageBox.Show($"Error al obtener adopciones: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return new List<Adopcion>();
+            }
+        }
+
+        public async Task<HttpResponseMessage> ModificarAdopcionAsync(int idAdopcion, Adopcion adopcionModificada)
+        {
+            try
+            {
+                string url = $"adopciones/{idAdopcion}";
+
+                string json = JsonConvert.SerializeObject(adopcionModificada);
+
+                Debug.WriteLine("JSON enviado (modificar):");
+                Debug.WriteLine(json);
+
+                var contenido = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage respuesta = await _httpClient.PutAsync(url, contenido);
+                return respuesta;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al modificar adopción: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+
+        public async Task<HttpResponseMessage> EliminarAdopcionAsync(int idAdopcion)
+        {
+            try
+            {
+                string url = $"adopciones/{idAdopcion}";
+                HttpResponseMessage respuesta = await _httpClient.DeleteAsync(url);
+                return respuesta;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar adopción: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError);
             }
         }
     }

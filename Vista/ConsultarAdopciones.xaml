@@ -34,20 +34,20 @@
                             <StackPanel>
                                 <DockPanel>
                                     <StackPanel DockPanel.Dock="Left" Width="241">
-                                        <TextBlock Text="{Binding Nombre}" FontSize="31" Foreground="White" FontWeight="Bold" />
+                                        <TextBlock Text="{Binding Mascota.Nombre}" FontSize="31" Foreground="White" FontWeight="Bold" />
                                         <TextBlock Text=" " FontSize="20"/>
-                                        <TextBlock Text="{Binding Especie}" FontSize="18" />
+                                        <TextBlock Text="{Binding Mascota.Especie}" FontSize="18" />
                                         <TextBlock Text=" " FontSize="10"/>
-                                        <TextBlock Text="{Binding Raza}" FontSize="18" />
+                                        <TextBlock Text="{Binding Mascota.Raza}" FontSize="18" />
                                         <TextBlock Text=" " FontSize="10"/>
-                                        <TextBlock Text="{Binding Edad}" FontSize="18" />
+                                        <TextBlock Text="{Binding Mascota.Edad}" FontSize="18" />
                                         <TextBlock Text=" " FontSize="10"/>
                                         <StackPanel Orientation="Horizontal" Width="240">
                                             <TextBlock Text="{Binding EstadoTexto}" Margin="0,0,5,0" FontSize="18" Width="197"/>
                                             <Ellipse Width="21" Height="20" Fill="{Binding ColorEstado}" />
                                         </StackPanel>
                                     </StackPanel>
-                                    <Image Width="306" Height="223" Stretch="UniformToFill" Margin="10,0,0,0" Source="/Recursos/Imagenes/MascotaDefault.png"/>
+                                    <Image Width="306" Height="223" Stretch="UniformToFill" Margin="10,0,0,0" Source="{Binding Foto}" />
                                 </DockPanel>
 
                                 <!-- Botones dentro del item -->
@@ -71,7 +71,8 @@
                                             Content="{x:Static p:Resources.btn_Eliminar}"
                                             Background="#FFEA5959"
                                             Width="189"
-                                            FontSize="12"/>
+                                            FontSize="12"
+                                            Click="BtnEliminar_Click"/>
                                 </StackPanel>
                             </StackPanel>
                         </Border>

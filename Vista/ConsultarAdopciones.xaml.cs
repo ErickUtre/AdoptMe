@@ -56,7 +56,7 @@ namespace Cliente_AdoptMe.Vista
                 _listaCompletaAdopciones = adopciones;
                 listaAdopciones.ItemsSource = _listaCompletaAdopciones;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar adopciones: " + ex.Message);
             }
@@ -93,6 +93,50 @@ namespace Cliente_AdoptMe.Vista
                     ConsultarAdopcion paginaDetalle = new ConsultarAdopcion(adopcionSeleccionada);
                     NavigationService.Navigate(paginaDetalle);
                 }
+            }
+        }
+
+        // Nuevo: Método para eliminar adopción
+        private async void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+
+            var adopcionParaEliminar = button.DataContext as Adopcion;
+            if (adopcionParaEliminar == null) return;
+
+            var resultado = MessageBox.Show(
+                $"¿Seguro que deseas eliminar la adopción de '{adopcionParaEliminar.Mascota?.Nombre}'?",
+                "Confirmar eliminación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (resultado != MessageBoxResult.Yes)
+                return;
+
+            try
+            {
+                var response = await _adopcionServicios.EliminarAdopcionAsync(adopcionParaEliminar.AdopcionID);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Adopción eliminada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Actualizar la lista local
+                    _listaCompletaAdopciones.Remove(adopcionParaEliminar);
+
+                    // Refrescar ItemsSource (considera guardar filtro actual si tienes)
+                    listaAdopciones.ItemsSource = null;
+                    listaAdopciones.ItemsSource = _listaCompletaAdopciones;
+                }
+                else
+                {
+                    MessageBox.Show($"Error al eliminar adopción: {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado al eliminar adopción: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -2,36 +2,115 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
+        xmlns:utilidades="clr-namespace:Cliente_AdoptMe.Utilidades"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="EditarCampo" Height="300" Width="500"
         WindowStyle="None"
         ResizeMode="NoResize"
         AllowsTransparency="False"
-        xmlns:utilidades="clr-namespace:Cliente_AdoptMe.Utilidades"
         Background="#4A6B5A" WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid Margin="20,20,20,64">
             <Border BorderBrush="Black" BorderThickness="2" Background="#4A6B5A">
-                <TextBlock TextWrapping="Wrap" Text="{x:Static p:Resources.txtbl_ModificarCampo}" Margin="117,21,117,153" FontFamily="Gill Sans MT" FontSize="31"/>
+                <TextBlock TextWrapping="Wrap" Text="{x:Static p:Resources.txtbl_ModificarCampo}"
+                           Margin="117,21,117,153" FontFamily="Gill Sans MT" FontSize="31"/>
             </Border>
 
+            <!-- Campo general -->
             <TextBox Name="Tb_NuevoValor" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" 
-                     Width="343" Height="63" utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.txtbl_NuevoValor}" MaxLength="50" Margin="0,90,0,0"/>
+                     Width="343" Height="63"
+                     utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.txtbl_NuevoValor}"
+                     MaxLength="50" Margin="0,90,0,0" Visibility="Collapsed"/>
+
+            <!-- Edad: Año y Mes -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,110,0,0" Visibility="Collapsed" Name="PanelEdad" VerticalAlignment="Top">
+                <ComboBox Name="Cb_Anios" Width="80" Margin="5" FontSize="20" HorizontalContentAlignment="Center">
+                    <ComboBox.Effect>
+                        <DropShadowEffect/>
+                    </ComboBox.Effect>
+                    <ComboBoxItem Content="Año" IsSelected="True" IsEnabled="False"/>
+                    <ComboBoxItem Content="0"/>
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="6"/>
+                    <ComboBoxItem Content="7"/>
+                    <ComboBoxItem Content="8"/>
+                    <ComboBoxItem Content="9"/>
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="11"/>
+                    <ComboBoxItem Content="12"/>
+                    <ComboBoxItem Content="13"/>
+                    <ComboBoxItem Content="14"/>
+                    <ComboBoxItem Content="15"/>
+                    <ComboBoxItem Content="16"/>
+                    <ComboBoxItem Content="17"/>
+                    <ComboBoxItem Content="18"/>
+                    <ComboBoxItem Content="19"/>
+                    <ComboBoxItem Content="20"/>
+                    <ComboBoxItem Content="21"/>
+                    <ComboBoxItem Content="22"/>
+                    <ComboBoxItem Content="23"/>
+                    <ComboBoxItem Content="24"/>
+                    <ComboBoxItem Content="25"/>
+                    <ComboBoxItem Content="26"/>
+                    <ComboBoxItem Content="27"/>
+                    <ComboBoxItem Content="28"/>
+                    <ComboBoxItem Content="29"/>
+                    <ComboBoxItem Content="30"/>
+                </ComboBox>
 
 
+                <TextBlock Text="año(s) con" VerticalAlignment="Center" Foreground="White" Margin="5,0"/>
+
+                <ComboBox Name="Cb_Meses" Width="80" Margin="5" FontSize="20" HorizontalContentAlignment="Center">
+                    <ComboBox.Effect>
+                        <DropShadowEffect/>
+                    </ComboBox.Effect>
+                    <ComboBoxItem Content="Mes" IsSelected="True" IsEnabled="False"/>
+                    <ComboBoxItem Content="0"/>
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="6"/>
+                    <ComboBoxItem Content="7"/>
+                    <ComboBoxItem Content="8"/>
+                    <ComboBoxItem Content="9"/>
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="11"/>
+                    <ComboBoxItem Content="12"/>
+                </ComboBox>
+
+
+                <TextBlock Text="mes(es)" VerticalAlignment="Center" Foreground="White" Margin="5,0"/>
+            </StackPanel>
+
+            <!-- Sexo -->
+            <ComboBox Name="Cb_Sexo" Width="343" Height="63" FontSize="20"
+                      HorizontalContentAlignment="Center" Margin="0,90,0,0"
+                      HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed">
+                <ComboBox.Effect>
+                    <DropShadowEffect/>
+                </ComboBox.Effect>
+                <ComboBoxItem Content="Sexo" IsSelected="True" IsEnabled="False"/>
+                <ComboBoxItem Content="Macho"/>
+                <ComboBoxItem Content="Hembra"/>
+            </ComboBox>
         </Grid>
 
         <Button Style="{StaticResource BotonGeneral}"
-                    Content="{x:Static p:Resources.global_Guardar}"
-                    Background="#3FBD13"
-                    HorizontalAlignment="Right"
-                    Margin="0,251,148,16" FontSize="12" Width="109" Click="Btn_Guardar"/>
+                Content="{x:Static p:Resources.global_Guardar}"
+                Background="#3FBD13"
+                HorizontalAlignment="Right"
+                Margin="0,251,148,16" FontSize="12" Width="109" Click="Btn_Guardar"/>
         <Button Style="{StaticResource BotonGeneral}"
-                    Content="{x:Static p:Resources.global_Cancelar}"
-                    Background="#EA5959"
-                    HorizontalAlignment="Right" Click="Btn_Cancelar" FontSize="12" Margin="0,251,20,16" Width="109"/>
-
-
+                Content="{x:Static p:Resources.global_Cancelar}"
+                Background="#EA5959"
+                HorizontalAlignment="Right" Click="Btn_Cancelar" FontSize="12" Margin="0,251,20,16" Width="109"/>
     </Grid>
-
 </Window>
