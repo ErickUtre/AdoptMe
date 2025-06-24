@@ -35,7 +35,7 @@ namespace Cliente_AdoptMe.Grpc.ServiciosGrpc
         {
             var metadata = new GrpcMetadata
             {
-                { "authorization", tokenJwt }
+                { "authorization", $"Bearer {tokenJwt}" }
             };
 
             var call = metodoGrpc(metadata);
@@ -57,6 +57,8 @@ namespace Cliente_AdoptMe.Grpc.ServiciosGrpc
                     NombreArchivo = nombreArchivo
                 }
             });
+
+            await Task.Delay(200);
 
             const int chunkSize = 64 * 1024;
             byte[] buffer = new byte[chunkSize];

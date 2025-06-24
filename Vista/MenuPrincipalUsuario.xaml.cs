@@ -71,23 +71,26 @@ namespace Cliente_AdoptMe.Vista
             }
         }
 
-        private void Btn_IrMensajes(object sender, RoutedEventArgs e)
-        {
-            var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
-
-            if (paginaActual == null || paginaActual.GetType() != typeof(Mensajes))
-            {
-                NavegadorPrincipal.Instancia.Navegar(new Mensajes());
-            }
-        }
-
         private void Btn_IconoUsuario(object sender, RoutedEventArgs e)
         {
+            ConsultarUsuario consultarUsuario = new ConsultarUsuario();
+
+            consultarUsuario.EventoActualizarFotoPerfil += (s, args) =>
+            {
+                FotoPerfil.Source = UsuarioSingleton.Instancia.UsuarioActual.FotoPerfil;
+            };
+
+            consultarUsuario.EventoActualizarNombre += (s, args) =>
+            {
+                Console.WriteLine(UsuarioSingleton.Instancia.UsuarioActual.Nombre);
+                txtblNombreUsuario.Text = UsuarioSingleton.Instancia.UsuarioActual.Nombre;
+            };
+
             var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
 
             if (paginaActual == null || paginaActual.GetType() != typeof(ConsultarUsuario))
             {
-                NavegadorPrincipal.Instancia.Navegar(new ConsultarUsuario());
+                NavegadorPrincipal.Instancia.Navegar(consultarUsuario);
             }
         }
 
@@ -99,10 +102,19 @@ namespace Cliente_AdoptMe.Vista
                 FotoPerfil.Source = imagen;
                 UsuarioSingleton.Instancia.UsuarioActual.FotoPerfil = imagen;
             }
-            else
-            {
-                FotoPerfil.Source = null;
-            }
         }
+
+        public void MostrarOverlay()
+        {
+            CargandoOverlay.Visibility = Visibility.Visible;
+            CargandoOverlay.IsHitTestVisible = true;
+        }
+
+        public void OcultarOverlay()
+        {
+            CargandoOverlay.Visibility = Visibility.Collapsed;
+            CargandoOverlay.IsHitTestVisible = false;
+        }
+
     }
 }

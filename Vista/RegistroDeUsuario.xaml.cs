@@ -27,6 +27,7 @@ namespace Cliente_AdoptMe.Vista
     {
         private Ubicacion _ubicacionSeleccionada = null;
         private string _contraseña;
+        private bool hayPermisoDeObtenerUbicacionUsuario = false;
 
         public RegistroDeUsuario()
         {
@@ -47,6 +48,25 @@ namespace Cliente_AdoptMe.Vista
 
         private void ObtenerUbicacion_Click(object sender, RoutedEventArgs e)
         {
+            if (!hayPermisoDeObtenerUbicacionUsuario)
+            {
+                MessageBoxResult respuesta = MessageBox.Show(
+                    Properties.Resources.mensaje_PermitirUbicacion,
+                    Properties.Resources.titulo_PermisosUbicacion,
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question
+                );
+
+                if ( respuesta == MessageBoxResult.Yes )
+                {
+                    hayPermisoDeObtenerUbicacionUsuario = true;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
             if (_ubicacionSeleccionada != null)
             {
                 MessageBoxResult respuesta = MessageBox.Show(

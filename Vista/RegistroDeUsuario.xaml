@@ -160,7 +160,7 @@
                        Foreground="White"/>
 
             <Button Style="{StaticResource BotonGeneral}" 
-                    Content="{x:Static p:Resources.btn_ObtenerUbicacion}"
+                    Content="{x:Static p:Resources.btn_RegistrarUbicacion}"
                     Margin="0,0,0,10"
                     Background="#00DF82" 
                     Click="ObtenerUbicacion_Click"/>

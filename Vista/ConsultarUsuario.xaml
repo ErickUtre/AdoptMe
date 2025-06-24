@@ -29,36 +29,63 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="100,40,10,0" VerticalAlignment="Top">
-                <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <TextBlock Name="Txt_Nombre" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Nombre}"/>
-                    <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarNombre">
+            <StackPanel Margin="100,40,10,0" 
+                        VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,5">
+                    <TextBlock Name="Txt_Nombre" 
+                               Style="{StaticResource TextoInformacion}" 
+                               Text="{x:Static p:Resources.global_Nombre}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap"
+                               Width="550"/>
+                    <Button Width="40" 
+                            Height="40" 
+                            Margin="20,0" 
+                            Click="Btn_EditarNombre">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <TextBlock Name="Txt_Correo" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Correo}"/>
-                    <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarCorreo">
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,5">
+                    <TextBlock Name="Txt_Correo" 
+                               Style="{StaticResource TextoInformacion}" 
+                               Text="{x:Static p:Resources.global_Correo}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap"
+                               Width="550"/>
+                    <Button Width="40" 
+                            Height="40" 
+                            Margin="20,0" 
+                            Click="Btn_EditarCorreo">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <TextBlock Name="Txt_Telefono" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Telefono}"/>
-                    <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarTelefono">
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,5,0,55">
+                    <TextBlock Name="Txt_Telefono" 
+                               Style="{StaticResource TextoInformacion}" 
+                               Text="{x:Static p:Resources.global_Telefono}"
+                               Width="550"/>
+                    <Button Width="40" 
+                            Height="40" 
+                            Margin="20,0" 
+                            Click="Btn_EditarTelefono">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5">
-                    <TextBlock Name="Txt_Ciudad" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Ciudad}"/>
-                    <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarCiudad">
-                        <Image Source="/Recursos/Imagenes/Editar.png"/>
-                    </Button>
-                </StackPanel>
+                <TextBlock Name="Txt_Ubicacion" 
+                           Style="{StaticResource TextoInformacion}"/>
 
-                <StackPanel Orientation="Horizontal" Margin="0,5"/>
+                <Button Style="{StaticResource BotonGeneral}" 
+                        Content="{x:Static p:Resources.btn_ActualizarUbicacion}"
+                        FontSize="32"
+                        Background="#00DF82"
+                        Click="Btn_EditarUbicacion"/>
+
             </StackPanel>
 
 
@@ -77,7 +104,8 @@
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
 
-                    <Image Name="FotoComplemento"  
+                    <Image Name="FotoComplemento" 
+                           Source="/Recursos/Imagenes/IconoUsuarioDefecto.png"
                            Stretch="Uniform"
                            Margin="80,0"/>
 
@@ -92,10 +120,5 @@
 
             </StackPanel>
         </Grid>
-
-        <Border Grid.Row="2"
-                Height="1"
-                Margin="40,0"
-                Background="#706363"/>
     </Grid>
 </Page>

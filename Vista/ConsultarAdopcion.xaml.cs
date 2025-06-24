@@ -46,15 +46,15 @@ namespace Cliente_AdoptMe.Vista
             ImagenExpandida imagenExpandida = new ImagenExpandida(FotoMascota);
             imagenExpandida.ShowDialog();
         }
-
+        
         private void Btn_EditarNombre(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo();
+            EditarCampo editarCampo = new EditarCampo(null);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
-                Txt_Nombre.Text = "Nombre: " + editarCampo.nuevoValor;
+                Txt_Nombre.Text = "Nombre: " + editarCampo.NuevoValor;
             }
 
             //SE GUARDA EN LA BASE DE DATOS
@@ -62,12 +62,12 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_EditarEspecie(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo();
+            EditarCampo editarCampo = new EditarCampo(null);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
-                Txt_Especie.Text = "Especie: " + editarCampo.nuevoValor;
+                Txt_Especie.Text = "Especie: " + editarCampo.NuevoValor;
             }
 
             //SE GUARDA EN LA BASE DE DATOS
@@ -75,12 +75,12 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_EditarRaza(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo();
+            EditarCampo editarCampo = new EditarCampo(null);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
-                Txt_Raza.Text = "Raza: " + editarCampo.nuevoValor;
+                Txt_Raza.Text = "Raza: " + editarCampo.NuevoValor;
             }
 
             //SE GUARDA EN LA BASE DE DATOS
@@ -88,12 +88,12 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_EditarEdad(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo();
+            EditarCampo editarCampo = new EditarCampo(null);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
-                Txt_Edad.Text = "Edad: " + editarCampo.nuevoValor;
+                Txt_Edad.Text = "Edad: " + editarCampo.NuevoValor;
             }
 
             //SE GUARDA EN LA BASE DE DATOS
@@ -101,12 +101,12 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_EditarSexo(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo();
+            EditarCampo editarCampo = new EditarCampo(null);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
-                Txt_Sexo.Text = "Sexo: " + editarCampo.nuevoValor;
+                Txt_Sexo.Text = "Sexo: " + editarCampo.NuevoValor;
             }
 
             //SE GUARDA EN LA BASE DE DATOS
@@ -114,12 +114,12 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_EditarTamaño(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo();
+            EditarCampo editarCampo = new EditarCampo(null);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
-                Txt_Tamaño.Text = "Tamaño: " + editarCampo.nuevoValor;
+                Txt_Tamaño.Text = "Tamaño: " + editarCampo.NuevoValor;
             }
 
             //SE GUARDA EN LA BASE DE DATOS
@@ -127,12 +127,12 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_EditarDescripcion(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo();
+            EditarCampo editarCampo = new EditarCampo(null);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
-                Txt_Descripcion.Text = "Descrpcion: " + editarCampo.nuevoValor;
+                Txt_Descripcion.Text = "Descrpcion: " + editarCampo.NuevoValor;
             }
 
             //SE GUARDA EN LA BASE DE DATOS

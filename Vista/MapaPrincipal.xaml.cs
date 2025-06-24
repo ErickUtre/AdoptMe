@@ -29,12 +29,13 @@ namespace Cliente_AdoptMe.Vista
 
         public MapaPrincipal()
         {
+            GMaps.Instance.Mode = AccessMode.ServerAndCache;
             InitializeComponent();
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Modelo.Ubicacion ubicacionUsuario = UsuarioSingleton.Instancia.UsuarioActual.Ubicacion;
+            Ubicacion ubicacionUsuario = UsuarioSingleton.Instancia.UsuarioActual.Ubicacion;
 
             if (ubicacionUsuario != null)
             {
@@ -58,7 +59,7 @@ namespace Cliente_AdoptMe.Vista
                 MostrarMapaPrincipal();
             }
         }
-        
+
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             mapaPrincipal.Manager.CancelTileCaching();

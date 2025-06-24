@@ -94,6 +94,7 @@
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.6.0.1\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Pipelines, Version=9.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.IO.Pipelines.9.0.5\lib\net462\System.IO.Pipelines.dll</HintPath>
     </Reference>
@@ -147,19 +148,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Chat.cs" />
-    <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\ChatGrpc.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Multimedia.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\MultimediaGrpc.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Ubicacion.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\UbicacionGrpc.cs" />
-    <Compile Include="Grpc\ServiciosGrpc\ServicioMensajeGrpc.cs" />
     <Compile Include="Grpc\ServiciosGrpc\ServicioMultimediaGrpc.cs" />
     <Compile Include="Grpc\ServiciosGrpc\ServicioUbicacionGrpc.cs" />
     <Compile Include="Modelo\Acceso.cs" />
     <Compile Include="Modelo\Mascota.cs" />
     <Compile Include="Modelo\Mensaje.cs" />
     <Compile Include="Modelo\RespuestaLogin.cs" />
+    <Compile Include="Modelo\ResultadoHttp.cs" />
     <Compile Include="Modelo\SolicitudAdopcion.cs" />
     <Compile Include="Modelo\Ubicacion.cs" />
     <Compile Include="Modelo\Usuario.cs" />
@@ -168,20 +167,22 @@
     <Compile Include="Servicios\UsuarioServicios.cs" />
     <Compile Include="Utilidades\Constantes.cs" />
     <Compile Include="Utilidades\Encriptador.cs" />
+    <Compile Include="Utilidades\HttpHelper.cs" />
     <Compile Include="Utilidades\InterfazUsuarioHelper.cs" />
+    <Compile Include="Utilidades\MensajeHttp.cs" />
     <Compile Include="Utilidades\NavegadorPrincipal.cs" />
     <Compile Include="Utilidades\Registro.cs" />
     <Compile Include="Utilidades\ServicioNavegacion.cs" />
     <Compile Include="Utilidades\UsuarioSingleton.cs" />
     <Compile Include="Utilidades\Validador.cs" />
+    <Compile Include="Vista\CargandoOverlay.xaml.cs">
+      <DependentUpon>CargandoOverlay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\ConsultarAdopcion.xaml.cs">
       <DependentUpon>ConsultarAdopcion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\ConsultarAdopciones.xaml.cs">
       <DependentUpon>ConsultarAdopciones.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vista\Chat.xaml.cs">
-      <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\ConsultarAdopcionExterna.xaml.cs">
       <DependentUpon>ConsultarAdopcionExterna.xaml</DependentUpon>
@@ -204,9 +205,6 @@
     <Compile Include="Vista\MascotaToolTip.xaml.cs">
       <DependentUpon>MascotaToolTip.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\Mensajes.xaml.cs">
-      <DependentUpon>Mensajes.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vista\MenuPrincipalAdministrador.xaml.cs">
       <DependentUpon>MenuPrincipalAdministrador.xaml</DependentUpon>
     </Compile>
@@ -228,15 +226,15 @@
     <Compile Include="Vista\Video.xaml.cs">
       <DependentUpon>Video.xaml</DependentUpon>
     </Compile>
+    <Page Include="Vista\CargandoOverlay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\ConsultarAdopcion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ConsultarAdopciones.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\Chat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,10 +267,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\MascotaToolTip.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\Mensajes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -350,7 +344,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="Grpc\Protos\chat.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
     <Protobuf Include="Grpc\Protos\ubicacion.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
     <Protobuf Include="Grpc\Protos\multimedia.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
   </ItemGroup>
@@ -359,9 +352,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Imagenes\IconoUbicacion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Recursos\Imagenes\IconoUsuario.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Imagenes\IconoCerrarSesion.png" />
@@ -421,7 +411,9 @@
   <ItemGroup>
     <Resource Include="Recursos\Imagenes\IconoEnviar.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\IconoUsuarioDefecto.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

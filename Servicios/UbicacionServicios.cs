@@ -1,4 +1,5 @@
 ﻿using Cliente_AdoptMe.Modelo;
+using Cliente_AdoptMe.Utilidades;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -99,6 +100,18 @@ namespace Cliente_AdoptMe.Servicios
             solicitud.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             HttpResponseMessage respuesta = await _httpClient.SendAsync(solicitud);
             return respuesta;
-    }
+        }
+
+        public async Task<ResultadoHttp> ActualizarUbicacionAsync(Ubicacion ubicacion, string token)
+        {
+            var json = System.Text.Json.JsonSerializer.Serialize(ubicacion);
+            var contenido = new StringContent(json, Encoding.UTF8, "application/json");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            return await HttpHelper.EjecutarHttp(() =>
+                _httpClient.PutAsync("ubicaciones", contenido)
+            );
+        }
     }
 }

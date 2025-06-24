@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Cliente_AdoptMe"
+        xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
         xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
         mc:Ignorable="d"
         Title="MenuPrincipalUsuario" Height="1080" Width="1920"
@@ -30,7 +30,7 @@
                                 VerticalAlignment="Top"
                                 Click="Btn_IconoUsuario">
                             <Image x:Name="FotoPerfil" 
-                                   Source="/Recursos/Imagenes/IconoUsuario.png"
+                                   Source="/Recursos/Imagenes/IconoUsuarioDefecto.png"
                                    Stretch="UniformToFill"
                                    Width="50" 
                                    Height="50"
@@ -114,21 +114,6 @@
                         </StackPanel>
                     </Button>
 
-                    <Border Style="{StaticResource BordeGris}"/>
-
-                    <Button Style="{StaticResource BotonMenu}"
-                            Margin="0,20" 
-                            Cursor="Hand" 
-                            Click="Btn_IrMensajes">
-                        <StackPanel Orientation="Horizontal" 
-                                    Width="360">
-                            <Image Style="{StaticResource IconosMenu}"
-                                   Source="/Recursos/Imagenes/IconoMensajes.png"
-/>
-                            <TextBlock Style="{StaticResource TextoMenu}"
-                                       Text="{x:Static p:Resources.global_Mensajes}"/>
-                        </StackPanel>
-                    </Button>
                 </StackPanel>
             </Grid>
 
@@ -143,6 +128,10 @@
                        Grid.Row="1"
                        NavigationUIVisibility="Hidden"/>
             </Grid>
+            <local:CargandoOverlay x:Name="CargandoOverlay"
+                                   Grid.ColumnSpan="2" 
+                                   Grid.RowSpan="1"
+                                   Visibility="Collapsed" />
         </Grid>
     </Viewbox>
 </Window>
