@@ -22,7 +22,6 @@
 
         <Image HorizontalAlignment="Left" Height="58" Margin="1339,203,0,0" VerticalAlignment="Top" Width="59" Source="/Recursos/Imagenes/Search.png"/>
 
-        <!-- Lista dinámica de adopciones -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="106,187,614,0">
             <ItemsControl x:Name="listaAdopciones">
                 <ItemsControl.ItemTemplate>
@@ -49,14 +48,14 @@
                                     </StackPanel>
                                     <Image x:Name="FotoMascota" Width="306" Height="223" Stretch="UniformToFill" Margin="10,0,0,0" Source="{Binding Foto}"/>
                                 </DockPanel>
-
-                                <!-- Botones dentro del item -->
+                                
                                 <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
                                     <Button Style="{StaticResource BotonGeneral}"
                                             Content="{x:Static p:Resources.btn_SolicitudesPendientes}"
                                             Background="#FF64CC20"
                                             Width="189"
                                             Margin="0,0,10,0"
+                                            Click="BtnSolicitudesPendientes_Click"
                                             FontSize="12"/>
 
                                     <Button Style="{StaticResource BotonGeneral}"

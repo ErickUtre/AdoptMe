@@ -55,7 +55,6 @@
         <TextBox Name="tbEspecie" HorizontalAlignment="Left" Margin="147,179,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="511" Height="68" utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Especie}" MaxLength="50"/>
         <TextBox Name="tbRaza" HorizontalAlignment="Left" Margin="147,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="511" Height="68" utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Raza}" MaxLength="50"/>
 
-        <!-- ComboBox Año -->
         <ComboBox x:Name="cbAño" HorizontalAlignment="Left" Margin="147,408,0,197" Grid.Row="1" Width="235" Height="68" FontSize="20" HorizontalContentAlignment="Center">
             <ComboBox.Effect>
                 <DropShadowEffect/>
@@ -63,10 +62,8 @@
             <ComboBoxItem IsSelected="True" IsEnabled="False" HorizontalContentAlignment="Center">
                 <TextBlock Text="Selecciona año" TextAlignment="Center"/>
             </ComboBoxItem>
-            <!-- Items serán agregados dinámicamente o aquí en XAML -->
         </ComboBox>
 
-        <!-- ComboBox Mes -->
         <ComboBox x:Name="cbMes" HorizontalAlignment="Left" Margin="423,408,0,197" Grid.Row="1" Width="235" Height="68" FontSize="20" HorizontalContentAlignment="Center">
             <ComboBox.Effect>
                 <DropShadowEffect/>
@@ -74,10 +71,8 @@
             <ComboBoxItem IsSelected="True" IsEnabled="False" HorizontalContentAlignment="Center">
                 <TextBlock Text="Selecciona mes" TextAlignment="Center"/>
             </ComboBoxItem>
-            <!-- Items serán agregados dinámicamente o aquí en XAML -->
         </ComboBox>
 
-        <!-- ComboBox Sexo -->
         <ComboBox x:Name="cbSexo" HorizontalAlignment="Left" Margin="147,510,0,95" Grid.Row="1" Width="511" Height="68" FontSize="20" HorizontalContentAlignment="Center">
             <ComboBox.Effect>
                 <DropShadowEffect/>
@@ -87,7 +82,6 @@
             </ComboBoxItem>
         </ComboBox>
 
-        <!-- Tamaño TextBox -->
         <TextBox Name="tbTamaño" HorizontalAlignment="Left" Margin="861,66,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="511" Height="68" utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Tamano}" MaxLength="3"/>
 
         <TextBox Name="tbDescripcion" HorizontalAlignment="Left" Margin="861,179,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="511" Height="288" utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.global_Descripcion}" MaxLength="500"/>

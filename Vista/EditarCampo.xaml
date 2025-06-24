@@ -17,13 +17,11 @@
                            Margin="117,21,117,153" FontFamily="Gill Sans MT" FontSize="31"/>
             </Border>
 
-            <!-- Campo general -->
             <TextBox Name="Tb_NuevoValor" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" 
                      Width="343" Height="63"
                      utilidades:TextBoxExtensiones.TextoSugerido="{x:Static p:Resources.txtbl_NuevoValor}"
                      MaxLength="50" Margin="0,90,0,0" Visibility="Collapsed"/>
 
-            <!-- Edad: Año y Mes -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,110,0,0" Visibility="Collapsed" Name="PanelEdad" VerticalAlignment="Top">
                 <ComboBox Name="Cb_Anios" Width="80" Margin="5" FontSize="20" HorizontalContentAlignment="Center">
                     <ComboBox.Effect>
@@ -90,7 +88,6 @@
                 <TextBlock Text="mes(es)" VerticalAlignment="Center" Foreground="White" Margin="5,0"/>
             </StackPanel>
 
-            <!-- Sexo -->
             <ComboBox Name="Cb_Sexo" Width="343" Height="63" FontSize="20"
                       HorizontalContentAlignment="Center" Margin="0,90,0,0"
                       HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed">

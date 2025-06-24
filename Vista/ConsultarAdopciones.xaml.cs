@@ -97,7 +97,6 @@ namespace Cliente_AdoptMe.Vista
             }
         }
 
-        // Nuevo: Método para eliminar adopción
         private async void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -123,10 +122,8 @@ namespace Cliente_AdoptMe.Vista
                 {
                     MessageBox.Show("Adopción eliminada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Actualizar la lista local
                     _listaCompletaAdopciones.Remove(adopcionParaEliminar);
 
-                    // Refrescar ItemsSource (considera guardar filtro actual si tienes)
                     listaAdopciones.ItemsSource = null;
                     listaAdopciones.ItemsSource = _listaCompletaAdopciones;
                 }
@@ -139,6 +136,18 @@ namespace Cliente_AdoptMe.Vista
             {
                 MessageBox.Show($"Error inesperado al eliminar adopción: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void BtnSolicitudesPendientes_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button == null) return;
+
+            var adopcion = button.DataContext as Adopcion;
+            if (adopcion == null) return;
+
+            var ventanaSolicitudes = new Solicitudes(adopcion.AdopcionID);
+            ventanaSolicitudes.ShowDialog(); 
         }
     }
 }

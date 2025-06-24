@@ -39,7 +39,6 @@ namespace Cliente_AdoptMe.Servicios
                 }
                 else
                 {
-                    MessageBox.Show($"No se pudieron obtener las solicitudes. Código: {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return new List<Solicitud>();
                 }
             }
@@ -47,6 +46,33 @@ namespace Cliente_AdoptMe.Servicios
             {
                 MessageBox.Show($"Error al obtener solicitudes: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return new List<Solicitud>();
+            }
+        }
+
+        public async Task<bool> EliminarSolicitudAsync(int solicitudId)
+        {
+            try
+            {
+                string url = $"solicitudes/{solicitudId}";
+                HttpResponseMessage response = await _httpClient.DeleteAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine($"Solicitud {solicitudId} eliminada correctamente.");
+                    return true;
+                }
+                else
+                {
+                    string error = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"Error al eliminar solicitud: {response.StatusCode} - {error}");
+                    MessageBox.Show($"No se pudo eliminar la solicitud.\nCódigo: {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al eliminar la solicitud: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
         }
 

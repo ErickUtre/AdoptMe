@@ -6,24 +6,26 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         AllowsTransparency="False"
-        Background="#4A6B5A" WindowStartupLocation="CenterScreen">
+        Background="#4A6B5A"
+        WindowStartupLocation="CenterScreen">
 
-    <Grid Margin="20">
-        <Border BorderBrush="Black" BorderThickness="2" Background="#4A6B5A">
-            <DockPanel>
-                <!-- Scrollable area -->
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="300">
-                    <StackPanel x:Name="SolicitudesPanel" Margin="10">
-                        <!-- Aquí se agregan dinámicamente las solicitudes -->
-                    </StackPanel>
+    <Grid Margin="20" >
+        <Border BorderBrush="Black" BorderThickness="2" Background="#4A6B5A" Padding="10" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+
+                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" >
+                    <StackPanel x:Name="SolicitudesPanel" Margin="0,0,0,10"/>
                 </ScrollViewer>
 
-                <!-- Botón cerrar -->
-                <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="0,10,10,10">
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <Button Content="{x:Static p:Resources.global_Cerrar}" Width="80" Height="30" Background="#F25C5C" Foreground="White"
                             Click="Cerrar_Click"/>
                 </StackPanel>
-            </DockPanel>
+            </Grid>
         </Border>
     </Grid>
 </Window>

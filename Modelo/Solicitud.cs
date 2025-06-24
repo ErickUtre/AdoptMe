@@ -8,9 +8,6 @@ public class Solicitud
     [JsonProperty("AdopcionID")]
     public int AdopcionID { get; set; }
 
-    [JsonProperty("AdoptanteID")]
-    public int AdoptanteID { get; set; }
-
     [JsonProperty("NombreAdoptante")]
     public string NombreAdoptante { get; set; }
 }
