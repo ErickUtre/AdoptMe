@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Cliente_AdoptMe.Servicios;
 using Newtonsoft.Json;
 using Cliente_AdoptMe.Grpc;
+using System.Linq;
 
 namespace Cliente_AdoptMe.Vista
 {
@@ -26,6 +27,7 @@ namespace Cliente_AdoptMe.Vista
     {
         private List<GMapMarker> _marcadores = new List<GMapMarker>();
         private const int ZOOM_VISIBLE = 12;
+        private GMapMarker _marcadorUsuario;
 
         public MapaPrincipal()
         {
@@ -56,8 +58,17 @@ namespace Cliente_AdoptMe.Vista
             }
             else
             {
-                MostrarMapaPrincipal();
+                PointLatLng ubicacionDefecto = new PointLatLng(19.4326, -99.1332);
+                AgregarMarcadorUbicacionUsuario(ubicacionDefecto);
+                MostrarMapaPrincipal(ubicacionDefecto);
+                await MostrarAdopcionesCercanas(ubicacionDefecto.Lat, ubicacionDefecto.Lng);
             }
+
+            mapaPrincipal.OnMapDrag += async () =>
+            {
+                var centro = mapaPrincipal.Position;
+                await ActualizarAdopcionesCercanasSegunCentro(centro.Lat, centro.Lng);
+            };
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -106,14 +117,14 @@ namespace Cliente_AdoptMe.Vista
                 RenderTransformOrigin = new Point(0.5, 0.5)
             };
 
-            var marcador = new GMapMarker(ubicacionUsuario)
+            _marcadorUsuario = new GMapMarker(ubicacionUsuario)
             {
                 Shape = imagen,
                 Offset = new Point(-25, -25)
             };
 
-            mapaPrincipal.Markers.Add(marcador);
-            _marcadores.Add(marcador);
+            mapaPrincipal.Markers.Add(_marcadorUsuario);
+            _marcadores.Add(_marcadorUsuario);
         }
 
         private void AgregarMarcador(PointLatLng ubicacion, UbicacionGrpc.Mascota mascota, int adopcionId)
@@ -196,5 +207,29 @@ namespace Cliente_AdoptMe.Vista
                 }
             }
         }
+
+        private async Task ActualizarAdopcionesCercanasSegunCentro(double latitud, double longitud)
+        {
+            foreach (var marcador in _marcadores.ToList())
+            {
+                if (marcador != _marcadorUsuario)
+                {
+                    mapaPrincipal.Markers.Remove(marcador);
+                    _marcadores.Remove(marcador);
+                }
+            }
+
+            ServicioUbicacionGrpc servicioUbicacionGrpc = new ServicioUbicacionGrpc();
+            var resultados = await servicioUbicacionGrpc.ObtenerAdopcionesCercanasAsync(latitud, longitud);
+
+            foreach (var adopcion in resultados)
+            {
+                PointLatLng ubicacion = new PointLatLng(adopcion.Latitud, adopcion.Longitud);
+                AgregarMarcador(ubicacion, adopcion.Mascota, adopcion.AdopcionId);
+            }
+
+            ActualizarVisibilidadMarcadores();
+        }
+    
     }
 }

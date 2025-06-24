@@ -32,6 +32,12 @@ namespace Cliente_AdoptMe.Vista
             _mascota = mascota;
             _adopcionId = adopcionId;
             InitializeComponent();
+
+            if (UsuarioSingleton.Instancia.UsuarioActual.Acceso.EsAdmin)
+            {
+                Btn_Solicitar.Visibility = Visibility.Collapsed;
+            }
+
             InicializarDatos();
         }
 
@@ -80,11 +86,11 @@ namespace Cliente_AdoptMe.Vista
             {
                 string rutaTemporal = await GuardarVideoTemporalAsync(msVideo, idMascota);
                 var ventanaVideo = new Video(rutaTemporal);
-                ventanaVideo.Show();
+                ventanaVideo.ShowDialog();
             }
             else
             {
-                MessageBox.Show("No se pudo descargar el video.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No hay video disponible", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -121,12 +127,24 @@ namespace Cliente_AdoptMe.Vista
             }
             else
             {
-                MessageBox.Show(
-                    resultadoHttp.MensajeError,
-                    Properties.Resources.global_ErrorServidor,
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error
-                );
+                if (resultadoHttp.Codigo == System.Net.HttpStatusCode.Conflict)
+                {
+                    MessageBox.Show(
+                        "Ya has enviado una solicitud para esta adopción",
+                        "Advertencia",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning
+                    );
+                }
+                else
+                {
+                    MessageBox.Show(
+                        resultadoHttp.MensajeError,
+                        Properties.Resources.global_ErrorServidor,
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
+                }
             }
         }
     }
