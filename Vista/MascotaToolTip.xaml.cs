@@ -28,6 +28,15 @@ namespace Cliente_AdoptMe.Vista
             InitializeComponent();
         }
 
+        public void InicializarDatosMascota(UbicacionGrpc.Mascota mascota)
+        {
+            txtbl_Nombre.Text = mascota.Nombre;
+            txtbl_Edad.Text += $": {mascota.Edad}";
+            txtbl_Sexo.Text += $": {mascota.Sexo}";
+            txtbl_Especie.Text += $": {mascota.Especie}";
+            txtbl_Raza.Text += $": {mascota.Raza}";
+        }
+
         private void IrDetallesMascota(object sender, RoutedEventArgs e)
         {
             EventoDetallesMascota?.Invoke(this, EventArgs.Empty);

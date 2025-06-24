@@ -29,12 +29,12 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_ReporteMascotasAdoptadas(object sender, RoutedEventArgs e)
         {
-            NavegadorPrincipal.Instancia.Navegar(new Reporte());
+            NavegadorPrincipal.Instancia.Navegar(new Reporte(TipoReporte.Aceptadas));
         }
 
         private void Btn_ReporteMascotasAdopcion(object sender, RoutedEventArgs e)
         {
-            NavegadorPrincipal.Instancia.Navegar(new Reporte());
+            NavegadorPrincipal.Instancia.Navegar(new Reporte(TipoReporte.Pendientes));
         }
     }
 }

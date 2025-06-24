@@ -90,7 +90,8 @@
 
                     <Image Name="FotoComplemento"  
                            Stretch="Uniform"
-                           Margin="80,0"/>
+                           Margin="80,0"
+                           MaxHeight="400"/>
 
                     <Button Style="{StaticResource EstiloBaseBoton}" 
                             HorizontalAlignment="Right"
