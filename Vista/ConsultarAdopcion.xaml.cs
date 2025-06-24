@@ -272,7 +272,7 @@ namespace Cliente_AdoptMe.Vista
             {
                 string rutaTemporal = await GuardarVideoTemporalAsync(msVideo, idMascota);
                 var ventanaVideo = new Video(rutaTemporal);
-                ventanaVideo.Show();
+                ventanaVideo.ShowDialog();
             }
             else
             {

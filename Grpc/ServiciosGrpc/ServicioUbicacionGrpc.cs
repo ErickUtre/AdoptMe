@@ -36,7 +36,7 @@ namespace Cliente_AdoptMe.Grpc
             {
                 { "authorization", $"Bearer {UsuarioSingleton.Instancia.Token}" }
             };
-
+            
             try
             {
                 var respuesta = await _cliente.ObtenerAdopcionesCercanasAsync(request, headers);
@@ -44,7 +44,6 @@ namespace Cliente_AdoptMe.Grpc
                 {
                     foreach (var s in respuesta.Resultados)
                     {
-                        Console.WriteLine($"ID: {s.AdopcionId}, Distancia: {s.Distancia}, Coord: ({s.Latitud}, {s.Longitud})");
                         resultadoLista.Add(s);
                     }
                 }
