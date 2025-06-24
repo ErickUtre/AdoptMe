@@ -66,8 +66,8 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_SolicitudesPendientes(object sender, RoutedEventArgs e)
         {
-            SolicitudesAdopcion solicitudesAdopcion = new SolicitudesAdopcion();
-            solicitudesAdopcion.ShowDialog();
+            Solicitudes solicitudes = new Solicitudes();
+            solicitudes.ShowDialog();
         }
 
         private void Btn_Eliminar(object sender, RoutedEventArgs e)

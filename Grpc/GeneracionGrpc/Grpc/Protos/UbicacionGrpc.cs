@@ -50,7 +50,7 @@ namespace UbicacionGrpc {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::UbicacionGrpc.Empty> __Marshaller_ubicacion_Empty = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::UbicacionGrpc.Empty.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::UbicacionGrpc.SolicitudesCercanas> __Marshaller_ubicacion_SolicitudesCercanas = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::UbicacionGrpc.SolicitudesCercanas.Parser));
+    static readonly grpc::Marshaller<global::UbicacionGrpc.AdopcionesCercanas> __Marshaller_ubicacion_AdopcionesCercanas = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::UbicacionGrpc.AdopcionesCercanas.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::UbicacionGrpc.Ubicacion, global::UbicacionGrpc.Empty> __Method_ActualizarUbicacion = new grpc::Method<global::UbicacionGrpc.Ubicacion, global::UbicacionGrpc.Empty>(
@@ -61,12 +61,12 @@ namespace UbicacionGrpc {
         __Marshaller_ubicacion_Empty);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::UbicacionGrpc.Ubicacion, global::UbicacionGrpc.SolicitudesCercanas> __Method_ObtenerSolicitudesCercanas = new grpc::Method<global::UbicacionGrpc.Ubicacion, global::UbicacionGrpc.SolicitudesCercanas>(
+    static readonly grpc::Method<global::UbicacionGrpc.Ubicacion, global::UbicacionGrpc.AdopcionesCercanas> __Method_ObtenerAdopcionesCercanas = new grpc::Method<global::UbicacionGrpc.Ubicacion, global::UbicacionGrpc.AdopcionesCercanas>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "ObtenerSolicitudesCercanas",
+        "ObtenerAdopcionesCercanas",
         __Marshaller_ubicacion_Ubicacion,
-        __Marshaller_ubicacion_SolicitudesCercanas);
+        __Marshaller_ubicacion_AdopcionesCercanas);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -122,24 +122,24 @@ namespace UbicacionGrpc {
         return CallInvoker.AsyncUnaryCall(__Method_ActualizarUbicacion, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::UbicacionGrpc.SolicitudesCercanas ObtenerSolicitudesCercanas(global::UbicacionGrpc.Ubicacion request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::UbicacionGrpc.AdopcionesCercanas ObtenerAdopcionesCercanas(global::UbicacionGrpc.Ubicacion request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ObtenerSolicitudesCercanas(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return ObtenerAdopcionesCercanas(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::UbicacionGrpc.SolicitudesCercanas ObtenerSolicitudesCercanas(global::UbicacionGrpc.Ubicacion request, grpc::CallOptions options)
+      public virtual global::UbicacionGrpc.AdopcionesCercanas ObtenerAdopcionesCercanas(global::UbicacionGrpc.Ubicacion request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_ObtenerSolicitudesCercanas, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_ObtenerAdopcionesCercanas, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::UbicacionGrpc.SolicitudesCercanas> ObtenerSolicitudesCercanasAsync(global::UbicacionGrpc.Ubicacion request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::UbicacionGrpc.AdopcionesCercanas> ObtenerAdopcionesCercanasAsync(global::UbicacionGrpc.Ubicacion request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ObtenerSolicitudesCercanasAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return ObtenerAdopcionesCercanasAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::UbicacionGrpc.SolicitudesCercanas> ObtenerSolicitudesCercanasAsync(global::UbicacionGrpc.Ubicacion request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::UbicacionGrpc.AdopcionesCercanas> ObtenerAdopcionesCercanasAsync(global::UbicacionGrpc.Ubicacion request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_ObtenerSolicitudesCercanas, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_ObtenerAdopcionesCercanas, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]

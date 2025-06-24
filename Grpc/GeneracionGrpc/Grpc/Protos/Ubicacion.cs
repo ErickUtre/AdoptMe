@@ -26,26 +26,21 @@ namespace UbicacionGrpc {
           string.Concat(
             "ChtHcnBjL1Byb3Rvcy91YmljYWNpb24ucHJvdG8SCXViaWNhY2lvbiJBCglV",
             "YmljYWNpb24SEQoJdXN1YXJpb0lkGAEgASgFEhAKCGxvbmdpdHVkGAIgASgB",
-            "Eg8KB2xhdGl0dWQYAyABKAEiigEKEFNvbGljaXR1ZENlcmNhbmESGwoTc29s",
-            "aWNpdHVkQWRvcGNpb25JZBgBIAEoBRIRCglkaXN0YW5jaWEYAiABKAESEAoI",
-            "bG9uZ2l0dWQYAyABKAESDwoHbGF0aXR1ZBgEIAEoARIjCgdtYXNjb3RhGAUg",
-            "ASgLMhIudWJpY2FjaW9uLk1hc2NvdGEijAEKB01hc2NvdGESEQoJbWFzY290",
-            "YUlkGAEgASgFEg4KBm5vbWJyZRgCIAEoCRIPCgdlc3BlY2llGAMgASgJEgwK",
-            "BHJhemEYBCABKAkSDAoEZWRhZBgFIAEoCRIMCgRzZXhvGAYgASgJEg4KBnRh",
-            "bWFubxgHIAEoCRITCgtkZXNjcmlwY2lvbhgIIAEoCSJGChNTb2xpY2l0dWRl",
-            "c0NlcmNhbmFzEi8KCnJlc3VsdGFkb3MYASADKAsyGy51YmljYWNpb24uU29s",
-            "aWNpdHVkQ2VyY2FuYSIHCgVFbXB0eTKmAQoRU2VydmljaW9VYmljYWNpb24S",
-            "PQoTQWN0dWFsaXphclViaWNhY2lvbhIULnViaWNhY2lvbi5VYmljYWNpb24a",
-            "EC51YmljYWNpb24uRW1wdHkSUgoaT2J0ZW5lclNvbGljaXR1ZGVzQ2VyY2Fu",
-            "YXMSFC51YmljYWNpb24uVWJpY2FjaW9uGh4udWJpY2FjaW9uLlNvbGljaXR1",
-            "ZGVzQ2VyY2FuYXNCEKoCDVViaWNhY2lvbkdycGNiBnByb3RvMw=="));
+            "Eg8KB2xhdGl0dWQYAyABKAEiWwoPQWRvcGNpb25DZXJjYW5hEhIKCmFkb3Bj",
+            "aW9uSWQYASABKAUSEQoJZGlzdGFuY2lhGAIgASgBEhAKCGxvbmdpdHVkGAMg",
+            "ASgBEg8KB2xhdGl0dWQYBCABKAEiRAoSQWRvcGNpb25lc0NlcmNhbmFzEi4K",
+            "CnJlc3VsdGFkb3MYASADKAsyGi51YmljYWNpb24uQWRvcGNpb25DZXJjYW5h",
+            "IgcKBUVtcHR5MqQBChFTZXJ2aWNpb1ViaWNhY2lvbhI9ChNBY3R1YWxpemFy",
+            "VWJpY2FjaW9uEhQudWJpY2FjaW9uLlViaWNhY2lvbhoQLnViaWNhY2lvbi5F",
+            "bXB0eRJQChlPYnRlbmVyQWRvcGNpb25lc0NlcmNhbmFzEhQudWJpY2FjaW9u",
+            "LlViaWNhY2lvbhodLnViaWNhY2lvbi5BZG9wY2lvbmVzQ2VyY2FuYXNCEKoC",
+            "DVViaWNhY2lvbkdycGNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.Ubicacion), global::UbicacionGrpc.Ubicacion.Parser, new[]{ "UsuarioId", "Longitud", "Latitud" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.SolicitudCercana), global::UbicacionGrpc.SolicitudCercana.Parser, new[]{ "SolicitudAdopcionId", "Distancia", "Longitud", "Latitud", "Mascota" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.Mascota), global::UbicacionGrpc.Mascota.Parser, new[]{ "MascotaId", "Nombre", "Especie", "Raza", "Edad", "Sexo", "Tamano", "Descripcion" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.SolicitudesCercanas), global::UbicacionGrpc.SolicitudesCercanas.Parser, new[]{ "Resultados" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.AdopcionCercana), global::UbicacionGrpc.AdopcionCercana.Parser, new[]{ "AdopcionId", "Distancia", "Longitud", "Latitud" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.AdopcionesCercanas), global::UbicacionGrpc.AdopcionesCercanas.Parser, new[]{ "Resultados" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.Empty), global::UbicacionGrpc.Empty.Parser, null, null, null, null, null)
           }));
     }
@@ -326,16 +321,16 @@ namespace UbicacionGrpc {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class SolicitudCercana : pb::IMessage<SolicitudCercana>
+  public sealed partial class AdopcionCercana : pb::IMessage<AdopcionCercana>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<SolicitudCercana> _parser = new pb::MessageParser<SolicitudCercana>(() => new SolicitudCercana());
+    private static readonly pb::MessageParser<AdopcionCercana> _parser = new pb::MessageParser<AdopcionCercana>(() => new AdopcionCercana());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<SolicitudCercana> Parser { get { return _parser; } }
+    public static pb::MessageParser<AdopcionCercana> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -351,7 +346,7 @@ namespace UbicacionGrpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SolicitudCercana() {
+    public AdopcionCercana() {
       OnConstruction();
     }
 
@@ -359,8 +354,8 @@ namespace UbicacionGrpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SolicitudCercana(SolicitudCercana other) : this() {
-      solicitudAdopcionId_ = other.solicitudAdopcionId_;
+    public AdopcionCercana(AdopcionCercana other) : this() {
+      adopcionId_ = other.adopcionId_;
       distancia_ = other.distancia_;
       longitud_ = other.longitud_;
       latitud_ = other.latitud_;
@@ -370,19 +365,19 @@ namespace UbicacionGrpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SolicitudCercana Clone() {
-      return new SolicitudCercana(this);
+    public AdopcionCercana Clone() {
+      return new AdopcionCercana(this);
     }
 
-    /// <summary>Field number for the "solicitudAdopcionId" field.</summary>
-    public const int SolicitudAdopcionIdFieldNumber = 1;
-    private int solicitudAdopcionId_;
+    /// <summary>Field number for the "adopcionId" field.</summary>
+    public const int AdopcionIdFieldNumber = 1;
+    private int adopcionId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int SolicitudAdopcionId {
-      get { return solicitudAdopcionId_; }
+    public int AdopcionId {
+      get { return adopcionId_; }
       set {
-        solicitudAdopcionId_ = value;
+        adopcionId_ = value;
       }
     }
 
@@ -437,19 +432,19 @@ namespace UbicacionGrpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as SolicitudCercana);
+      return Equals(other as AdopcionCercana);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(SolicitudCercana other) {
+    public bool Equals(AdopcionCercana other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (SolicitudAdopcionId != other.SolicitudAdopcionId) return false;
+      if (AdopcionId != other.AdopcionId) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Distancia, other.Distancia)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Longitud, other.Longitud)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Latitud, other.Latitud)) return false;
@@ -461,7 +456,7 @@ namespace UbicacionGrpc {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (SolicitudAdopcionId != 0) hash ^= SolicitudAdopcionId.GetHashCode();
+      if (AdopcionId != 0) hash ^= AdopcionId.GetHashCode();
       if (Distancia != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Distancia);
       if (Longitud != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Longitud);
       if (Latitud != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Latitud);
@@ -484,9 +479,9 @@ namespace UbicacionGrpc {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (SolicitudAdopcionId != 0) {
+      if (AdopcionId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(SolicitudAdopcionId);
+        output.WriteInt32(AdopcionId);
       }
       if (Distancia != 0D) {
         output.WriteRawTag(17);
@@ -514,9 +509,9 @@ namespace UbicacionGrpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (SolicitudAdopcionId != 0) {
+      if (AdopcionId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(SolicitudAdopcionId);
+        output.WriteInt32(AdopcionId);
       }
       if (Distancia != 0D) {
         output.WriteRawTag(17);
@@ -544,8 +539,8 @@ namespace UbicacionGrpc {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (SolicitudAdopcionId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SolicitudAdopcionId);
+      if (AdopcionId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AdopcionId);
       }
       if (Distancia != 0D) {
         size += 1 + 8;
@@ -567,12 +562,12 @@ namespace UbicacionGrpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(SolicitudCercana other) {
+    public void MergeFrom(AdopcionCercana other) {
       if (other == null) {
         return;
       }
-      if (other.SolicitudAdopcionId != 0) {
-        SolicitudAdopcionId = other.SolicitudAdopcionId;
+      if (other.AdopcionId != 0) {
+        AdopcionId = other.AdopcionId;
       }
       if (other.Distancia != 0D) {
         Distancia = other.Distancia;
@@ -609,7 +604,7 @@ namespace UbicacionGrpc {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            SolicitudAdopcionId = input.ReadInt32();
+            AdopcionId = input.ReadInt32();
             break;
           }
           case 17: {
@@ -651,7 +646,7 @@ namespace UbicacionGrpc {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            SolicitudAdopcionId = input.ReadInt32();
+            AdopcionId = input.ReadInt32();
             break;
           }
           case 17: {
@@ -1138,16 +1133,16 @@ namespace UbicacionGrpc {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class SolicitudesCercanas : pb::IMessage<SolicitudesCercanas>
+  public sealed partial class AdopcionesCercanas : pb::IMessage<AdopcionesCercanas>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<SolicitudesCercanas> _parser = new pb::MessageParser<SolicitudesCercanas>(() => new SolicitudesCercanas());
+    private static readonly pb::MessageParser<AdopcionesCercanas> _parser = new pb::MessageParser<AdopcionesCercanas>(() => new AdopcionesCercanas());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<SolicitudesCercanas> Parser { get { return _parser; } }
+    public static pb::MessageParser<AdopcionesCercanas> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1163,7 +1158,7 @@ namespace UbicacionGrpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SolicitudesCercanas() {
+    public AdopcionesCercanas() {
       OnConstruction();
     }
 
@@ -1171,37 +1166,37 @@ namespace UbicacionGrpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SolicitudesCercanas(SolicitudesCercanas other) : this() {
+    public AdopcionesCercanas(AdopcionesCercanas other) : this() {
       resultados_ = other.resultados_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SolicitudesCercanas Clone() {
-      return new SolicitudesCercanas(this);
+    public AdopcionesCercanas Clone() {
+      return new AdopcionesCercanas(this);
     }
 
     /// <summary>Field number for the "resultados" field.</summary>
     public const int ResultadosFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::UbicacionGrpc.SolicitudCercana> _repeated_resultados_codec
-        = pb::FieldCodec.ForMessage(10, global::UbicacionGrpc.SolicitudCercana.Parser);
-    private readonly pbc::RepeatedField<global::UbicacionGrpc.SolicitudCercana> resultados_ = new pbc::RepeatedField<global::UbicacionGrpc.SolicitudCercana>();
+    private static readonly pb::FieldCodec<global::UbicacionGrpc.AdopcionCercana> _repeated_resultados_codec
+        = pb::FieldCodec.ForMessage(10, global::UbicacionGrpc.AdopcionCercana.Parser);
+    private readonly pbc::RepeatedField<global::UbicacionGrpc.AdopcionCercana> resultados_ = new pbc::RepeatedField<global::UbicacionGrpc.AdopcionCercana>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::UbicacionGrpc.SolicitudCercana> Resultados {
+    public pbc::RepeatedField<global::UbicacionGrpc.AdopcionCercana> Resultados {
       get { return resultados_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as SolicitudesCercanas);
+      return Equals(other as AdopcionesCercanas);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(SolicitudesCercanas other) {
+    public bool Equals(AdopcionesCercanas other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1266,7 +1261,7 @@ namespace UbicacionGrpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(SolicitudesCercanas other) {
+    public void MergeFrom(AdopcionesCercanas other) {
       if (other == null) {
         return;
       }

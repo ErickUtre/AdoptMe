@@ -156,13 +156,13 @@
     <Compile Include="Grpc\ServiciosGrpc\ServicioUbicacionGrpc.cs" />
     <Compile Include="Modelo\Acceso.cs" />
     <Compile Include="Modelo\Mascota.cs" />
-    <Compile Include="Modelo\Mensaje.cs" />
     <Compile Include="Modelo\RespuestaLogin.cs" />
     <Compile Include="Modelo\ResultadoHttp.cs" />
-    <Compile Include="Modelo\SolicitudAdopcion.cs" />
+    <Compile Include="Modelo\Adopcion.cs" />
     <Compile Include="Modelo\Ubicacion.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Servicios\AccesoServicios.cs" />
+    <Compile Include="Servicios\AdopcionServicios.cs" />
     <Compile Include="Servicios\UbicacionServicios.cs" />
     <Compile Include="Servicios\UsuarioServicios.cs" />
     <Compile Include="Utilidades\Constantes.cs" />
@@ -220,8 +220,8 @@
     <Compile Include="Vista\Reportes.xaml.cs">
       <DependentUpon>Reportes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\SolicitudesAdopcion.xaml.cs">
-      <DependentUpon>SolicitudesAdopcion.xaml</DependentUpon>
+    <Compile Include="Vista\Solicitudes.xaml.cs">
+      <DependentUpon>Solicitudes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\Video.xaml.cs">
       <DependentUpon>Video.xaml</DependentUpon>
@@ -231,10 +231,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ConsultarAdopcion.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\ConsultarAdopciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -309,7 +305,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\SolicitudesAdopcion.xaml">
+    <Page Include="Vista\Solicitudes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

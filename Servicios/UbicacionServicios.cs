@@ -92,13 +92,13 @@ namespace Cliente_AdoptMe.Servicios
             }
         }
 
-        public async Task<HttpResponseMessage> ObtenerSolicitudesCercanasAsync(double latitud, double longitud, string token, int radioMts = 5000)
+        public async Task<HttpResponseMessage> ObtenerAdopcionesCercanasAsync(double latitud, double longitud, string token, int radioMts = 5000)
         {
             string url = $"{_httpClient.BaseAddress}ubicaciones/cercanos?Latitud={latitud}&Longitud={longitud}&radio={radioMts}";
 
-            var solicitud = new HttpRequestMessage(HttpMethod.Get, url);
-            solicitud.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage respuesta = await _httpClient.SendAsync(solicitud);
+            var adopcion = new HttpRequestMessage(HttpMethod.Get, url);
+            adopcion.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            HttpResponseMessage respuesta = await _httpClient.SendAsync(adopcion);
             return respuesta;
         }
 

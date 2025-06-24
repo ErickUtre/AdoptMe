@@ -183,13 +183,13 @@ namespace Cliente_AdoptMe.Vista
         private async Task MostrarUsuariosCercanos(double latitud, double longitud)
         {
             ServicioUbicacionGrpc servicioUbicacionGrpc = new ServicioUbicacionGrpc();
-            var resultados = await servicioUbicacionGrpc.ObtenerSolicitudesCercanasAsync(latitud, longitud);
+            var resultados = await servicioUbicacionGrpc.ObtenerAdopcionesCercanasAsync(latitud, longitud);
 
             if (resultados.Count > 0)
             {
-                foreach (var solicitud in resultados)
+                foreach (var adopcion in resultados)
                 {
-                    PointLatLng ubicacion = new PointLatLng(solicitud.Latitud, solicitud.Longitud);
+                    PointLatLng ubicacion = new PointLatLng(adopcion.Latitud, adopcion.Longitud);
                     AgregarMarcador(ubicacion);
                 }
             }

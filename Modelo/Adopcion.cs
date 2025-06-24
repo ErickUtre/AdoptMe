@@ -7,24 +7,28 @@ using System.Threading.Tasks;
 
 namespace Cliente_AdoptMe.Modelo
 {
-    public class SolicitudAdopcion
+    public class Adopcion
     {
-        [JsonProperty("SolicitudAdopcionID")]
-        public int SolicitudAdopcionID {  get; set; }
+        [JsonProperty("AdopcionID")]
+        public int AdopcionID {  get; set; }
         [JsonProperty("FechaSolicitud")]
         public DateTime FechaSolicitud {  get; set; }
         [JsonProperty("Estado")]
         public bool Estado {  get; set; }
         [JsonProperty("MascotaID")]
         public int MascotaID { get; set; }
-        [JsonProperty("AdoptanteID")]
-        public int AdoptanteID { get; set; }
+        [JsonProperty("PublicadorID")]
+        public int PublicadorID { get; set; }
+        [JsonProperty("Ubicacion")]
+        public Ubicacion Ubicacion { get; set; }
+        [JsonProperty("Mascota")]
+        public Mascota Mascota { get; set; }
     }
 
-    public class SolicitudAdopcionCercana
+    public class AdopcionCercana
     {
-        [JsonProperty("solicitudAdopcionId")]
-        public string SolicitudAdopcionId { get; set; }
+        [JsonProperty("adopcionId")]
+        public string AdopcionId { get; set; }
         [JsonProperty("distancia")]
         public double? Distancia { get; set; }
         [JsonProperty("latitud")]
