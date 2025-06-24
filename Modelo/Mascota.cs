@@ -21,7 +21,7 @@ namespace Cliente_AdoptMe.Modelo
         public string Edad {  get; set; }
         [JsonProperty("Sexo")]
         public string Sexo { get; set; }
-        [JsonProperty("Tamano")]
+        [JsonProperty("Tamaño")]
         public string Tamaño { get; set; }
         [JsonProperty("Descripcion")]
         public string Descripcion { get; set; }

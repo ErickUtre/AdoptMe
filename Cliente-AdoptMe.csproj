@@ -397,9 +397,6 @@
     <Resource Include="Recursos\Imagenes\Editar.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\Imagenes\Bongo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Recursos\Imagenes\Dog.png" />
   </ItemGroup>
   <ItemGroup>
@@ -413,6 +410,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\Imagenes\IconoUsuarioDefecto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\MascotaDefault.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

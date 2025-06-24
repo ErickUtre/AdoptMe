@@ -11,58 +11,73 @@
       Title="ConsultarAdopciones">
 
     <Grid Background="#EEEEEE">
-        <TextBox x:Name="tbNombreMascota" HorizontalAlignment="Left" Margin="979,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="439" Height="78" utilidades:TextBoxExtensiones.TextoSugerido="Buscar adopciones" MaxLength="45"/>
+        <TextBox x:Name="tbNombreMascota" HorizontalAlignment="Left" Margin="979,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="439" Height="78" 
+                 utilidades:TextBoxExtensiones.TextoSugerido="Buscar adopciones" MaxLength="45"
+                 TextChanged="TbNombreMascota_TextChanged"/>
+
         <TextBlock Style="{StaticResource Titulo}" 
-                       VerticalAlignment="Top" Margin="43,38,682,0"><Run Language="es-mx" Text="{x:Static p:Resources.txtbl_AdopcionesRegistradas}"/></TextBlock>
+                   VerticalAlignment="Top" Margin="43,38,682,0">
+            <Run Language="es-mx" Text="{x:Static p:Resources.txtbl_AdopcionesRegistradas}"/>
+        </TextBlock>
 
         <Image HorizontalAlignment="Left" Height="58" Margin="1339,203,0,0" VerticalAlignment="Top" Width="59" Source="/Recursos/Imagenes/Search.png"/>
 
-        <Button Style="{StaticResource BotonGeneral}"
-        Content="{x:Static p:Resources.btn_Eliminar}"
-        Background="#FFEA5959"
-        HorizontalAlignment="Left"
-        Margin="1264,286,0,588" Width="154" Click="Btn_Eliminar"/>
-
+        <!-- Lista dinámica de adopciones -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="106,187,614,0">
-            <StackPanel Orientation="Vertical">
-                <!-- Tarjeta 1 -->
-                <Border Padding="10" BorderBrush="#C3C3C3" BorderThickness="1" CornerRadius="5" Width="716" Height="333" Background="#C3C3C3">
-                    <Border.Effect>
-                        <DropShadowEffect/>
-                    </Border.Effect>
-                    <DockPanel>
-                        <StackPanel DockPanel.Dock="Left" Width="241" >
-                            <TextBlock Name="Tb_Nombre" Text="{x:Static p:Resources.global_Nombre}" FontSize="31" Foreground="White" FontWeight="Bold" />
-                            <TextBlock Text=" " FontSize="20"/>
-                            <TextBlock Name="Tb_Especie" Text="{x:Static p:Resources.global_Especie}" FontSize="18" />
-                            <TextBlock Text=" " FontSize="10"/>
-                            <TextBlock Name="Tb_Raza" Text="{x:Static p:Resources.global_Raza}" FontSize="18" />
-                            <TextBlock Text=" " FontSize="10"/>
-                            <TextBlock Name="Tb_Edad" Text="{x:Static p:Resources.global_Edad}" FontSize="18" />
-                            <TextBlock Text=" " FontSize="10"/>
-                            <StackPanel Orientation="Horizontal" Width="240" >
-                                <TextBlock Name="Tb_Estado" Text="{x:Static p:Resources.global_Estado}" Margin="0,0,5,0" FontSize="18" Width="197"/>
-                                <Ellipse Name="Ell_Estado" Width="21" Height="20" />
+            <ItemsControl x:Name="listaAdopciones">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" BorderBrush="#C3C3C3" BorderThickness="1" CornerRadius="5" Width="716" Background="#C3C3C3" Margin="0,0,0,20">
+                            <Border.Effect>
+                                <DropShadowEffect/>
+                            </Border.Effect>
+                            <StackPanel>
+                                <DockPanel>
+                                    <StackPanel DockPanel.Dock="Left" Width="241">
+                                        <TextBlock Text="{Binding Nombre}" FontSize="31" Foreground="White" FontWeight="Bold" />
+                                        <TextBlock Text=" " FontSize="20"/>
+                                        <TextBlock Text="{Binding Especie}" FontSize="18" />
+                                        <TextBlock Text=" " FontSize="10"/>
+                                        <TextBlock Text="{Binding Raza}" FontSize="18" />
+                                        <TextBlock Text=" " FontSize="10"/>
+                                        <TextBlock Text="{Binding Edad}" FontSize="18" />
+                                        <TextBlock Text=" " FontSize="10"/>
+                                        <StackPanel Orientation="Horizontal" Width="240">
+                                            <TextBlock Text="{Binding EstadoTexto}" Margin="0,0,5,0" FontSize="18" Width="197"/>
+                                            <Ellipse Width="21" Height="20" Fill="{Binding ColorEstado}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Image Width="306" Height="223" Stretch="UniformToFill" Margin="10,0,0,0" Source="/Recursos/Imagenes/MascotaDefault.png"/>
+                                </DockPanel>
+
+                                <!-- Botones dentro del item -->
+                                <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
+                                    <Button Style="{StaticResource BotonGeneral}"
+                                            Content="{x:Static p:Resources.btn_SolicitudesPendientes}"
+                                            Background="#FF64CC20"
+                                            Width="189"
+                                            Margin="0,0,10,0"
+                                            FontSize="12"/>
+
+                                    <Button Style="{StaticResource BotonGeneral}"
+                                            Content="{x:Static p:Resources.btn_Consultar}"
+                                            Background="#FF0A94AB"
+                                            Width="189"
+                                            Margin="0,0,10,0"
+                                            FontSize="12"
+                                            Click="BtnConsultar_Click"/>
+
+                                    <Button Style="{StaticResource BotonGeneral}"
+                                            Content="{x:Static p:Resources.btn_Eliminar}"
+                                            Background="#FFEA5959"
+                                            Width="189"
+                                            FontSize="12"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                        <Image Name="Foto" Width="306" Height="223" Stretch="UniformToFill" Margin="10,0,0,0" />
-                    </DockPanel>
-                </Border>
-
-                <!-- Tarjeta 1 -->
-
-            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
-        <Button Style="{StaticResource BotonGeneral}"
-            Content="{x:Static p:Resources.btn_SolicitudesPendientes}"
-            Background="#FF64CC20"
-            HorizontalAlignment="Left"
-            Margin="159,470,0,438" Width="189" Click="Btn_SolicitudesPendientes" FontSize="12"/>
-        <Button Style="{StaticResource BotonGeneral}"
-            Content="{x:Static p:Resources.btn_Consultar}"
-            Background="#FF0A94AB"
-            HorizontalAlignment="Left"
-            Margin="159,424,0,484" Width="189" Click="Btn_Consultar" FontSize="12"/>
-
     </Grid>
 </Page>

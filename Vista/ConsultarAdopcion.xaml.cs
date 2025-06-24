@@ -1,19 +1,9 @@
 ﻿using Cliente_AdoptMe.Modelo;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Cliente_AdoptMe.Vista
 {
@@ -22,23 +12,54 @@ namespace Cliente_AdoptMe.Vista
     /// </summary>
     public partial class ConsultarAdopcion : Page
     {
-        public ConsultarAdopcion(Mascota mascota)
+        private Adopcion _adopcion;
+
+        public ConsultarAdopcion(Adopcion adopcion)
         {
             InitializeComponent();
-            InicializarDatosMascota(mascota);
+            if (adopcion == null)
+            {
+                MessageBox.Show("No se recibió información de la adopción.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            _adopcion = adopcion;
+            InicializarDatosAdopcion(_adopcion);
         }
 
-        private void InicializarDatosMascota(Mascota mascota)
+        private void InicializarDatosAdopcion(Adopcion adopcion)
         {
-            Txt_Nombre.Text = "Nombre: " + mascota.Nombre;
-            Txt_Especie.Text = "Especie: " + mascota.Especie;
-            Txt_Raza.Text = "Raza: " + mascota.Raza;
-            Txt_Edad.Text = "Edad: " + mascota.Edad;
-            Txt_Sexo.Text = "Sexo: " + mascota.Sexo;
-            Txt_Tamaño.Text = "Tamaño: " + mascota.Tamaño;
-            Txt_Descripcion.Text = "Descripcion: " + mascota.Descripcion;
-            FotoMascota.Source = new BitmapImage(new Uri("pack://application:,,,/Recursos/Imagenes/Dalmata.png"));
-            FotoComplemento.Source = new BitmapImage(new Uri("pack://application:,,,/Recursos/Imagenes/Bongo.png"));
+            var mascota = adopcion.Mascota;
+
+            Txt_Nombre.Text = "Nombre: " + (mascota?.Nombre ?? "N/D");
+            Txt_Especie.Text = "Especie: " + (mascota?.Especie ?? "N/D");
+            Txt_Raza.Text = "Raza: " + (mascota?.Raza ?? "N/D");
+            Txt_Edad.Text = "Edad: " + (mascota?.Edad ?? "N/D");
+            Txt_Sexo.Text = "Sexo: " + (mascota?.Sexo ?? "N/D");
+            Txt_Tamaño.Text = "Tamaño: " + (mascota?.Tamaño ?? "N/D");
+            Txt_Descripcion.Text = !string.IsNullOrWhiteSpace(mascota?.Descripcion) ? mascota.Descripcion : "Sin descripción";
+
+            try
+            {
+                if (adopcion.Foto != null)
+                {
+                    FotoMascota.Source = adopcion.Foto;
+                    FotoComplemento.Source = adopcion.Foto;
+                }
+                else
+                {
+                    // Imagen por defecto si no hay foto
+                    var defaultUri = new Uri("pack://application:,,,/Recursos/Imagenes/MascotaDefault.png");
+                    FotoMascota.Source = new BitmapImage(defaultUri);
+                    FotoComplemento.Source = new BitmapImage(defaultUri);
+                }
+            }
+            catch
+            {
+                var defaultUri = new Uri("pack://application:,,,/Recursos/Imagenes/MascotaDefault.png");
+                FotoMascota.Source = new BitmapImage(defaultUri);
+                FotoComplemento.Source = new BitmapImage(defaultUri);
+            }
         }
 
         private void BtnExpandirImagen(object sender, RoutedEventArgs e)
@@ -46,96 +67,110 @@ namespace Cliente_AdoptMe.Vista
             ImagenExpandida imagenExpandida = new ImagenExpandida(FotoMascota);
             imagenExpandida.ShowDialog();
         }
-        
+
         private void Btn_EditarNombre(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(null);
+            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Nombre);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
                 Txt_Nombre.Text = "Nombre: " + editarCampo.NuevoValor;
-            }
+                if (_adopcion.Mascota != null)
+                    _adopcion.Mascota.Nombre = editarCampo.NuevoValor;
 
-            //SE GUARDA EN LA BASE DE DATOS
+                // TODO: Guardar cambio en base de datos
+            }
         }
 
         private void Btn_EditarEspecie(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(null);
+            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Especie);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
                 Txt_Especie.Text = "Especie: " + editarCampo.NuevoValor;
-            }
+                if (_adopcion.Mascota != null)
+                    _adopcion.Mascota.Especie = editarCampo.NuevoValor;
 
-            //SE GUARDA EN LA BASE DE DATOS
+                // TODO: Guardar cambio en base de datos
+            }
         }
 
         private void Btn_EditarRaza(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(null);
+            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Raza);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
                 Txt_Raza.Text = "Raza: " + editarCampo.NuevoValor;
-            }
+                if (_adopcion.Mascota != null)
+                    _adopcion.Mascota.Raza = editarCampo.NuevoValor;
 
-            //SE GUARDA EN LA BASE DE DATOS
+                // TODO: Guardar cambio en base de datos
+            }
         }
 
         private void Btn_EditarEdad(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(null);
+            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Edad);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
                 Txt_Edad.Text = "Edad: " + editarCampo.NuevoValor;
-            }
+                if (_adopcion.Mascota != null)
+                    _adopcion.Mascota.Edad = editarCampo.NuevoValor;
 
-            //SE GUARDA EN LA BASE DE DATOS
+                // TODO: Guardar cambio en base de datos
+            }
         }
 
         private void Btn_EditarSexo(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(null);
+            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Sexo);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
                 Txt_Sexo.Text = "Sexo: " + editarCampo.NuevoValor;
-            }
+                if (_adopcion.Mascota != null)
+                    _adopcion.Mascota.Sexo = editarCampo.NuevoValor;
 
-            //SE GUARDA EN LA BASE DE DATOS
+                // TODO: Guardar cambio en base de datos
+            }
         }
 
         private void Btn_EditarTamaño(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(null);
+            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Tamaño);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
                 Txt_Tamaño.Text = "Tamaño: " + editarCampo.NuevoValor;
-            }
+                if (_adopcion.Mascota != null)
+                    _adopcion.Mascota.Tamaño = editarCampo.NuevoValor;
 
-            //SE GUARDA EN LA BASE DE DATOS
+                // TODO: Guardar cambio en base de datos
+            }
         }
 
         private void Btn_EditarDescripcion(object sender, RoutedEventArgs e)
         {
-            EditarCampo editarCampo = new EditarCampo(null);
+            EditarCampo editarCampo = new EditarCampo(_adopcion.Mascota?.Descripcion);
             bool? resultado = editarCampo.ShowDialog();
 
             if (resultado == true)
             {
-                Txt_Descripcion.Text = "Descrpcion: " + editarCampo.NuevoValor;
-            }
+                Txt_Descripcion.Text = editarCampo.NuevoValor;
+                if (_adopcion.Mascota != null)
+                    _adopcion.Mascota.Descripcion = editarCampo.NuevoValor;
 
-            //SE GUARDA EN LA BASE DE DATOS
+                // TODO: Guardar cambio en base de datos
+            }
         }
 
         private void Btn_EditarFoto(object sender, RoutedEventArgs e)
@@ -146,12 +181,10 @@ namespace Cliente_AdoptMe.Vista
                 Title = "Selecciona una imagen"
             };
 
-            // Mostrar el diálogo y verificar si se seleccionó un archivo
             if (openFileDialog.ShowDialog() == true)
             {
                 try
                 {
-                    // Cargar la imagen en el control Image
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     bitmap.UriSource = new Uri(openFileDialog.FileName);
@@ -160,32 +193,23 @@ namespace Cliente_AdoptMe.Vista
 
                     FotoMascota.Source = bitmap;
                     FotoComplemento.Source = bitmap;
+
+                    if (_adopcion != null)
+                        _adopcion.Foto = bitmap;
+
+                    // TODO: Guardar la imagen en base de datos o servidor
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error al cargar la imagen: " + ex.Message);
                 }
             }
-            //SE GUARDA EN LA BASE DE DATOS
         }
 
         private void Btn_VerVideo(object sender, RoutedEventArgs e)
         {
-            string rutaVideo = @"C:\Users\Erick\Downloads\videoplayback.mp4";
-            Video reproductor = new Video(rutaVideo);
-            reproductor.ShowDialog();
-
-            /*if (!string.IsNullOrEmpty(rutaVideoSeleccionado))
-            {
-                VentanaReproductor reproductor = new VentanaReproductor(rutaVideoSeleccionado);
-                reproductor.Owner = this;
-                reproductor.ShowDialog(); // Modal
-            }
-            else
-            {
-                MessageBox.Show("Primero selecciona un video.");
-            }*/
-
+            // Aquí pondrías la lógica para reproducir video, si tienes video asociado
+            MessageBox.Show("Funcionalidad de video aún no implementada.");
         }
     }
 }

@@ -31,48 +31,47 @@
 
             <StackPanel Margin="100,40,10,0" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="670">
-                    <TextBlock Name="Txt_Nombre" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Nombre}"/>
+                    <TextBlock Name="Txt_Nombre" Style="{StaticResource TextoInformacion}" Text="Nombre:"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarNombre">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="669">
-                    <TextBlock Name="Txt_Especie" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Especie}"/>
+                    <TextBlock Name="Txt_Especie" Style="{StaticResource TextoInformacion}" Text="Especie:"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarEspecie">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="672">
-                    <TextBlock Name="Txt_Raza" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Raza}"/>
+                    <TextBlock Name="Txt_Raza" Style="{StaticResource TextoInformacion}" Text="Raza:"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarRaza">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="665">
-                    <TextBlock Name="Txt_Edad" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Edad}"/>
+                    <TextBlock Name="Txt_Edad" Style="{StaticResource TextoInformacion}" Text="Edad:"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarEdad">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="689">
-                    <TextBlock Name="Txt_Sexo" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Sexo}"/>
+                    <TextBlock Name="Txt_Sexo" Style="{StaticResource TextoInformacion}" Text="Sexo:"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarSexo">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0,5" Width="645">
-                    <TextBlock Name="Txt_Tamaño" Style="{StaticResource TextoInformacion}" Text="{x:Static p:Resources.global_Tamano}"/>
+                    <TextBlock Name="Txt_Tamaño" Style="{StaticResource TextoInformacion}" Text="Tamaño:"/>
                     <Button Width="40" Height="40" Margin="10,0,0,0" Click="Btn_EditarTamaño">
                         <Image Source="/Recursos/Imagenes/Editar.png"/>
                     </Button>
                 </StackPanel>
             </StackPanel>
-
 
             <StackPanel Grid.Column="1" 
                         Margin="40">

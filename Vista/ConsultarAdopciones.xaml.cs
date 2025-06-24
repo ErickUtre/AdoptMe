@@ -1,84 +1,99 @@
-﻿using Cliente_AdoptMe.Utilidades;
+﻿using Cliente_AdoptMe.Modelo;
+using Cliente_AdoptMe.Servicios;
+using Cliente_AdoptMe.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Cliente_AdoptMe.Modelo;
 
 namespace Cliente_AdoptMe.Vista
 {
-    /// <summary>
-    /// Lógica de interacción para ConsultarAdopciones.xaml
-    /// </summary>
     public partial class ConsultarAdopciones : Page
     {
-        private Mascota[] mascotas = new Mascota[1000];
+        private readonly AdopcionServicios _adopcionServicios;
+        private List<Adopcion> _listaCompletaAdopciones;
+
         public ConsultarAdopciones()
         {
             InitializeComponent();
-            Inicializar_Adopciones();
-
+            _adopcionServicios = new AdopcionServicios();
+            this.Loaded += ConsultarAdopciones_Loaded;
         }
 
-        private void Inicializar_Adopciones()
+        private async void ConsultarAdopciones_Loaded(object sender, RoutedEventArgs e)
         {
-            //LOGICA PARA TRAER LAS ADOPCIONES A LA BASE DE DATOS
+            await CargarAdopcionesPorPublicadorAsync();
+        }
 
-            //SE MAPEAN
-            mascotas[mascotas.Length - 1] = new Mascota
+        private async Task CargarAdopcionesPorPublicadorAsync()
+        {
+            try
             {
-                Nombre = "Bongo",
-                Especie = "Perro",
-                Raza = "Dalmata",
-                Edad = "3 años con 2 meses"
-            };
+                int idPublicador = UsuarioSingleton.Instancia.UsuarioActual.UsuarioId;
 
-            //SE MUESTRAN EN LA INTERFAZ GRÁFICA COMO ELEMENTOS
-            Tb_Nombre.Text += mascotas[mascotas.Length - 1].Nombre;
-            Tb_Especie.Text += mascotas[mascotas.Length - 1].Especie;
-            Tb_Raza.Text += mascotas[mascotas.Length - 1].Raza;
-            Tb_Edad.Text += mascotas[mascotas.Length - 1].Edad;
-            Foto.Source = new BitmapImage(new Uri("pack://application:,,,/Recursos/Imagenes/Bongo.png"));
-            /*
-            if (mascotas[mascotas.Length - 1].EstadoAdopcion)
+                List<Adopcion> adopciones = await _adopcionServicios.ObtenerAdopcionesPorPublicadorAsync(idPublicador);
+
+                if (adopciones == null || adopciones.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron adopciones registradas.");
+                    return;
+                }
+
+                foreach (var adopcion in adopciones)
+                {
+                    if (adopcion.Mascota == null) continue;
+
+                    adopcion.EstadoTexto = "Disponible";
+                    adopcion.ColorEstado = new SolidColorBrush(Colors.Green);
+                    adopcion.Foto = new BitmapImage(new Uri("pack://application:,,,/Recursos/Imagenes/MascotaDefault.png"));
+                }
+
+                _listaCompletaAdopciones = adopciones;
+                listaAdopciones.ItemsSource = _listaCompletaAdopciones;
+            }
+            catch (System.Exception ex)
             {
-                Tb_Estado.Text += "Sin adoptar";
-                Ell_Estado.Fill = new SolidColorBrush(Colors.Green);
+                MessageBox.Show("Error al cargar adopciones: " + ex.Message);
+            }
+        }
 
+        private void TbNombreMascota_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string filtro = tbNombreMascota.Text?.Trim().ToLower() ?? "";
+
+            if (string.IsNullOrEmpty(filtro))
+            {
+                listaAdopciones.ItemsSource = _listaCompletaAdopciones;
             }
             else
             {
-                Tb_Estado.Text += "Adoptado/a";
-                Ell_Estado.Fill = new SolidColorBrush(Colors.Red);
+                var filtradas = _listaCompletaAdopciones
+                    .Where(a => a.Mascota != null &&
+                                a.Mascota.Nombre != null &&
+                                a.Mascota.Nombre.ToLower().Contains(filtro))
+                    .ToList();
+
+                listaAdopciones.ItemsSource = filtradas;
             }
-            */
         }
 
-        private void Btn_SolicitudesPendientes(object sender, RoutedEventArgs e)
+        private void BtnConsultar_Click(object sender, RoutedEventArgs e)
         {
-            Solicitudes solicitudes = new Solicitudes();
-            solicitudes.ShowDialog();
-        }
-
-        private void Btn_Eliminar(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Btn_Consultar(object sender, RoutedEventArgs e)
-        {
-            //SI HACES CLIC AL ELEMENTO EN CUESTION LO ASOCIA CON SU ID Y SU INFORMACIÓN
-            NavegadorPrincipal.Instancia.Navegar(new ConsultarAdopcion(mascotas[mascotas.Length - 1]));
+            var button = sender as Button;
+            if (button != null)
+            {
+                var adopcionSeleccionada = button.DataContext as Adopcion;
+                if (adopcionSeleccionada != null)
+                {
+                    ConsultarAdopcion paginaDetalle = new ConsultarAdopcion(adopcionSeleccionada);
+                    NavigationService.Navigate(paginaDetalle);
+                }
+            }
         }
     }
 }

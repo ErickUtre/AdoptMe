@@ -3,28 +3,18 @@ using Cliente_AdoptMe.Servicios;
 using Cliente_AdoptMe.Utilidades;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Cliente_AdoptMe.Vista
 {
-    /// <summary>
-    /// Lógica de interacción para RegistrarAdopcion.xaml
-    /// </summary>
     public partial class RegistrarAdopcion : Page
     {
         private string rutaVideoSeleccionado;
@@ -33,6 +23,19 @@ namespace Cliente_AdoptMe.Vista
         public RegistrarAdopcion()
         {
             InitializeComponent();
+            CargarCombos();
+        }
+
+        private void CargarCombos()
+        {
+            for (int i = 0; i <= 40; i++)
+                cbAño.Items.Add(i);
+
+            for (int i = 0; i <= 12; i++)
+                cbMes.Items.Add(i);
+
+            cbSexo.Items.Add("Macho");
+            cbSexo.Items.Add("Hembra");
         }
 
         private void Btn_SubirFoto(object sender, RoutedEventArgs e)
@@ -43,12 +46,10 @@ namespace Cliente_AdoptMe.Vista
                 Title = "Selecciona una imagen"
             };
 
-            // Mostrar el diálogo y verificar si se seleccionó un archivo
             if (openFileDialog.ShowDialog() == true)
             {
                 try
                 {
-                    // Cargar la imagen en el control Image
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
                     bitmap.UriSource = new Uri(openFileDialog.FileName);
@@ -61,56 +62,6 @@ namespace Cliente_AdoptMe.Vista
                 {
                     MessageBox.Show("Error al cargar la imagen: " + ex.Message);
                 }
-            }
-        }
-
-        private bool Validar_Campos()
-        {
-            if (string.IsNullOrWhiteSpace(tbNombreMascota.Text) ||
-                string.IsNullOrWhiteSpace(tbEspecie.Text) ||
-                string.IsNullOrWhiteSpace(tbRaza.Text) ||
-                string.IsNullOrWhiteSpace(tbAño.Text) ||
-                string.IsNullOrWhiteSpace(tbMes.Text) ||
-                string.IsNullOrWhiteSpace(tbSexo.Text) ||
-                string.IsNullOrWhiteSpace(tbTamaño.Text) ||
-                string.IsNullOrWhiteSpace(tbDescripcion.Text) ||
-                Foto.Source == null)
-
-            {
-                MessageBox.Show("Por favor, completa todos los campos.", "Campos vacíos", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
-            }
-
-            // Validar que año y mes sean números válidos
-            if (!int.TryParse(tbAño.Text, out int anio) || anio < 0 || anio > DateTime.Now.Year)
-            {
-                tbAño.Text = null;
-                Utilidades.TextBoxExtensiones.SetTextoSugerido(tbAño, "Año invalido");
-
-                if (!int.TryParse(tbMes.Text, out int mes) || mes < 1 || mes > 12)
-                {
-                    tbMes.Text = null;
-                    Utilidades.TextBoxExtensiones.SetTextoSugerido(tbMes, "Mes invalido");
-
-                    return false;
-                }
-
-                return false;
-            }
-
-            return true;
-        }
-
-        private void Btn_Registrar(object sender, RoutedEventArgs e)
-        {
-            if (Validar_Campos())
-            {
-                return;
-            }
-            else
-            {
-                Debug.WriteLine("HOLA");
-                RegistroAdopcion();
             }
         }
 
@@ -141,9 +92,7 @@ namespace Cliente_AdoptMe.Vista
                 );
 
                 if (respuesta == MessageBoxResult.No)
-                {
                     return;
-                }
             }
 
             MapaRegistro mapaRegistro = new MapaRegistro()
@@ -154,9 +103,41 @@ namespace Cliente_AdoptMe.Vista
             bool? resultado = mapaRegistro.ShowDialog();
 
             if (resultado == true)
-            {
                 _ubicacionSeleccionada = mapaRegistro.ResultadoUbicacion;
+        }
+
+        private bool Validar_Campos()
+        {
+            if (string.IsNullOrWhiteSpace(tbNombreMascota.Text) ||
+                string.IsNullOrWhiteSpace(tbEspecie.Text) ||
+                string.IsNullOrWhiteSpace(tbRaza.Text) ||
+                cbAño.SelectedItem == null ||
+                cbMes.SelectedItem == null ||
+                cbSexo.SelectedItem == null ||
+                string.IsNullOrWhiteSpace(tbTamaño.Text) ||
+                string.IsNullOrWhiteSpace(tbDescripcion.Text) ||
+                Foto.Source == null ||
+                _ubicacionSeleccionada == null)
+            {
+                MessageBox.Show("Por favor, completa todos los campos obligatorios.", "Campos vacíos", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
+
+            if (!int.TryParse(tbTamaño.Text, out int tamaño) || tamaño < 0 || tamaño > 300)
+            {
+                MessageBox.Show("El tamaño debe ser un número entre 0 y 300.", "Tamaño inválido", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void Btn_Registrar(object sender, RoutedEventArgs e)
+        {
+            if (!Validar_Campos())
+                return;
+
+            RegistroAdopcion();
         }
 
         private async void RegistroAdopcion()
@@ -165,33 +146,26 @@ namespace Cliente_AdoptMe.Vista
             {
                 AdopcionServicios adopcionServicios = new AdopcionServicios();
 
-                Ubicacion ubicacion = null;
-                Debug.WriteLine("HOLA");
                 Mascota mascota = new Mascota
                 {
                     Nombre = tbNombreMascota.Text,
                     Especie = tbEspecie.Text,
                     Raza = tbRaza.Text,
-                    Edad = tbAño.Text + "año(s) con" + tbMes.Text + " mes(es)",
-                    Sexo = tbSexo.Text,
-                    Tamaño = tbTamaño.Text,
+                    Edad = $"{cbAño.SelectedItem} año(s) con {cbMes.SelectedItem} mes(es)",
+                    Sexo = cbSexo.SelectedItem.ToString(),
+                    Tamaño = $"{tbTamaño.Text} cm",
                     Descripcion = tbDescripcion.Text
                 };
 
-                Debug.WriteLine("HOLA");
-                if (_ubicacionSeleccionada != null)
+                Ubicacion ubicacion = new Ubicacion
                 {
-                    ubicacion = new Ubicacion
-                    {
-                        Longitud = _ubicacionSeleccionada.Longitud,
-                        Latitud = _ubicacionSeleccionada.Latitud,
-                        Ciudad = _ubicacionSeleccionada.Ciudad,
-                        Estado = _ubicacionSeleccionada.Estado,
-                        Pais = _ubicacionSeleccionada.Pais
-                    };
-                }
+                    Longitud = _ubicacionSeleccionada.Longitud,
+                    Latitud = _ubicacionSeleccionada.Latitud,
+                    Ciudad = _ubicacionSeleccionada.Ciudad,
+                    Estado = _ubicacionSeleccionada.Estado,
+                    Pais = _ubicacionSeleccionada.Pais
+                };
 
-                Debug.WriteLine("HOLA");
                 Adopcion adopcion = new Adopcion
                 {
                     Estado = false,
@@ -200,23 +174,27 @@ namespace Cliente_AdoptMe.Vista
                     Mascota = mascota
                 };
 
-                Debug.WriteLine("HOLA");
                 HttpResponseMessage respuesta = await adopcionServicios.RegistrarAdopcionAsync(adopcion);
-                Debug.WriteLine("HOLA");
+
                 switch (respuesta.StatusCode)
                 {
                     case HttpStatusCode.Created:
-                        Debug.WriteLine("HOLA");
-                        MessageBox.Show("Registro exitoso", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBoxResult confirmacion = MessageBox.Show(
+                            "Registro exitoso.",
+                            "Éxito",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+
+                        if (confirmacion == MessageBoxResult.OK)
+                        {
+                            // Navegar al menú principal
+                            NavigationService?.Navigate(new MapaPrincipal());
+                        }
                         break;
 
                     default:
                         string detalles = await respuesta.Content.ReadAsStringAsync();
-                        MessageBox.Show(
-                            "Hubo un error al registrar la adopción. Por favor, intenta más tarde.",
-                            "Error del servidor",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Error);
+                        MessageBox.Show("Hubo un error al registrar la adopción. Por favor, intenta más tarde.", "Error del servidor", MessageBoxButton.OK, MessageBoxImage.Error);
                         Registro.Error($"Error con el servidor {detalles}");
                         break;
                 }
@@ -224,12 +202,18 @@ namespace Cliente_AdoptMe.Vista
             catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
             {
                 Registro.Error($"Excepción: {ex.Message}\nTraza: {ex.StackTrace}");
-                MessageBox.Show(
-                    $"Ocurrió un error inesperado con la adopción. Por favor, intenta más tarde.",
-                    "Error con el servidor",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                MessageBox.Show("Ocurrió un error inesperado con la adopción. Por favor, intenta más tarde.", "Error con el servidor", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void TbTamaño_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !int.TryParse(e.Text, out _);
+        }
+
+        private void tbTamaño_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

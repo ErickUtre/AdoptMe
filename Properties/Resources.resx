@@ -360,4 +360,7 @@
   <data name="mensaje_PerfilActualizado" xml:space="preserve">
     <value>Perfil actualizado correctamente</value>
   </data>
+  <data name="btn_ObtenerUbicacion" xml:space="preserve">
+    <value>Obtener ubicación</value>
+  </data>
 </root>

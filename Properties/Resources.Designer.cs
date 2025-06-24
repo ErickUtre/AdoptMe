@@ -142,6 +142,15 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Obtener ubicación.
+        /// </summary>
+        public static string btn_ObtenerUbicacion {
+            get {
+                return ResourceManager.GetString("btn_ObtenerUbicacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Registrar.
         /// </summary>
         public static string btn_Registrar {
