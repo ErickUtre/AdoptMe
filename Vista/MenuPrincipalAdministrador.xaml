@@ -27,8 +27,7 @@
                     <Grid>
                         <Button Style="{StaticResource EstiloBaseBoton}"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Click="Btn_IconoUsuario">
+                                VerticalAlignment="Top">
                             <Image x:Name="FotoPerfil" 
                                    Source="/Recursos/Imagenes/IconoUsuarioDefecto.png"
                                    Stretch="UniformToFill"

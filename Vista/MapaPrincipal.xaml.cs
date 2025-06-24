@@ -25,7 +25,7 @@ namespace Cliente_AdoptMe.Vista
     public partial class MapaPrincipal : Page
     {
         private List<GMapMarker> _marcadores = new List<GMapMarker>();
-        private const int ZOOM_VISIBLE = 10;
+        private const int ZOOM_VISIBLE = 12;
 
         public MapaPrincipal()
         {
@@ -47,7 +47,7 @@ namespace Cliente_AdoptMe.Vista
                     PointLatLng coordenadasUbicacion = new PointLatLng(latitud.Value, longitud.Value);
                     AgregarMarcadorUbicacionUsuario(coordenadasUbicacion);
                     MostrarMapaPrincipal(coordenadasUbicacion);
-                    await MostrarUsuariosCercanos(latitud.Value, longitud.Value);
+                    await MostrarAdopcionesCercanas(latitud.Value, longitud.Value);
                 }
                 else
                 {
@@ -69,12 +69,12 @@ namespace Cliente_AdoptMe.Vista
         
         private void MostrarMapaPrincipal(PointLatLng? ubicacionUsuario = null)
         {
-            mapaPrincipal.MapProvider = GMapProviders.GoogleMap;
+            mapaPrincipal.MapProvider = GMapProviders.OpenStreetMap;
 
             var zoomInicial = 6;
             var posicionDefectoMexico = new PointLatLng(23.6345, -102.5528);
             var posicionAMostrar = posicionDefectoMexico;
-
+            
             if (ubicacionUsuario.HasValue)
             {
                 posicionAMostrar = ubicacionUsuario.Value;
@@ -116,24 +116,25 @@ namespace Cliente_AdoptMe.Vista
             _marcadores.Add(marcador);
         }
 
-        private void AgregarMarcador(PointLatLng ubicacion)
+        private void AgregarMarcador(PointLatLng ubicacion, UbicacionGrpc.Mascota mascota)
         {
-            var ellipse = new Ellipse
+            var imagen = new Image
             {
-                Width = 30,
-                Height = 30,
-                Stroke = Brushes.Red,
-                StrokeThickness = 2,
-                Fill = Brushes.Orange
+                Width = 50,
+                Height = 50,
+                Source = new BitmapImage(new Uri("pack://application:,,,/Recursos/Imagenes/IconoAdopcion.png")),
+                RenderTransformOrigin = new Point(0.5, 0.5)
             };
 
             var frameActual = Window.GetWindow(this).FindName("MarcoPrincipal") as Frame;
 
             var contenidoPopup = new MascotaToolTip();
 
+            contenidoPopup.InicializarDatosMascota(mascota);
+
             var popup = new Popup
             {
-                PlacementTarget = ellipse,
+                PlacementTarget = imagen,
                 Placement = PlacementMode.Mouse,
                 AllowsTransparency = true,
                 StaysOpen = false,
@@ -141,20 +142,20 @@ namespace Cliente_AdoptMe.Vista
                 Child = contenidoPopup,
             };
 
-            ellipse.MouseEnter += (s, e) =>
+            imagen.MouseEnter += (s, e) =>
             {
                 popup.IsOpen = true;
             };
 
             contenidoPopup.EventoDetallesMascota += (s, e) =>
             {
-                NavegadorPrincipal.Instancia.Navegar(new ConsultarAdopcionExterna());
+                NavegadorPrincipal.Instancia.Navegar(new ConsultarAdopcionExterna(mascota));
                 popup.IsOpen = false;
             };
 
             var marcador = new GMapMarker(ubicacion)
             {
-                Shape = ellipse,
+                Shape = imagen,
                 Offset = new Point(-15, -15)
             };
 
@@ -180,7 +181,7 @@ namespace Cliente_AdoptMe.Vista
             }
         }
 
-        private async Task MostrarUsuariosCercanos(double latitud, double longitud)
+        private async Task MostrarAdopcionesCercanas(double latitud, double longitud)
         {
             ServicioUbicacionGrpc servicioUbicacionGrpc = new ServicioUbicacionGrpc();
             var resultados = await servicioUbicacionGrpc.ObtenerAdopcionesCercanasAsync(latitud, longitud);
@@ -190,7 +191,8 @@ namespace Cliente_AdoptMe.Vista
                 foreach (var adopcion in resultados)
                 {
                     PointLatLng ubicacion = new PointLatLng(adopcion.Latitud, adopcion.Longitud);
-                    AgregarMarcador(ubicacion);
+                    UbicacionGrpc.Mascota mascota = adopcion.Mascota;
+                    AgregarMarcador(ubicacion, mascota);
                 }
             }
         }

@@ -1,10 +1,14 @@
 ﻿using Cliente_AdoptMe.Modelo;
 using Cliente_AdoptMe.Servicios;
+using Cliente_AdoptMe.Utilidades;
 using Microsoft.Win32;
 using System;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using static Cliente_AdoptMe.Utilidades.InterfazUsuarioHelper;
 
 namespace Cliente_AdoptMe.Vista
 {
@@ -224,10 +228,38 @@ namespace Cliente_AdoptMe.Vista
             }
         }
 
-        private void Btn_VerVideo(object sender, RoutedEventArgs e)
+        private async void Btn_VerVideo(object sender, RoutedEventArgs e)
         {
-            // Aquí pondrías la lógica para reproducir video, si tienes video asociado
-            MessageBox.Show("Funcionalidad de video aún no implementada.");
+            await MostrarVideoMascotaAsync(_adopcion.MascotaID, UsuarioSingleton.Instancia.Token);
         }
+
+        public async Task MostrarVideoMascotaAsync(int idMascota, string token)
+        {
+            var msVideo = await ObtenerVideoMascotaAsync(idMascota, token);
+            if (msVideo != null)
+            {
+                string rutaTemporal = await GuardarVideoTemporalAsync(msVideo, idMascota);
+                var ventanaVideo = new Video(rutaTemporal);
+                ventanaVideo.Show();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo descargar el video.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public static async Task<string> GuardarVideoTemporalAsync(MemoryStream ms, int idMascota)
+        {
+            string tempFile = Path.Combine(Path.GetTempPath(), $"video_mascota_{idMascota}.mp4");
+
+            using (var fileStream = new FileStream(tempFile, FileMode.Create, FileAccess.Write, FileShare.Read))
+            {
+                ms.Position = 0;
+                await ms.CopyToAsync(fileStream);
+            }
+
+            return tempFile;
+        }
+
     }
 }

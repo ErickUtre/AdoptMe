@@ -47,7 +47,7 @@
                                             <Ellipse Width="21" Height="20" Fill="{Binding ColorEstado}" />
                                         </StackPanel>
                                     </StackPanel>
-                                    <Image Width="306" Height="223" Stretch="UniformToFill" Margin="10,0,0,0" Source="{Binding Foto}" />
+                                    <Image x:Name="FotoMascota" Width="306" Height="223" Stretch="UniformToFill" Margin="10,0,0,0" Source="{Binding Foto}"/>
                                 </DockPanel>
 
                                 <!-- Botones dentro del item -->

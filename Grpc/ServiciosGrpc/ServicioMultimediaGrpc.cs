@@ -77,10 +77,6 @@ namespace Cliente_AdoptMe.Grpc.ServiciosGrpc
 
             await call.RequestStream.CompleteAsync();
             var respuesta = await call.ResponseAsync;
-
-            MessageBox.Show(respuesta.Mensaje, "Resultado",
-                MessageBoxButton.OK,
-                respuesta.Exito ? MessageBoxImage.Information : MessageBoxImage.Error);
         }
 
     }

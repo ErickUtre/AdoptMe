@@ -25,13 +25,7 @@ namespace Cliente_AdoptMe.Vista
             InitializeComponent();
             NavegadorPrincipal.Instancia.SetMarco(MarcoPrincipal);
             NavegadorPrincipal.Instancia.Navegar(new MapaPrincipal());
-            InicializarDatos();
-        }
-
-        private async void InicializarDatos()
-        {
             txtblNombreUsuario.Text = UsuarioSingleton.Instancia.UsuarioActual.Nombre;
-            await MostrarFotoAsync();
         }
 
         private void BtnCerrarMenuPrincipal(object sender, RoutedEventArgs e)
@@ -59,30 +53,6 @@ namespace Cliente_AdoptMe.Vista
             if (paginaActual == null || paginaActual.GetType() != typeof(Reportes))
             {
                 NavegadorPrincipal.Instancia.Navegar(new Reportes());
-            }
-        }
-
-        private void Btn_IconoUsuario(object sender, RoutedEventArgs e)
-        {
-            var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
-
-            if (paginaActual == null || paginaActual.GetType() != typeof(ConsultarUsuario))
-            {
-                NavegadorPrincipal.Instancia.Navegar(new ConsultarUsuario());
-            }
-        }
-
-        private async Task MostrarFotoAsync()
-        {
-            var imagen = await InterfazUsuarioHelper.ObtenerFotoPerfilAsync(UsuarioSingleton.Instancia.Token);
-            if (imagen != null)
-            {
-                FotoPerfil.Source = imagen;
-                UsuarioSingleton.Instancia.UsuarioActual.FotoPerfil = imagen;
-            }
-            else
-            {
-                FotoPerfil.Source = null;
             }
         }
     }

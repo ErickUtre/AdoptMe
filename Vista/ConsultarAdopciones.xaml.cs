@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using static Cliente_AdoptMe.Utilidades.InterfazUsuarioHelper;
 
 namespace Cliente_AdoptMe.Vista
 {
@@ -50,7 +51,7 @@ namespace Cliente_AdoptMe.Vista
 
                     adopcion.EstadoTexto = "Disponible";
                     adopcion.ColorEstado = new SolidColorBrush(Colors.Green);
-                    adopcion.Foto = new BitmapImage(new Uri("pack://application:,,,/Recursos/Imagenes/MascotaDefault.png"));
+                    adopcion.Foto = await ObtenerFotoMascotaAsync(adopcion.MascotaID, UsuarioSingleton.Instancia.Token, true);
                 }
 
                 _listaCompletaAdopciones = adopciones;

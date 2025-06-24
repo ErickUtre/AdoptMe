@@ -1,4 +1,5 @@
 ﻿using Cliente_AdoptMe.Modelo;
+using Cliente_AdoptMe.Utilidades;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,22 @@ namespace Cliente_AdoptMe.Servicios
                 MessageBox.Show($"Error al obtener adopciones: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return new List<Adopcion>();
             }
+        }
+
+        public async Task<ResultadoHttp> ObtenerAdopcionesPendientesAsync()
+        {
+            return await HttpHelper.EjecutarHttp(() =>
+            {
+                return _httpClient.GetAsync("adopciones/pendientes");
+            });
+        }
+
+        public async Task<ResultadoHttp> ObtenerAdopcionesAceptadasAsync()
+        {
+            return await HttpHelper.EjecutarHttp(() =>
+            {
+                return _httpClient.GetAsync("adopciones/aceptadas");
+            });
         }
 
         public async Task<HttpResponseMessage> ModificarAdopcionAsync(int idAdopcion, Adopcion adopcionModificada)

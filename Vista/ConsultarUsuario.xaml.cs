@@ -54,7 +54,6 @@ namespace Cliente_AdoptMe.Vista
             Txt_Nombre.Text += $": {UsuarioSingleton.Instancia.UsuarioActual.Nombre}";
             Txt_Correo.Text += $": {UsuarioSingleton.Instancia.UsuarioActual.Acceso.Correo}";
             Txt_Telefono.Text += $": {UsuarioSingleton.Instancia.UsuarioActual.Telefono}";
-            Console.WriteLine(UsuarioSingleton.Instancia.UsuarioActual.FotoPerfil);
 
             if (UsuarioSingleton.Instancia.UsuarioActual.FotoPerfil != null)
             {
@@ -100,6 +99,7 @@ namespace Cliente_AdoptMe.Vista
 
                     UsuarioSingleton.Instancia.UsuarioActual.Nombre = nuevoNombre;
                     Txt_Nombre.Text = $"{Properties.Resources.global_Nombre}: {nuevoNombre}";
+                    EventoActualizarNombre?.Invoke(this, EventArgs.Empty);
                 }
                 else
                 {
@@ -283,13 +283,13 @@ namespace Cliente_AdoptMe.Vista
 
         private async Task MostrarFotoAsync()
         {
-            EventoActualizarFotoPerfil?.Invoke(this, EventArgs.Empty);
             var imagen = await ObtenerFotoPerfilAsync(UsuarioSingleton.Instancia.Token);
             if (imagen != null)
             {
                 FotoComplemento.Source = imagen;
                 UsuarioSingleton.Instancia.UsuarioActual.FotoPerfil = imagen;
             }
+            EventoActualizarFotoPerfil?.Invoke(this, EventArgs.Empty);
         }
 
         private async Task SubirArchivoAsync(string rutaArchivo)

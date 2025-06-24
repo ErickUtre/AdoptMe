@@ -30,25 +30,31 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Margin="100,40,10,40">
-                <TextBlock Style="{StaticResource TextoInformacion}"
+                <TextBlock x:Name="txtbl_Nombre"
+                           Style="{StaticResource TextoInformacion}"
                            Text="{x:Static p:Resources.global_Nombre}"/>
-                <TextBlock Style="{StaticResource TextoInformacion}"
+                <TextBlock x:Name="txtbl_Especie"
+                           Style="{StaticResource TextoInformacion}"
                            Text="{x:Static p:Resources.global_Especie}"/>
-                <TextBlock Style="{StaticResource TextoInformacion}"
+                <TextBlock x:Name="txtbl_Raza" 
+                           Style="{StaticResource TextoInformacion}"
                            Text="{x:Static p:Resources.global_Raza}"/>
-                <TextBlock Style="{StaticResource TextoInformacion}"
+                <TextBlock x:Name="txtbl_Edad" 
+                           Style="{StaticResource TextoInformacion}"
                            Text="{x:Static p:Resources.global_Edad}"/>
-                <TextBlock Style="{StaticResource TextoInformacion}"
+                <TextBlock x:Name="txtbl_Sexo" 
+                           Style="{StaticResource TextoInformacion}"
                            Text="{x:Static p:Resources.global_Sexo}"/>
-                <TextBlock Style="{StaticResource TextoInformacion}"
+                <TextBlock x:Name="txtbl_Estatura" 
+                           Style="{StaticResource TextoInformacion}"
                            Text="{x:Static p:Resources.global_Estatura}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" 
                         Margin="40">
                 <Grid>
-                    <Image x:Name="FotoMascota" 
-                           Source="/Recursos/Imagenes/ImagenPrueba.png" 
+                    <Image x:Name="FotoMascotaFondo" 
+                           Source="/Recursos/Imagenes/MascotaDefault.png" 
                            Stretch="UniformToFill"
                            MaxHeight="400">
                         <Image.Effect>
@@ -56,9 +62,11 @@
                         </Image.Effect>
                     </Image>
 
-                    <Image Source="/Recursos/Imagenes/ImagenPrueba.png" 
+                    <Image x:Name="FotoMascota" 
+                           Source="/Recursos/Imagenes/MascotaDefault.png" 
                            Stretch="Uniform"
-                           Margin="80,0"/>
+                           Margin="80,0"
+                           MaxHeight="400"/>
 
                     <Button Style="{StaticResource EstiloBaseBoton}" 
                             HorizontalAlignment="Right"
@@ -69,7 +77,8 @@
                     </Button>
                 </Grid>
 
-                <TextBlock Style="{StaticResource Normal}" 
+                <TextBlock x:Name="txtbl_Descripcion" 
+                           Style="{StaticResource Normal}" 
                            Margin="0,20"
                            Text="{x:Static p:Resources.global_Descripcion}"/>
             </StackPanel>
@@ -82,11 +91,6 @@
 
         <Grid Grid.Row="3"
               Margin="50,40">
-            <Button Style="{StaticResource BotonGeneral}"
-                    Name="Btn_EnviarMensaje"
-                    Content="{x:Static p:Resources.btn_EnviarMensaje}"
-                    Background="#3AC1CB"
-                    HorizontalAlignment="Left"/>
             <Button Style="{StaticResource BotonGeneral}"
                     Name="Btn_Solicitar"
                     Content="{x:Static p:Resources.btn_Solicitar}"
@@ -103,6 +107,6 @@
             Content="{x:Static p:Resources.btn_VerVideo}"
             Background="#FFF8C420"
             HorizontalAlignment="Left"
-            Margin="254,40,0,40" Width="150" Click="Btn_VerVideo" Grid.Row="3"/>
+            Margin="90,40,0,40" Width="150" Click="Btn_VerVideo" Grid.Row="3"/>
     </Grid>
 </Page>

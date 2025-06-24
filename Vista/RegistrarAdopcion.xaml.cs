@@ -1,12 +1,15 @@
-﻿using Cliente_AdoptMe.Modelo;
+﻿using Cliente_AdoptMe.Grpc.ServiciosGrpc;
+using Cliente_AdoptMe.Modelo;
 using Cliente_AdoptMe.Servicios;
 using Cliente_AdoptMe.Utilidades;
 using Microsoft.Win32;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,8 +20,10 @@ namespace Cliente_AdoptMe.Vista
 {
     public partial class RegistrarAdopcion : Page
     {
-        private string rutaVideoSeleccionado;
+        private string _rutaVideoSeleccionado;
+        private string _rutaFotoSeleccionada;
         private Ubicacion _ubicacionSeleccionada = null;
+        private bool _subioVideo = false;
 
         public RegistrarAdopcion()
         {
@@ -40,19 +45,18 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_SubirFoto(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Imágenes (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png",
-                Title = "Selecciona una imagen"
-            };
+            var dialogo = new OpenFileDialog();
+            dialogo.Filter = "Imágenes (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
 
-            if (openFileDialog.ShowDialog() == true)
+            if (dialogo.ShowDialog() == true)
             {
+                _rutaFotoSeleccionada = dialogo.FileName;
+
                 try
                 {
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(openFileDialog.FileName);
+                    bitmap.UriSource = new Uri(dialogo.FileName);
                     bitmap.CacheOption = BitmapCacheOption.OnLoad;
                     bitmap.EndInit();
 
@@ -63,20 +67,75 @@ namespace Cliente_AdoptMe.Vista
                     MessageBox.Show("Error al cargar la imagen: " + ex.Message);
                 }
             }
+            else
+            {
+                MessageBox.Show("Seleccione un archivo primero.");
+                return;
+            }
         }
 
         private void Btn_SubirVideo(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialogo = new OpenFileDialog();
             dialogo.Title = "Selecciona un video";
-            dialogo.Filter = "Archivos de video|*.mp4;*.avi;*.mov;*.wmv;*.mkv|Todos los archivos|*.*";
+            dialogo.Filter = "Archivos de video MP4 (*.mp4)|*.mp4";
             dialogo.Multiselect = false;
 
             if (dialogo.ShowDialog() == true)
             {
-                rutaVideoSeleccionado = dialogo.FileName;
-                MessageBox.Show("Video seleccionado: " + rutaVideoSeleccionado);
-                lb_RutaVideo.Content = "Ruta: " + rutaVideoSeleccionado;
+                _subioVideo = true;
+                _rutaVideoSeleccionado = dialogo.FileName;
+                lb_RutaVideo.Content = "Ruta: " + _rutaVideoSeleccionado;
+            }
+        }
+
+        private async Task SubirFotoAsync(string rutaArchivo, int idMascota)
+        {
+            try
+            {
+                ServicioMultimediaGrpc servicioMultimedia = new ServicioMultimediaGrpc();
+                await servicioMultimedia.SubirArchivoAsync(
+                            rutaArchivo,
+                            idMascota,
+                            UsuarioSingleton.Instancia.Token,
+                            metadata => servicioMultimedia.Cliente.SubirFotoMascota(metadata),
+                            new[] { ".jpg", ".jpeg", ".png" }
+                        );
+
+            }
+            catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
+            {
+                Registro.Error($"Excepción: {ex.Message}\nTraza: {ex.StackTrace}");
+                MessageBox.Show(
+                    Properties.Resources.mensaje_ErrorServidor,
+                    Properties.Resources.global_ErrorServidor,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+
+        private async Task SubirVideoAsync(string rutaArchivo, int idMascota)
+        {
+            try
+            {
+                ServicioMultimediaGrpc servicioMultimedia = new ServicioMultimediaGrpc();
+                await servicioMultimedia.SubirArchivoAsync(
+                            rutaArchivo,
+                            idMascota,
+                            UsuarioSingleton.Instancia.Token,
+                            metadata => servicioMultimedia.Cliente.SubirVideoMascota(metadata),
+                            new[] { ".mp4" }
+                        );
+
+            }
+            catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
+            {
+                Registro.Error($"Excepción: {ex.Message}\nTraza: {ex.StackTrace}");
+                MessageBox.Show(
+                    Properties.Resources.mensaje_ErrorServidor,
+                    Properties.Resources.global_ErrorServidor,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -179,6 +238,18 @@ namespace Cliente_AdoptMe.Vista
                 switch (respuesta.StatusCode)
                 {
                     case HttpStatusCode.Created:
+                        string jsonRespuesta = await respuesta.Content.ReadAsStringAsync();
+                        var adopcionRegistrada = JsonSerializer.Deserialize<MascotaDto>(jsonRespuesta);
+
+                        int mascotaId = adopcionRegistrada.MascotaID;
+
+                        await SubirFotoAsync(_rutaFotoSeleccionada, mascotaId);
+
+                        if (_subioVideo)
+                        {
+                            await SubirVideoAsync(_rutaVideoSeleccionado, mascotaId);
+                        }
+
                         MessageBoxResult confirmacion = MessageBox.Show(
                             "Registro exitoso.",
                             "Éxito",
@@ -187,7 +258,6 @@ namespace Cliente_AdoptMe.Vista
 
                         if (confirmacion == MessageBoxResult.OK)
                         {
-                            // Navegar al menú principal
                             NavigationService?.Navigate(new MapaPrincipal());
                         }
                         break;
