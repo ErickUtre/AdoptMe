@@ -96,7 +96,8 @@
                     Content="{x:Static p:Resources.btn_Solicitar}"
                     Background="#3FBD13"
                     HorizontalAlignment="Right"
-                    Margin="150,0"/>
+                    Margin="150,0"
+					Click="BtnSolicitar"/>
             <Button Style="{StaticResource BotonGeneral}"
                     Name="Btn_Cancelar"
                     Content="{x:Static p:Resources.global_Cancelar}"

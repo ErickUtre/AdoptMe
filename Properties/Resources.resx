@@ -363,4 +363,7 @@
   <data name="btn_ObtenerUbicacion" xml:space="preserve">
     <value>Obtener ubicación</value>
   </data>
+  <data name="mensaje_SolicitudEnviada" xml:space="preserve">
+    <value>Solicitud enviada correctamente</value>
+  </data>
 </root>
