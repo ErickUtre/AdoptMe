@@ -25,9 +25,5 @@ namespace Cliente_AdoptMe.Modelo
         public string Tamaño { get; set; }
         [JsonProperty("Descripcion")]
         public string Descripcion { get; set; }
-        [JsonProperty("PublicadorID")]
-        public int PublicadorID { get; set; }
-        [JsonProperty("UbicacionID")]
-        public int UbicacionID { get; set; }
     }
 }

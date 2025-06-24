@@ -22,9 +22,9 @@ namespace Cliente_AdoptMe.Grpc
             _cliente = new ServicioUbicacion.ServicioUbicacionClient(channel);
         }
 
-        public async Task<List<SolicitudCercana>> ObtenerSolicitudesCercanasAsync(double lat, double lon)
+        public async Task<List<UbicacionGrpc.AdopcionCercana>> ObtenerAdopcionesCercanasAsync(double lat, double lon)
         {
-            var resultadoLista = new List<SolicitudCercana>();
+            var resultadoLista = new List<UbicacionGrpc.AdopcionCercana>();
 
             var request = new UbicacionGrpc.Ubicacion
             {
@@ -39,18 +39,18 @@ namespace Cliente_AdoptMe.Grpc
 
             try
             {
-                var respuesta = await _cliente.ObtenerSolicitudesCercanasAsync(request, headers);
+                var respuesta = await _cliente.ObtenerAdopcionesCercanasAsync(request, headers);
                 if (respuesta?.Resultados != null && respuesta.Resultados.Count > 0)
                 {
                     foreach (var s in respuesta.Resultados)
                     {
-                        Console.WriteLine($"ID: {s.SolicitudAdopcionId}, Distancia: {s.Distancia}, Coord: ({s.Latitud}, {s.Longitud})");
+                        Console.WriteLine($"ID: {s.AdopcionId}, Distancia: {s.Distancia}, Coord: ({s.Latitud}, {s.Longitud})");
                         resultadoLista.Add(s);
                     }
                 }
                 else
                 {
-                    Console.WriteLine("No se encontraron solicitudes cercanas.");
+                    Console.WriteLine("No se encontraron las adopciones cercanas.");
                 }
             }
             catch (RpcException ex)

@@ -18,9 +18,9 @@ namespace Cliente_AdoptMe.Vista
     /// <summary>
     /// Lógica de interacción para SolicitudesAdopcion.xaml
     /// </summary>
-    public partial class SolicitudesAdopcion : Window
+    public partial class Solicitudes : Window
     {
-        public SolicitudesAdopcion()
+        public Solicitudes()
         {
             InitializeComponent();
             CargarSolicitudes();
