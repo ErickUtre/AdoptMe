@@ -26,20 +26,25 @@ namespace UbicacionGrpc {
           string.Concat(
             "ChtHcnBjL1Byb3Rvcy91YmljYWNpb24ucHJvdG8SCXViaWNhY2lvbiJBCglV",
             "YmljYWNpb24SEQoJdXN1YXJpb0lkGAEgASgFEhAKCGxvbmdpdHVkGAIgASgB",
-            "Eg8KB2xhdGl0dWQYAyABKAEiWwoPQWRvcGNpb25DZXJjYW5hEhIKCmFkb3Bj",
-            "aW9uSWQYASABKAUSEQoJZGlzdGFuY2lhGAIgASgBEhAKCGxvbmdpdHVkGAMg",
-            "ASgBEg8KB2xhdGl0dWQYBCABKAEiRAoSQWRvcGNpb25lc0NlcmNhbmFzEi4K",
-            "CnJlc3VsdGFkb3MYASADKAsyGi51YmljYWNpb24uQWRvcGNpb25DZXJjYW5h",
-            "IgcKBUVtcHR5MqQBChFTZXJ2aWNpb1ViaWNhY2lvbhI9ChNBY3R1YWxpemFy",
-            "VWJpY2FjaW9uEhQudWJpY2FjaW9uLlViaWNhY2lvbhoQLnViaWNhY2lvbi5F",
-            "bXB0eRJQChlPYnRlbmVyQWRvcGNpb25lc0NlcmNhbmFzEhQudWJpY2FjaW9u",
-            "LlViaWNhY2lvbhodLnViaWNhY2lvbi5BZG9wY2lvbmVzQ2VyY2FuYXNCEKoC",
-            "DVViaWNhY2lvbkdycGNiBnByb3RvMw=="));
+            "Eg8KB2xhdGl0dWQYAyABKAEigAEKD0Fkb3BjaW9uQ2VyY2FuYRISCgphZG9w",
+            "Y2lvbklkGAEgASgFEhEKCWRpc3RhbmNpYRgCIAEoARIQCghsb25naXR1ZBgD",
+            "IAEoARIPCgdsYXRpdHVkGAQgASgBEiMKB21hc2NvdGEYBSABKAsyEi51Ymlj",
+            "YWNpb24uTWFzY290YSKMAQoHTWFzY290YRIRCgltYXNjb3RhSWQYASABKAUS",
+            "DgoGbm9tYnJlGAIgASgJEg8KB2VzcGVjaWUYAyABKAkSDAoEcmF6YRgEIAEo",
+            "CRIMCgRlZGFkGAUgASgJEgwKBHNleG8YBiABKAkSDgoGdGFtYW5vGAcgASgJ",
+            "EhMKC2Rlc2NyaXBjaW9uGAggASgJIkQKEkFkb3BjaW9uZXNDZXJjYW5hcxIu",
+            "CgpyZXN1bHRhZG9zGAEgAygLMhoudWJpY2FjaW9uLkFkb3BjaW9uQ2VyY2Fu",
+            "YSIHCgVFbXB0eTKkAQoRU2VydmljaW9VYmljYWNpb24SPQoTQWN0dWFsaXph",
+            "clViaWNhY2lvbhIULnViaWNhY2lvbi5VYmljYWNpb24aEC51YmljYWNpb24u",
+            "RW1wdHkSUAoZT2J0ZW5lckFkb3BjaW9uZXNDZXJjYW5hcxIULnViaWNhY2lv",
+            "bi5VYmljYWNpb24aHS51YmljYWNpb24uQWRvcGNpb25lc0NlcmNhbmFzQhCq",
+            "Ag1VYmljYWNpb25HcnBjYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.Ubicacion), global::UbicacionGrpc.Ubicacion.Parser, new[]{ "UsuarioId", "Longitud", "Latitud" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.AdopcionCercana), global::UbicacionGrpc.AdopcionCercana.Parser, new[]{ "AdopcionId", "Distancia", "Longitud", "Latitud" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.AdopcionCercana), global::UbicacionGrpc.AdopcionCercana.Parser, new[]{ "AdopcionId", "Distancia", "Longitud", "Latitud", "Mascota" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.Mascota), global::UbicacionGrpc.Mascota.Parser, new[]{ "MascotaId", "Nombre", "Especie", "Raza", "Edad", "Sexo", "Tamano", "Descripcion" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.AdopcionesCercanas), global::UbicacionGrpc.AdopcionesCercanas.Parser, new[]{ "Resultados" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::UbicacionGrpc.Empty), global::UbicacionGrpc.Empty.Parser, null, null, null, null, null)
           }));
