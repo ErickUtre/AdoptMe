@@ -601,6 +601,15 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Solicitud enviada correctamente.
+        /// </summary>
+        public static string mensaje_SolicitudEnviada {
+            get {
+                return ResourceManager.GetString("mensaje_SolicitudEnviada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Confirmar modificación.
         /// </summary>
         public static string titulo_ConfirmarModificacion {

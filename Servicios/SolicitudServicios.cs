@@ -1,9 +1,11 @@
 ﻿using Cliente_AdoptMe.Modelo;
+using Cliente_AdoptMe.Utilidades;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -46,6 +48,19 @@ namespace Cliente_AdoptMe.Servicios
                 MessageBox.Show($"Error al obtener solicitudes: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return new List<Solicitud>();
             }
+        }
+
+        public async Task<ResultadoHttp> RegistrarSolicitudAsync(int AdopcionID, string token)
+        {
+            var cuerpo = new { AdopcionID };
+            var json = System.Text.Json.JsonSerializer.Serialize(cuerpo);
+            var contenido = new StringContent(json, Encoding.UTF8, "application/json");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            return await HttpHelper.EjecutarHttp(() =>
+                _httpClient.PostAsync("solicitudes", contenido)
+            );
         }
     }
 }

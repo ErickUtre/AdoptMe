@@ -116,7 +116,7 @@ namespace Cliente_AdoptMe.Vista
             _marcadores.Add(marcador);
         }
 
-        private void AgregarMarcador(PointLatLng ubicacion, UbicacionGrpc.Mascota mascota)
+        private void AgregarMarcador(PointLatLng ubicacion, UbicacionGrpc.Mascota mascota, int adopcionId)
         {
             var imagen = new Image
             {
@@ -149,7 +149,7 @@ namespace Cliente_AdoptMe.Vista
 
             contenidoPopup.EventoDetallesMascota += (s, e) =>
             {
-                NavegadorPrincipal.Instancia.Navegar(new ConsultarAdopcionExterna(mascota));
+                NavegadorPrincipal.Instancia.Navegar(new ConsultarAdopcionExterna(mascota, adopcionId));
                 popup.IsOpen = false;
             };
 
@@ -192,7 +192,7 @@ namespace Cliente_AdoptMe.Vista
                 {
                     PointLatLng ubicacion = new PointLatLng(adopcion.Latitud, adopcion.Longitud);
                     UbicacionGrpc.Mascota mascota = adopcion.Mascota;
-                    AgregarMarcador(ubicacion, mascota);
+                    AgregarMarcador(ubicacion, mascota, adopcion.AdopcionId);
                 }
             }
         }

@@ -1,4 +1,5 @@
 ﻿using Cliente_AdoptMe.Modelo;
+using Cliente_AdoptMe.Servicios;
 using Cliente_AdoptMe.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -24,10 +25,12 @@ namespace Cliente_AdoptMe.Vista
     /// </summary>
     public partial class ConsultarAdopcionExterna : Page
     {
-        UbicacionGrpc.Mascota _mascota;
-        public ConsultarAdopcionExterna(UbicacionGrpc.Mascota mascota)
+        private UbicacionGrpc.Mascota _mascota;
+        private int _adopcionId;
+        public ConsultarAdopcionExterna(UbicacionGrpc.Mascota mascota, int adopcionId)
         {
             _mascota = mascota;
+            _adopcionId = adopcionId;
             InitializeComponent();
             InicializarDatos();
         }
@@ -96,6 +99,35 @@ namespace Cliente_AdoptMe.Vista
             }
 
             return tempFile;
+        }
+
+        private async void BtnSolicitar(object sender, RoutedEventArgs e)
+        {
+            SolicitudServicios solicitudServicios = new SolicitudServicios();
+
+            ResultadoHttp resultadoHttp = await solicitudServicios.RegistrarSolicitudAsync(
+                _adopcionId,
+                UsuarioSingleton.Instancia.Token
+            );
+
+            if (resultadoHttp.Exito)
+            {
+                MessageBox.Show(
+                    Properties.Resources.mensaje_SolicitudEnviada,
+                    Properties.Resources.global_Exito,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
+            }
+            else
+            {
+                MessageBox.Show(
+                    resultadoHttp.MensajeError,
+                    Properties.Resources.global_ErrorServidor,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+            }
         }
     }
 }

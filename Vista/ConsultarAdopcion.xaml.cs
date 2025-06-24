@@ -1,9 +1,11 @@
-﻿using Cliente_AdoptMe.Modelo;
+﻿using Cliente_AdoptMe.Grpc.ServiciosGrpc;
+using Cliente_AdoptMe.Modelo;
 using Cliente_AdoptMe.Servicios;
 using Cliente_AdoptMe.Utilidades;
 using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -195,36 +197,66 @@ namespace Cliente_AdoptMe.Vista
             }
         }
 
-        private void Btn_EditarFoto(object sender, RoutedEventArgs e)
+        private async void Btn_EditarFoto(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            string rutaArchivo;
+
+            var dialogo = new OpenFileDialog();
+            dialogo.Filter = "Imágenes (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+
+            if (dialogo.ShowDialog() == true)
             {
-                Filter = "Imágenes (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png",
-                Title = "Selecciona una imagen"
-            };
+                rutaArchivo = dialogo.FileName;
 
-            if (openFileDialog.ShowDialog() == true)
+                if (!File.Exists(rutaArchivo))
+                {
+                    MessageBox.Show("El archivo no existe.");
+                    return;
+                }
+
+                await SubirArchivoAsync(rutaArchivo);
+                await Task.Delay(1000);
+                await MostrarFotoAsync();
+            }
+            else
             {
-                try
-                {
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(openFileDialog.FileName);
-                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmap.EndInit();
+                MessageBox.Show("Seleccione un archivo primero.");
+                return;
+            }
+        }
 
-                    FotoMascota.Source = bitmap;
-                    FotoComplemento.Source = bitmap;
+        private async Task MostrarFotoAsync()
+        {
+            var imagen = await ObtenerFotoMascotaAsync(_adopcion.MascotaID, UsuarioSingleton.Instancia.Token, true);
+            if (imagen != null)
+            {
+                FotoComplemento.Source = imagen;
+                FotoMascota.Source = imagen;
+            }
+        }
 
-                    if (_adopcion != null)
-                        _adopcion.Foto = bitmap;
+        private async Task SubirArchivoAsync(string rutaArchivo)
+        {
+            try
+            {
+                ServicioMultimediaGrpc servicioMultimedia = new ServicioMultimediaGrpc();
+                await servicioMultimedia.SubirArchivoAsync(
+                            rutaArchivo,
+                            _adopcion.MascotaID,
+                            UsuarioSingleton.Instancia.Token,
+                            metadata => servicioMultimedia.Cliente.SubirFotoMascota(metadata),
+                            new[] { ".jpg", ".jpeg", ".png" }
+                        );
 
-                    // TODO: Guardar la imagen en base de datos o servidor
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al cargar la imagen: " + ex.Message);
-                }
+            }
+            catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
+            {
+                Registro.Error($"Excepción: {ex.Message}\nTraza: {ex.StackTrace}");
+                MessageBox.Show(
+                    Properties.Resources.mensaje_ErrorServidor,
+                    Properties.Resources.global_ErrorServidor,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
