@@ -79,5 +79,7 @@
                     Content="{x:Static p:Resources.btn_IniciarSesion}"
                     Background="#187DAC" Click="BtnIniciarSesion_Click"/>
         </StackPanel>
+        <local:CargandoOverlay x:Name="CargandoOverlay"
+                               Visibility="Collapsed" />
     </Grid>
 </Window>

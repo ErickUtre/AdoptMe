@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Cliente_AdoptMe.Utilidades
@@ -19,6 +20,11 @@ namespace Cliente_AdoptMe.Utilidades
         public Frame GetMarco()
         {
             return _marcoPrincipal;
+        }
+
+        public T GetVentanaContenedora<T>() where T : Window
+        {
+            return Window.GetWindow(_marcoPrincipal) as T;
         }
 
         public void Navegar(object marco)

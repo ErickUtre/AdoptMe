@@ -1,4 +1,5 @@
 ﻿using Cliente_AdoptMe.Servicios;
+using Cliente_AdoptMe.Vista;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -35,11 +37,11 @@ namespace Cliente_AdoptMe.Utilidades
             try
             {
                 UsuarioServicios usuarioServicios = new UsuarioServicios();
-                var response = await usuarioServicios.SolicitarFotoPerfil(token);
+                var response = await usuarioServicios.SolicitarFotoPerfilAsync(token);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var bytes = await usuarioServicios.ObtenerContenidoFotoPerfil(response);
+                    var bytes = await usuarioServicios.ObtenerContenidoFotoPerfilAsync(response);
                     if (bytes != null && bytes.Length > 0)
                     {
                         BitmapImage imagen = new BitmapImage();

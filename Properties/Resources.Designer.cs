@@ -61,6 +61,15 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Actualizar ubicación.
+        /// </summary>
+        public static string btn_ActualizarUbicacion {
+            get {
+                return ResourceManager.GetString("btn_ActualizarUbicacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cerrar sesión.
         /// </summary>
         public static string btn_CerrarSesion {
@@ -133,15 +142,6 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Obtener ubicación.
-        /// </summary>
-        public static string btn_ObtenerUbicacion {
-            get {
-                return ResourceManager.GetString("btn_ObtenerUbicacion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Registrar.
         /// </summary>
         public static string btn_Registrar {
@@ -156,6 +156,15 @@ namespace Cliente_AdoptMe.Properties {
         public static string btn_RegistrarAdopcion {
             get {
                 return ResourceManager.GetString("btn_RegistrarAdopcion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registrar ubicación.
+        /// </summary>
+        public static string btn_RegistrarUbicacion {
+            get {
+                return ResourceManager.GetString("btn_RegistrarUbicacion", resourceCulture);
             }
         }
         
@@ -358,11 +367,38 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error.
+        /// </summary>
+        public static string global_Error {
+            get {
+                return ResourceManager.GetString("global_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error con la base de datos.
+        /// </summary>
+        public static string global_ErrorBD {
+            get {
+                return ResourceManager.GetString("global_ErrorBD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Error con el servidor.
         /// </summary>
         public static string global_ErrorServidor {
             get {
                 return ResourceManager.GetString("global_ErrorServidor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La solicitud tardó demasiado en responder.
+        /// </summary>
+        public static string global_ErrorTiempo {
+            get {
+                return ResourceManager.GetString("global_ErrorTiempo", resourceCulture);
             }
         }
         
@@ -390,6 +426,15 @@ namespace Cliente_AdoptMe.Properties {
         public static string global_Estatura {
             get {
                 return ResourceManager.GetString("global_Estatura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Éxito.
+        /// </summary>
+        public static string global_Exito {
+            get {
+                return ResourceManager.GetString("global_Exito", resourceCulture);
             }
         }
         
@@ -475,7 +520,34 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Ocurrió un error inesperado con el servidor. Por favor, intenta más tarde..
+        ///   Busca una cadena traducida similar a El usuario y/o contraseña son incorrectos, favor de verificar..
+        /// </summary>
+        public static string mensaje_CredencialesIncorrectas {
+            get {
+                return ResourceManager.GetString("mensaje_CredencialesIncorrectas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error de conexión con la base de datos.
+        /// </summary>
+        public static string mensaje_ErrorBD {
+            get {
+                return ResourceManager.GetString("mensaje_ErrorBD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ha ocurrido un error inesperado.
+        /// </summary>
+        public static string mensaje_ErrorGeneral {
+            get {
+                return ResourceManager.GetString("mensaje_ErrorGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error de conexión con el servidor.
         /// </summary>
         public static string mensaje_ErrorServidor {
             get {
@@ -493,11 +565,56 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Acceso denegado.
+        /// </summary>
+        public static string mensaje_NoAutenticado {
+            get {
+                return ResourceManager.GetString("mensaje_NoAutenticado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Perfil actualizado correctamente.
+        /// </summary>
+        public static string mensaje_PerfilActualizado {
+            get {
+                return ResourceManager.GetString("mensaje_PerfilActualizado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¿Desea permitir que obtengamos su ubicación?.
+        /// </summary>
+        public static string mensaje_PermitirUbicacion {
+            get {
+                return ResourceManager.GetString("mensaje_PermitirUbicacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Confirmar modificación.
         /// </summary>
         public static string titulo_ConfirmarModificacion {
             get {
                 return ResourceManager.GetString("titulo_ConfirmarModificacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Credenciales incorrectas.
+        /// </summary>
+        public static string titulo_CredencialesIncorrectas {
+            get {
+                return ResourceManager.GetString("titulo_CredencialesIncorrectas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Permisos ubicación.
+        /// </summary>
+        public static string titulo_PermisosUbicacion {
+            get {
+                return ResourceManager.GetString("titulo_PermisosUbicacion", resourceCulture);
             }
         }
         
@@ -601,7 +718,7 @@ namespace Cliente_AdoptMe.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Opcional*.
+        ///   Busca una cadena traducida similar a Opcional.
         /// </summary>
         public static string txtbl_Opcional {
             get {

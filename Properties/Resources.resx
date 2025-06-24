@@ -294,11 +294,11 @@
   <data name="txtbl_EnviaUnMensaje" xml:space="preserve">
     <value>Envía un mensaje</value>
   </data>
-  <data name="btn_ObtenerUbicacion" xml:space="preserve">
-    <value>Obtener ubicación</value>
+  <data name="btn_RegistrarUbicacion" xml:space="preserve">
+    <value>Registrar ubicación</value>
   </data>
   <data name="txtbl_Opcional" xml:space="preserve">
-    <value>Opcional*</value>
+    <value>Opcional</value>
   </data>
   <data name="titulo_ConfirmarModificacion" xml:space="preserve">
     <value>Confirmar modificación</value>
@@ -319,6 +319,45 @@
     <value>Error con el servidor</value>
   </data>
   <data name="mensaje_ErrorServidor" xml:space="preserve">
-    <value>Ocurrió un error inesperado con el servidor. Por favor, intenta más tarde.</value>
+    <value>Error de conexión con el servidor</value>
+  </data>
+  <data name="btn_ActualizarUbicacion" xml:space="preserve">
+    <value>Actualizar ubicación</value>
+  </data>
+  <data name="mensaje_ErrorBD" xml:space="preserve">
+    <value>Error de conexión con la base de datos</value>
+  </data>
+  <data name="global_ErrorBD" xml:space="preserve">
+    <value>Error con la base de datos</value>
+  </data>
+  <data name="global_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="mensaje_ErrorGeneral" xml:space="preserve">
+    <value>Ha ocurrido un error inesperado</value>
+  </data>
+  <data name="global_Exito" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="mensaje_PermitirUbicacion" xml:space="preserve">
+    <value>¿Desea permitir que obtengamos su ubicación?</value>
+  </data>
+  <data name="titulo_PermisosUbicacion" xml:space="preserve">
+    <value>Permisos ubicación</value>
+  </data>
+  <data name="global_ErrorTiempo" xml:space="preserve">
+    <value>La solicitud tardó demasiado en responder</value>
+  </data>
+  <data name="mensaje_NoAutenticado" xml:space="preserve">
+    <value>Acceso denegado</value>
+  </data>
+  <data name="titulo_CredencialesIncorrectas" xml:space="preserve">
+    <value>Credenciales incorrectas</value>
+  </data>
+  <data name="mensaje_CredencialesIncorrectas" xml:space="preserve">
+    <value>El usuario y/o contraseña son incorrectos, favor de verificar.</value>
+  </data>
+  <data name="mensaje_PerfilActualizado" xml:space="preserve">
+    <value>Perfil actualizado correctamente</value>
   </data>
 </root>

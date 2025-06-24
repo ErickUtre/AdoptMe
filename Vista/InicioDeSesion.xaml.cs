@@ -51,69 +51,57 @@ namespace Cliente_AdoptMe.Vista
             ReiniciarBordesCampos();
             if (ValidarDatosDeCampos())
             {
-                IniciarSesion();
+                IniciarSesionAsync();
             }
         }
 
-        private async void IniciarSesion()
+        private async void IniciarSesionAsync()
         {
-            try
+            AccesoServicios accesoServicios = new AccesoServicios();
+            string contraseñaHash = Encriptador.GenerarHashSHA512(_contraseña);
+
+            MostrarOverlay();
+            ResultadoHttp resultadoHttp = await accesoServicios.IniciarSesionAsync(tbCorreo.Text, contraseñaHash);
+            OcultarOverlay();
+
+            if (!resultadoHttp.Exito)
             {
-                AccesoServicios accesoServicios = new AccesoServicios();
-                string contraseñaHash = Encriptador.GenerarHashSHA512(_contraseña);
-
-                HttpResponseMessage respuestaHttp = await accesoServicios.IniciarSesionAsync(tbCorreo.Text, contraseñaHash);
-                string cuerpoRespuesta = await respuestaHttp.Content.ReadAsStringAsync();
-
-                switch (respuestaHttp.StatusCode)
+                if (resultadoHttp.Codigo == HttpStatusCode.Unauthorized)
                 {
-                    case HttpStatusCode.OK:       
-                        var resultado = JsonConvert.DeserializeObject<RespuestaLogin>(cuerpoRespuesta);
-                        UsuarioSingleton.Instancia.IniciarSesion(resultado.Usuario, resultado.Token);
-
-                        if (!resultado.EsAdmin)
-                        {
-                            MenuPrincipalUsuario menuPrincipalUsuario = new MenuPrincipalUsuario();
-                            menuPrincipalUsuario.Show();
-                            this.Close();
-                        } 
-                        else
-                        {
-                            MenuPrincipalAdministrador menuPrincipalAdministrador = new MenuPrincipalAdministrador();
-                            menuPrincipalAdministrador.Show();
-                            this.Close();
-                        }
-                        
-                        break;
-
-                    case HttpStatusCode.Unauthorized:
-                        MessageBox.Show(
-                            "El correo y/o contraseña son incorrectos.",
-                            "Credenciales incorrectas",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Error);
-                        break;
-
-                    default:
-                        MessageBox.Show(
-                            "Hubo un error al iniciar sesión. Por favor, intenta más tarde.",
-                            Properties.Resources.global_ErrorServidor,
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Error);
-                        Registro.Error($"Error con el servidor {cuerpoRespuesta}");
-                        break;
-
+                    MessageBox.Show(
+                        Properties.Resources.mensaje_CredencialesIncorrectas,
+                        Properties.Resources.titulo_CredencialesIncorrectas,
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                    return;
                 }
+                else
+                {
+                    MessageBox.Show(
+                        resultadoHttp.MensajeError,
+                        Properties.Resources.global_ErrorServidor,
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                    return;
+                }
+                    
             }
-            catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
+
+            string cuerpoRespuesta = await resultadoHttp.Respuesta.Content.ReadAsStringAsync();
+
+            var resultado = JsonConvert.DeserializeObject<RespuestaLogin>(cuerpoRespuesta);
+            UsuarioSingleton.Instancia.IniciarSesion(resultado.Usuario, resultado.Token);
+
+            if (!resultado.EsAdmin)
             {
-                Registro.Error($"Excepción: {ex.Message}\nTraza: {ex.StackTrace}");
-                MessageBox.Show(
-                    Properties.Resources.mensaje_ErrorServidor,
-                    Properties.Resources.global_ErrorServidor,
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                new MenuPrincipalUsuario().Show();
             }
+            else
+            {
+                new MenuPrincipalAdministrador().Show();
+            }
+
+            this.Close();
         }
 
         private void ReiniciarBordesCampos()
@@ -171,6 +159,18 @@ namespace Cliente_AdoptMe.Vista
 
                 img_VisibilidadContraseña.Source = new BitmapImage(new Uri("pack://application:,,,/Recursos/Imagenes/IconoOcultar.png"));
             }
+        }
+
+        public void MostrarOverlay()
+        {
+            CargandoOverlay.Visibility = Visibility.Visible;
+            CargandoOverlay.IsHitTestVisible = true;
+        }
+
+        public void OcultarOverlay()
+        {
+            CargandoOverlay.Visibility = Visibility.Collapsed;
+            CargandoOverlay.IsHitTestVisible = false;
         }
     }
 }

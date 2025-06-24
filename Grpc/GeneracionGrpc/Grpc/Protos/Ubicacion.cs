@@ -359,6 +359,7 @@ namespace UbicacionGrpc {
       distancia_ = other.distancia_;
       longitud_ = other.longitud_;
       latitud_ = other.latitud_;
+      mascota_ = other.mascota_ != null ? other.mascota_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -416,6 +417,18 @@ namespace UbicacionGrpc {
       }
     }
 
+    /// <summary>Field number for the "mascota" field.</summary>
+    public const int MascotaFieldNumber = 5;
+    private global::UbicacionGrpc.Mascota mascota_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::UbicacionGrpc.Mascota Mascota {
+      get { return mascota_; }
+      set {
+        mascota_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -435,6 +448,7 @@ namespace UbicacionGrpc {
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Distancia, other.Distancia)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Longitud, other.Longitud)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Latitud, other.Latitud)) return false;
+      if (!object.Equals(Mascota, other.Mascota)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -446,6 +460,7 @@ namespace UbicacionGrpc {
       if (Distancia != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Distancia);
       if (Longitud != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Longitud);
       if (Latitud != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Latitud);
+      if (mascota_ != null) hash ^= Mascota.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -480,6 +495,10 @@ namespace UbicacionGrpc {
         output.WriteRawTag(33);
         output.WriteDouble(Latitud);
       }
+      if (mascota_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(Mascota);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -506,6 +525,10 @@ namespace UbicacionGrpc {
         output.WriteRawTag(33);
         output.WriteDouble(Latitud);
       }
+      if (mascota_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(Mascota);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -527,6 +550,9 @@ namespace UbicacionGrpc {
       }
       if (Latitud != 0D) {
         size += 1 + 8;
+      }
+      if (mascota_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Mascota);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -551,6 +577,12 @@ namespace UbicacionGrpc {
       }
       if (other.Latitud != 0D) {
         Latitud = other.Latitud;
+      }
+      if (other.mascota_ != null) {
+        if (mascota_ == null) {
+          Mascota = new global::UbicacionGrpc.Mascota();
+        }
+        Mascota.MergeFrom(other.Mascota);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -585,6 +617,13 @@ namespace UbicacionGrpc {
           }
           case 33: {
             Latitud = input.ReadDouble();
+            break;
+          }
+          case 42: {
+            if (mascota_ == null) {
+              Mascota = new global::UbicacionGrpc.Mascota();
+            }
+            input.ReadMessage(Mascota);
             break;
           }
         }
@@ -622,6 +661,470 @@ namespace UbicacionGrpc {
             Latitud = input.ReadDouble();
             break;
           }
+          case 42: {
+            if (mascota_ == null) {
+              Mascota = new global::UbicacionGrpc.Mascota();
+            }
+            input.ReadMessage(Mascota);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class Mascota : pb::IMessage<Mascota>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<Mascota> _parser = new pb::MessageParser<Mascota>(() => new Mascota());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<Mascota> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::UbicacionGrpc.UbicacionReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Mascota() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Mascota(Mascota other) : this() {
+      mascotaId_ = other.mascotaId_;
+      nombre_ = other.nombre_;
+      especie_ = other.especie_;
+      raza_ = other.raza_;
+      edad_ = other.edad_;
+      sexo_ = other.sexo_;
+      tamano_ = other.tamano_;
+      descripcion_ = other.descripcion_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Mascota Clone() {
+      return new Mascota(this);
+    }
+
+    /// <summary>Field number for the "mascotaId" field.</summary>
+    public const int MascotaIdFieldNumber = 1;
+    private int mascotaId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int MascotaId {
+      get { return mascotaId_; }
+      set {
+        mascotaId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "nombre" field.</summary>
+    public const int NombreFieldNumber = 2;
+    private string nombre_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Nombre {
+      get { return nombre_; }
+      set {
+        nombre_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "especie" field.</summary>
+    public const int EspecieFieldNumber = 3;
+    private string especie_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Especie {
+      get { return especie_; }
+      set {
+        especie_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "raza" field.</summary>
+    public const int RazaFieldNumber = 4;
+    private string raza_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Raza {
+      get { return raza_; }
+      set {
+        raza_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "edad" field.</summary>
+    public const int EdadFieldNumber = 5;
+    private string edad_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Edad {
+      get { return edad_; }
+      set {
+        edad_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "sexo" field.</summary>
+    public const int SexoFieldNumber = 6;
+    private string sexo_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Sexo {
+      get { return sexo_; }
+      set {
+        sexo_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "tamano" field.</summary>
+    public const int TamanoFieldNumber = 7;
+    private string tamano_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Tamano {
+      get { return tamano_; }
+      set {
+        tamano_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "descripcion" field.</summary>
+    public const int DescripcionFieldNumber = 8;
+    private string descripcion_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Descripcion {
+      get { return descripcion_; }
+      set {
+        descripcion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as Mascota);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(Mascota other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (MascotaId != other.MascotaId) return false;
+      if (Nombre != other.Nombre) return false;
+      if (Especie != other.Especie) return false;
+      if (Raza != other.Raza) return false;
+      if (Edad != other.Edad) return false;
+      if (Sexo != other.Sexo) return false;
+      if (Tamano != other.Tamano) return false;
+      if (Descripcion != other.Descripcion) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (MascotaId != 0) hash ^= MascotaId.GetHashCode();
+      if (Nombre.Length != 0) hash ^= Nombre.GetHashCode();
+      if (Especie.Length != 0) hash ^= Especie.GetHashCode();
+      if (Raza.Length != 0) hash ^= Raza.GetHashCode();
+      if (Edad.Length != 0) hash ^= Edad.GetHashCode();
+      if (Sexo.Length != 0) hash ^= Sexo.GetHashCode();
+      if (Tamano.Length != 0) hash ^= Tamano.GetHashCode();
+      if (Descripcion.Length != 0) hash ^= Descripcion.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (MascotaId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(MascotaId);
+      }
+      if (Nombre.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Nombre);
+      }
+      if (Especie.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Especie);
+      }
+      if (Raza.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Raza);
+      }
+      if (Edad.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Edad);
+      }
+      if (Sexo.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(Sexo);
+      }
+      if (Tamano.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(Tamano);
+      }
+      if (Descripcion.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(Descripcion);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (MascotaId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(MascotaId);
+      }
+      if (Nombre.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Nombre);
+      }
+      if (Especie.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Especie);
+      }
+      if (Raza.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Raza);
+      }
+      if (Edad.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Edad);
+      }
+      if (Sexo.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(Sexo);
+      }
+      if (Tamano.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(Tamano);
+      }
+      if (Descripcion.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(Descripcion);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (MascotaId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MascotaId);
+      }
+      if (Nombre.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Nombre);
+      }
+      if (Especie.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Especie);
+      }
+      if (Raza.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Raza);
+      }
+      if (Edad.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Edad);
+      }
+      if (Sexo.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Sexo);
+      }
+      if (Tamano.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tamano);
+      }
+      if (Descripcion.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Descripcion);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(Mascota other) {
+      if (other == null) {
+        return;
+      }
+      if (other.MascotaId != 0) {
+        MascotaId = other.MascotaId;
+      }
+      if (other.Nombre.Length != 0) {
+        Nombre = other.Nombre;
+      }
+      if (other.Especie.Length != 0) {
+        Especie = other.Especie;
+      }
+      if (other.Raza.Length != 0) {
+        Raza = other.Raza;
+      }
+      if (other.Edad.Length != 0) {
+        Edad = other.Edad;
+      }
+      if (other.Sexo.Length != 0) {
+        Sexo = other.Sexo;
+      }
+      if (other.Tamano.Length != 0) {
+        Tamano = other.Tamano;
+      }
+      if (other.Descripcion.Length != 0) {
+        Descripcion = other.Descripcion;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            MascotaId = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Nombre = input.ReadString();
+            break;
+          }
+          case 26: {
+            Especie = input.ReadString();
+            break;
+          }
+          case 34: {
+            Raza = input.ReadString();
+            break;
+          }
+          case 42: {
+            Edad = input.ReadString();
+            break;
+          }
+          case 50: {
+            Sexo = input.ReadString();
+            break;
+          }
+          case 58: {
+            Tamano = input.ReadString();
+            break;
+          }
+          case 66: {
+            Descripcion = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            MascotaId = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            Nombre = input.ReadString();
+            break;
+          }
+          case 26: {
+            Especie = input.ReadString();
+            break;
+          }
+          case 34: {
+            Raza = input.ReadString();
+            break;
+          }
+          case 42: {
+            Edad = input.ReadString();
+            break;
+          }
+          case 50: {
+            Sexo = input.ReadString();
+            break;
+          }
+          case 58: {
+            Tamano = input.ReadString();
+            break;
+          }
+          case 66: {
+            Descripcion = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -644,7 +1147,7 @@ namespace UbicacionGrpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::UbicacionGrpc.UbicacionReflection.Descriptor.MessageTypes[2]; }
+      get { return global::UbicacionGrpc.UbicacionReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -831,7 +1334,7 @@ namespace UbicacionGrpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::UbicacionGrpc.UbicacionReflection.Descriptor.MessageTypes[3]; }
+      get { return global::UbicacionGrpc.UbicacionReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

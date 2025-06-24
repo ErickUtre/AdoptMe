@@ -30,7 +30,7 @@
                                 VerticalAlignment="Top"
                                 Click="Btn_IconoUsuario">
                             <Image x:Name="FotoPerfil" 
-                                   Source="/Recursos/Imagenes/IconoUsuario.png"
+                                   Source="/Recursos/Imagenes/IconoUsuarioDefecto.png"
                                    Stretch="UniformToFill"
                                    Width="50"
                                    Height="50"
