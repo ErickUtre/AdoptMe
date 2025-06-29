@@ -28,6 +28,10 @@ namespace Cliente_AdoptMe.Vista
         private List<GMapMarker> _marcadores = new List<GMapMarker>();
         private const int ZOOM_VISIBLE = 12;
         private GMapMarker _marcadorUsuario;
+        private DateTime _ultimoMovimiento = DateTime.MinValue;
+        private readonly TimeSpan _esperaAntesDeActualizar = TimeSpan.FromMilliseconds(600);
+        private bool _actualizando = false;
+        private PointLatLng _ultimoCentro = new PointLatLng();
 
         public MapaPrincipal()
         {
@@ -66,8 +70,28 @@ namespace Cliente_AdoptMe.Vista
 
             mapaPrincipal.OnMapDrag += async () =>
             {
+                var ahora = DateTime.Now;
+
+                if (_actualizando || ahora - _ultimoMovimiento < _esperaAntesDeActualizar)
+                    return;
+
+                _actualizando = true;
+                _ultimoMovimiento = ahora;
+
+                await Task.Delay(_esperaAntesDeActualizar);
+
                 var centro = mapaPrincipal.Position;
-                await ActualizarAdopcionesCercanasSegunCentro(centro.Lat, centro.Lng);
+
+                double deltaLat = Math.Abs(centro.Lat - _ultimoCentro.Lat);
+                double deltaLng = Math.Abs(centro.Lng - _ultimoCentro.Lng);
+
+                if (deltaLat >= 0.01 || deltaLng >= 0.01)
+                {
+                    _ultimoCentro = centro;
+                    await ActualizarAdopcionesCercanasSegunCentro(centro.Lat, centro.Lng);
+                }
+
+                _actualizando = false;
             };
         }
 
@@ -77,7 +101,7 @@ namespace Cliente_AdoptMe.Vista
             mapaPrincipal.Dispose();
             GMaps.Instance.CancelTileCaching();
         }
-        
+
         private void MostrarMapaPrincipal(PointLatLng? ubicacionUsuario = null)
         {
             mapaPrincipal.MapProvider = GMapProviders.OpenStreetMap;
@@ -85,7 +109,7 @@ namespace Cliente_AdoptMe.Vista
             var zoomInicial = 6;
             var posicionDefectoMexico = new PointLatLng(23.6345, -102.5528);
             var posicionAMostrar = posicionDefectoMexico;
-            
+
             if (ubicacionUsuario.HasValue)
             {
                 posicionAMostrar = ubicacionUsuario.Value;
@@ -230,6 +254,6 @@ namespace Cliente_AdoptMe.Vista
 
             ActualizarVisibilidadMarcadores();
         }
-    
+
     }
 }

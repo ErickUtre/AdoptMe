@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using static Cliente_AdoptMe.Utilidades.InterfazUsuarioHelper;
 
 namespace Cliente_AdoptMe.Vista
 {
@@ -48,7 +49,6 @@ namespace Cliente_AdoptMe.Vista
                 {
                     if (adopcion.Mascota == null) continue;
 
-                    // Corregido: establecer estado real
                     if (adopcion.Estado)
                     {
                         adopcion.EstadoTexto = "Adoptado";
@@ -60,7 +60,7 @@ namespace Cliente_AdoptMe.Vista
                         adopcion.ColorEstado = new SolidColorBrush(Colors.Green);
                     }
 
-                    adopcion.Foto = new BitmapImage(new Uri("pack://application:,,,/Recursos/Imagenes/MascotaDefault.png"));
+                    adopcion.Foto = await ObtenerFotoMascotaAsync(adopcion.MascotaID, UsuarioSingleton.Instancia.Token, true);
                 }
 
                 _listaCompletaAdopciones = adopciones;
@@ -160,14 +160,18 @@ namespace Cliente_AdoptMe.Vista
         public void RefrescarAdopcion(int adopcionID)
         {
             var adopcion = _listaCompletaAdopciones?.FirstOrDefault(a => a.AdopcionID == adopcionID);
-            if (adopcion != null && adopcion.Estado)
+            if (adopcion != null)
             {
+                adopcion.Estado = true;
+
                 adopcion.EstadoTexto = "Adoptado";
                 adopcion.ColorEstado = new SolidColorBrush(Colors.Red);
 
                 listaAdopciones.ItemsSource = null;
                 listaAdopciones.ItemsSource = _listaCompletaAdopciones;
+                listaAdopciones.Items.Refresh(); 
             }
         }
+
     }
 }
