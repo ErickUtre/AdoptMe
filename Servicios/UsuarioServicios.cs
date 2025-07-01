@@ -78,5 +78,29 @@ namespace Cliente_AdoptMe.Servicios
                 _httpClient.PatchAsJsonAsync("usuarios", contenido)
             );
         }
+
+        public async Task<Usuario> ObtenerUsuarioPorIDAsync(int id)
+        {
+            try
+            {
+                HttpResponseMessage respuesta = await _httpClient.GetAsync($"usuarios/{id}");
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    string contenido = await respuesta.Content.ReadAsStringAsync();
+                    Usuario usuario = JsonConvert.DeserializeObject<Usuario>(contenido);
+                    return usuario;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Registro.Error($"Error al obtener usuario por ID: {ex.Message}");
+                return null;
+            }
+        }
     }
 }

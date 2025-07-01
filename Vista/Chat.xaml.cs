@@ -14,6 +14,7 @@ namespace Cliente_AdoptMe.Vista
     public partial class Chat : Page
     {
         private readonly ChatServicios _chatServicios = new ChatServicios();
+        private readonly UsuarioServicios _usuarioServicios = new UsuarioServicios();
 
         public ObservableCollection<MensajeUI> MensajesUI { get; set; } = new ObservableCollection<MensajeUI>();
 
@@ -28,14 +29,36 @@ namespace Cliente_AdoptMe.Vista
             UsuarioActualID = UsuarioSingleton.Instancia.UsuarioActual.UsuarioId;
             UsuarioDestinoID = usuarioDestinoID;
 
+            CargarNombreUsuarioDestino();
             CargarMensajesAsync();
             ConectarSocket();
 
-            // ✅ Desuscribirse del evento cuando el Page se descargue
             this.Unloaded += (s, e) =>
             {
                 SocketCliente.SocketCliente.MensajeRecibido -= OnNuevoMensajeRecibido;
             };
+        }
+
+        private async void CargarNombreUsuarioDestino()
+        {
+            try
+            {
+                var respuesta = await _usuarioServicios.ObtenerUsuarioPorIDAsync(UsuarioDestinoID);
+
+                if (respuesta != null && !string.IsNullOrWhiteSpace(respuesta.Nombre))
+                {
+                    TxtTituloChat.Text = respuesta.Nombre;
+                }
+                else
+                {
+                    TxtTituloChat.Text = "Usuario";
+                }
+            }
+            catch (Exception ex)
+            {
+                TxtTituloChat.Text = "Usuario";
+                Registro.Error("Error al obtener nombre del usuario destino: " + ex.Message);
+            }
         }
 
         private async void CargarMensajesAsync()
@@ -141,4 +164,4 @@ namespace Cliente_AdoptMe.Vista
             TxtMensaje.Clear();
         }
     }
-}
+}
