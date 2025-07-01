@@ -9,15 +9,15 @@
         Background="#4A6B5A"
         WindowStartupLocation="CenterScreen">
 
-    <Grid Margin="20" >
-        <Border BorderBrush="Black" BorderThickness="2" Background="#4A6B5A" Padding="10" >
+    <Grid Margin="20">
+        <Border BorderBrush="Black" BorderThickness="2" Background="#4A6B5A" Padding="10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
 
-                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" >
+                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
                     <StackPanel x:Name="SolicitudesPanel" Margin="0,0,0,10"/>
                 </ScrollViewer>
 

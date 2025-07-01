@@ -101,7 +101,6 @@ namespace Cliente_AdoptMe.Vista
                             metadata => servicioMultimedia.Cliente.SubirFotoMascota(metadata),
                             new[] { ".jpg", ".jpeg", ".png" }
                         );
-
             }
             catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
             {
@@ -126,7 +125,6 @@ namespace Cliente_AdoptMe.Vista
                             metadata => servicioMultimedia.Cliente.SubirVideoMascota(metadata),
                             new[] { ".mp4" }
                         );
-
             }
             catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
             {
@@ -173,18 +171,12 @@ namespace Cliente_AdoptMe.Vista
                 cbAño.SelectedItem == null ||
                 cbMes.SelectedItem == null ||
                 cbSexo.SelectedItem == null ||
-                string.IsNullOrWhiteSpace(tbTamaño.Text) ||
+                cbTamaño.SelectedIndex <= 0 ||
                 string.IsNullOrWhiteSpace(tbDescripcion.Text) ||
                 Foto.Source == null ||
                 _ubicacionSeleccionada == null)
             {
                 MessageBox.Show("Por favor, completa todos los campos obligatorios.", "Campos vacíos", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
-            }
-
-            if (!int.TryParse(tbTamaño.Text, out int tamaño) || tamaño < 0 || tamaño > 300)
-            {
-                MessageBox.Show("El tamaño debe ser un número entre 0 y 300.", "Tamaño inválido", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
@@ -212,7 +204,7 @@ namespace Cliente_AdoptMe.Vista
                     Raza = tbRaza.Text,
                     Edad = $"{cbAño.SelectedItem} año(s) con {cbMes.SelectedItem} mes(es)",
                     Sexo = cbSexo.SelectedItem.ToString(),
-                    Tamaño = $"{tbTamaño.Text} cm",
+                    Tamaño = ((ComboBoxItem)cbTamaño.SelectedItem).Content.ToString(),
                     Descripcion = tbDescripcion.Text
                 };
 
@@ -276,14 +268,8 @@ namespace Cliente_AdoptMe.Vista
             }
         }
 
-        private void TbTamaño_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !int.TryParse(e.Text, out _);
-        }
+        private void TbTamaño_PreviewTextInput(object sender, TextCompositionEventArgs e) { }
 
-        private void tbTamaño_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        private void tbTamaño_TextChanged(object sender, TextChangedEventArgs e) { }
     }
 }

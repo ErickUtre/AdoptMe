@@ -10,4 +10,7 @@ public class Solicitud
 
     [JsonProperty("NombreAdoptante")]
     public string NombreAdoptante { get; set; }
+
+    [JsonProperty("AdoptanteID")]
+    public int AdoptanteID { get; set; }
 }

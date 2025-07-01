@@ -116,5 +116,14 @@ namespace Cliente_AdoptMe.Vista
             CargandoOverlay.IsHitTestVisible = false;
         }
 
+        private void Btn_IrMensajes(object sender, RoutedEventArgs e)
+        {
+            var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
+
+            if (paginaActual == null || paginaActual.GetType() != typeof(Mensajes))
+            {
+                NavegadorPrincipal.Instancia.Navegar(new Mensajes());
+            }
+        }
     }
 }

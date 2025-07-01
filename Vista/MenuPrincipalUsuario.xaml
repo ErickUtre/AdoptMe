@@ -114,6 +114,20 @@
                         </StackPanel>
                     </Button>
 
+                    <Border Style="{StaticResource BordeGris}"/>
+
+                    <Button Style="{StaticResource BotonMenu}" 
+                            Click="Btn_IrMensajes" Height="118">
+                        <StackPanel Orientation="Horizontal"
+                                    Width="360">
+                            <Image Style="{StaticResource IconosMenu}"
+                                   Source="/Recursos/Imagenes/IconoMensajes.png" Height="94" Width="73"/>
+                            <TextBlock Style="{StaticResource TextoMenu}"
+                                       Text="Mensajes"/>
+                        </StackPanel>
+                    </Button>
+
+
                 </StackPanel>
             </Grid>
 

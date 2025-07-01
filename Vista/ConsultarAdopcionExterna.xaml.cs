@@ -4,29 +4,20 @@ using Cliente_AdoptMe.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static Cliente_AdoptMe.Utilidades.InterfazUsuarioHelper;
 
 namespace Cliente_AdoptMe.Vista
 {
-    /// <summary>
-    /// Lógica de interacción para ConsultarAdopcionExterna.xaml
-    /// </summary>
     public partial class ConsultarAdopcionExterna : Page
     {
         private UbicacionGrpc.Mascota _mascota;
         private int _adopcionId;
+        private int _publicadorId;
+
         public ConsultarAdopcionExterna(UbicacionGrpc.Mascota mascota, int adopcionId)
         {
             _mascota = mascota;
@@ -50,7 +41,41 @@ namespace Cliente_AdoptMe.Vista
             txtbl_Sexo.Text += $": {_mascota.Sexo}";
             txtbl_Estatura.Text += $": {_mascota.Tamano}";
             txtbl_Descripcion.Text = _mascota.Descripcion;
+
             await MostrarFotoAsync();
+            await CargarDatosAdopcion();
+        }
+
+        private async Task MostrarFotoAsync()
+        {
+            var imagen = await InterfazUsuarioHelper.ObtenerFotoMascotaAsync(_mascota.MascotaId, UsuarioSingleton.Instancia.Token, false);
+            if (imagen != null)
+            {
+                FotoMascota.Source = imagen;
+                FotoMascotaFondo.Source = imagen;
+            }
+        }
+
+        private async Task CargarDatosAdopcion()
+        {
+            try
+            {
+                var adopcionServicios = new AdopcionServicios();
+                Adopcion adopcion = await adopcionServicios.ObtenerAdopcionPorIdAsync(_adopcionId);
+
+                if (adopcion != null)
+                {
+                    _publicadorId = adopcion.PublicadorID;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró la adopción.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar la adopción: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BtnCancelar(object sender, RoutedEventArgs e)
@@ -64,16 +89,6 @@ namespace Cliente_AdoptMe.Vista
             imagenExpandida.ShowDialog();
         }
 
-        private async Task MostrarFotoAsync()
-        {
-            var imagen = await ObtenerFotoMascotaAsync(_mascota.MascotaId, UsuarioSingleton.Instancia.Token, false);
-            if (imagen != null)
-            {
-                FotoMascota.Source = imagen;
-                FotoMascotaFondo.Source = imagen;
-            }
-        }
-
         private async void Btn_VerVideo(object sender, RoutedEventArgs e)
         {
             await MostrarVideoMascotaAsync(_mascota.MascotaId, UsuarioSingleton.Instancia.Token);
@@ -81,7 +96,7 @@ namespace Cliente_AdoptMe.Vista
 
         public async Task MostrarVideoMascotaAsync(int idMascota, string token)
         {
-            var msVideo = await ObtenerVideoMascotaAsync(idMascota, token);
+            var msVideo = await InterfazUsuarioHelper.ObtenerVideoMascotaAsync(idMascota, token);
             if (msVideo != null)
             {
                 string rutaTemporal = await GuardarVideoTemporalAsync(msVideo, idMascota);
@@ -118,34 +133,27 @@ namespace Cliente_AdoptMe.Vista
 
             if (resultadoHttp.Exito)
             {
-                MessageBox.Show(
-                    Properties.Resources.mensaje_SolicitudEnviada,
-                    Properties.Resources.global_Exito,
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information
-                );
+                MessageBox.Show("Solicitud enviada correctamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if (resultadoHttp.Codigo == System.Net.HttpStatusCode.Conflict)
+            {
+                MessageBox.Show("Ya has enviado una solicitud para esta adopción", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
-                if (resultadoHttp.Codigo == System.Net.HttpStatusCode.Conflict)
-                {
-                    MessageBox.Show(
-                        "Ya has enviado una solicitud para esta adopción",
-                        "Advertencia",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Warning
-                    );
-                }
-                else
-                {
-                    MessageBox.Show(
-                        resultadoHttp.MensajeError,
-                        Properties.Resources.global_ErrorServidor,
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error
-                    );
-                }
+                MessageBox.Show(resultadoHttp.MensajeError, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Btn_EnviarMensaje(object sender, RoutedEventArgs e)
+        {
+            if (_publicadorId == 0)
+            {
+                MessageBox.Show("No se pudo identificar al publicador.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            NavegadorPrincipal.Instancia.Navegar(new Chat(_publicadorId));
         }
     }
 }

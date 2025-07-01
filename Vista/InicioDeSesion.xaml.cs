@@ -84,13 +84,15 @@ namespace Cliente_AdoptMe.Vista
                         MessageBoxImage.Error);
                     return;
                 }
-                    
             }
 
             string cuerpoRespuesta = await resultadoHttp.Respuesta.Content.ReadAsStringAsync();
 
             var resultado = JsonConvert.DeserializeObject<RespuestaLogin>(cuerpoRespuesta);
             UsuarioSingleton.Instancia.IniciarSesion(resultado.Usuario, resultado.Token);
+
+            // --- Aquí conectas el socket ---
+            SocketCliente.SocketCliente.Conectar(resultado.Usuario.UsuarioId);
 
             if (!resultado.EsAdmin)
             {
@@ -103,6 +105,7 @@ namespace Cliente_AdoptMe.Vista
 
             this.Close();
         }
+
 
         private void ReiniciarBordesCampos()
         {

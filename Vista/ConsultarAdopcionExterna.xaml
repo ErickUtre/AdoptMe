@@ -109,5 +109,12 @@
             Background="#FFF8C420"
             HorizontalAlignment="Left"
             Margin="90,40,0,40" Width="150" Click="Btn_VerVideo" Grid.Row="3"/>
+        
+        <Button Style="{StaticResource BotonGeneral}"
+            Content="{x:Static p:Resources.btn_EnviarMensaje}"
+            Background="#FF588BDF"
+            HorizontalAlignment="Left"
+            Margin="274,40,0,40" Width="187" Click="Btn_EnviarMensaje" Grid.Row="3"/>
+
     </Grid>
 </Page>

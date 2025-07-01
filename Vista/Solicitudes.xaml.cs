@@ -1,10 +1,12 @@
 ﻿using Cliente_AdoptMe.Modelo;
 using Cliente_AdoptMe.Servicios;
+using Cliente_AdoptMe.Utilidades;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using System.Windows.Navigation;
 
 namespace Cliente_AdoptMe.Vista
 {
@@ -75,17 +77,30 @@ namespace Cliente_AdoptMe.Vista
                         Text = solicitud.NombreAdoptante,
                         Foreground = Brushes.White,
                         FontSize = 16,
-                        Width = 250,
+                        Width = 200,
                         VerticalAlignment = VerticalAlignment.Center
                     };
                     stack.Children.Add(nombreText);
+
+                    var btnMensaje = new Button
+                    {
+                        Content = "Mandar mensaje",
+                        Width = 120,
+                        Height = 25,
+                        Margin = new Thickness(5, 0, 5, 0),
+                        Background = new SolidColorBrush(Color.FromRgb(70, 130, 180)),
+                        Foreground = Brushes.White,
+                        Tag = solicitud
+                    };
+                    btnMensaje.Click += MandarMensaje_Click;
+                    stack.Children.Add(btnMensaje);
 
                     var btnAceptar = new Button
                     {
                         Content = "Aceptar",
                         Width = 80,
                         Height = 25,
-                        Margin = new Thickness(15, 0, 5, 0),
+                        Margin = new Thickness(5, 0, 5, 0),
                         Background = new SolidColorBrush(Color.FromRgb(100, 204, 32)),
                         Foreground = Brushes.White,
                         Tag = solicitud
@@ -169,6 +184,17 @@ namespace Cliente_AdoptMe.Vista
                 }
             }
         }
+
+        private void MandarMensaje_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is Solicitud solicitud)
+            {
+                this.Close();
+                NavegadorPrincipal.Instancia.Navegar(new Chat(solicitud.AdoptanteID));
+            }
+        }
+
+
 
         private void Cerrar_Click(object sender, RoutedEventArgs e)
         {

@@ -110,5 +110,19 @@ namespace Cliente_AdoptMe.Servicios
                 return new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError);
             }
         }
+
+        public async Task<Adopcion> ObtenerAdopcionPorIdAsync(int adopcionId)
+        {
+            using (var request = new HttpRequestMessage(HttpMethod.Get, $"adopciones/{adopcionId}"))
+            {
+                var response = await _httpClient.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                    throw new HttpRequestException($"Error al obtener adopción: {response.StatusCode}");
+
+                string json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Adopcion>(json);
+            }
+        }
     }
 }
