@@ -160,7 +160,10 @@ namespace Cliente_AdoptMe.Vista
             bool? resultado = mapaRegistro.ShowDialog();
 
             if (resultado == true)
+            {
+                lb_UbicacionConfirmada.Content = "Ubicación confirmada";
                 _ubicacionSeleccionada = mapaRegistro.ResultadoUbicacion;
+            }
         }
 
         private bool Validar_Campos()

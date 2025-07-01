@@ -58,7 +58,7 @@ namespace Cliente_AdoptMe.Grpc.ServiciosGrpc
                 }
             });
 
-            await Task.Delay(200);
+            await Task.Delay(500);
 
             const int chunkSize = 64 * 1024;
             byte[] buffer = new byte[chunkSize];
