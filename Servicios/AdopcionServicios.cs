@@ -21,7 +21,7 @@ namespace Cliente_AdoptMe.Servicios
             _httpClient.BaseAddress = new Uri(Utilidades.Constantes.URL_BASE);
         }
 
-        public async Task<HttpResponseMessage> RegistrarAdopcionAsync(Adopcion nuevaAdopcion)
+        public async Task<HttpResponseMessage> RegistrarAdopcionAsync(string token, Adopcion nuevaAdopcion)
         {
             string json = JsonConvert.SerializeObject(nuevaAdopcion);
 
@@ -29,6 +29,7 @@ namespace Cliente_AdoptMe.Servicios
             Debug.WriteLine(json);
 
             var contenido = new StringContent(json, Encoding.UTF8, "application/json");
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             HttpResponseMessage respuesta = await _httpClient.PostAsync("adopciones", contenido);
             return respuesta;
         }

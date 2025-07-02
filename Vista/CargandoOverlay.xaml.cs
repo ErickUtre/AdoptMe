@@ -24,5 +24,17 @@ namespace Cliente_AdoptMe.Vista
         {
             InitializeComponent();
         }
+
+        public void MostrarOverlay()
+        {
+            this.Visibility = Visibility.Visible;
+            this.IsHitTestVisible = true;
+        }
+
+        public void OcultarOverlay()
+        {
+            this.Visibility = Visibility.Collapsed;
+            this.IsHitTestVisible = false;
+        }
     }
 }

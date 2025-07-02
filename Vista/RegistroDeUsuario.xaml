@@ -171,5 +171,8 @@
                     Background="#73EF41" 
                     Click="Registrar_Click"/>
         </StackPanel>
+
+        <local:CargandoOverlay x:Name="CargandoOverlay"
+                       Visibility="Collapsed" />
     </Grid>
 </Window>

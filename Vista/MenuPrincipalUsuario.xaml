@@ -117,7 +117,8 @@
                     <Border Style="{StaticResource BordeGris}"/>
 
                     <Button Style="{StaticResource BotonMenu}" 
-                            Click="Btn_IrMensajes" Height="118">
+                            Click="Btn_IrMensajes" Height="118"
+                            Margin="0,7">
                         <StackPanel Orientation="Horizontal"
                                     Width="360">
                             <Image Style="{StaticResource IconosMenu}"
@@ -127,6 +128,20 @@
                         </StackPanel>
                     </Button>
 
+                    <Border Style="{StaticResource BordeGris}"/>
+
+                    <Button x:Name="BtnNotificaciones" 
+                            Style="{StaticResource BotonMenu}" 
+                            Click="Btn_IrNotificaciones"
+                            Margin="0,7">
+                        <StackPanel Orientation="Horizontal"
+                                    Width="360">
+                            <Image Style="{StaticResource IconosMenu}"
+                                   Source="/Recursos/Imagenes/IconoNotificacion.png" Height="94" Width="73"/>
+                            <TextBlock Style="{StaticResource TextoMenu}"
+                                       Text="Notificaciones"/>
+                        </StackPanel>
+                    </Button>
 
                 </StackPanel>
             </Grid>

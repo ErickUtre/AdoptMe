@@ -101,7 +101,9 @@ namespace Cliente_AdoptMe.Vista
             ReiniciarBordesCampos();
             if (ValidarDatosDeCampos())
             {
+                CargandoOverlay.MostrarOverlay();
                 RegistrarUsuario();
+                CargandoOverlay.OcultarOverlay();
             }
         }
 
