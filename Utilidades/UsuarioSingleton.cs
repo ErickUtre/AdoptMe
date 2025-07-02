@@ -1,4 +1,5 @@
 ﻿using Cliente_AdoptMe.Modelo;
+using Cliente_AdoptMe.SocketCliente;
 using System;
 using System.Collections.Generic;
 using System.Linq;

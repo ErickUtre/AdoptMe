@@ -285,9 +285,12 @@
     <Compile Include="Conversores\BooleanToBubbleColorConverter.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Multimedia.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\MultimediaGrpc.cs" />
+    <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Notificacion.cs" />
+    <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\NotificacionGrpc.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\Ubicacion.cs" />
     <Compile Include="Grpc\GeneracionGrpc\Grpc\Protos\UbicacionGrpc.cs" />
     <Compile Include="Grpc\ServiciosGrpc\ServicioMultimediaGrpc.cs" />
+    <Compile Include="Grpc\ServiciosGrpc\ServicioNotificacionGrpc.cs" />
     <Compile Include="Grpc\ServiciosGrpc\ServicioUbicacionGrpc.cs" />
     <Compile Include="Modelo\Acceso.cs" />
     <Compile Include="Modelo\AdopcionDto.cs" />
@@ -297,6 +300,7 @@
     <Compile Include="Modelo\Mensaje.cs" />
     <Compile Include="Modelo\MensajeEnviar.cs" />
     <Compile Include="Modelo\MensajeUI.cs" />
+    <Compile Include="Modelo\Notificacion.cs" />
     <Compile Include="Modelo\RespuestaLogin.cs" />
     <Compile Include="Modelo\ResultadoHttp.cs" />
     <Compile Include="Modelo\Adopcion.cs" />
@@ -507,6 +511,7 @@
   <ItemGroup>
     <Protobuf Include="Grpc\Protos\ubicacion.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
     <Protobuf Include="Grpc\Protos\multimedia.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
+    <Protobuf Include="Grpc\Protos\notificacion.proto" GrpcServices="Client" OutputDir="Grpc\GeneracionGrpc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -573,10 +578,13 @@
     <Resource Include="Recursos\Imagenes\IconoUsuarioDefecto.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\Imagenes\IconoAdopcion.png" />
+    <Resource Include="Recursos\Imagenes\MascotaDefault.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Recursos\Imagenes\MascotaDefault.png" />
+    <Resource Include="Recursos\Imagenes\IconoNotificacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\Imagenes\IconoAdopcion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

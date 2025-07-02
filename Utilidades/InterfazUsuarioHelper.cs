@@ -150,5 +150,37 @@ namespace Cliente_AdoptMe.Utilidades
 
             return null;
         }
+
+        public static void MostrarToast(string titulo, string mensaje)
+        {
+            var toast = new Window
+            {
+                Width = 300,
+                Height = 100,
+                WindowStyle = WindowStyle.None,
+                AllowsTransparency = true,
+                Background = Brushes.LightYellow,
+                Topmost = true,
+                ShowInTaskbar = false,
+                Content = new TextBlock
+                {
+                    Text = $"{titulo}\n{mensaje}",
+                    FontSize = 14,
+                    Margin = new Thickness(10),
+                    TextWrapping = TextWrapping.Wrap
+                }
+            };
+
+            toast.Left = SystemParameters.WorkArea.Width - toast.Width - 10;
+            toast.Top = SystemParameters.WorkArea.Height - toast.Height - 10;
+
+            toast.Show();
+
+            Task.Delay(4000).ContinueWith(_ =>
+            {
+                Application.Current.Dispatcher.Invoke(() => toast.Close());
+            });
+        }
+
     }
 }

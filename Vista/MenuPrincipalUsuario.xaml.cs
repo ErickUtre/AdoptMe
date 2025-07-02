@@ -1,9 +1,12 @@
-﻿using Cliente_AdoptMe.Servicios;
+﻿using Cliente_AdoptMe.Grpc.ServiciosGrpc;
+using Cliente_AdoptMe.Servicios;
+using Cliente_AdoptMe.SocketCliente;
 using Cliente_AdoptMe.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,16 +18,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Cliente_AdoptMe.Vista
 {
     public partial class MenuPrincipalUsuario : Window
     {
+        private ServicioNotificacionGrpc _servicioNotificacion;
+        private CancellationTokenSource _cancellationTokenSource;
+
         public MenuPrincipalUsuario()
         {
             InitializeComponent();
             NavegadorPrincipal.Instancia.SetMarco(MarcoPrincipal);
             NavegadorPrincipal.Instancia.Navegar(new MapaPrincipal());
             InicializarDatos();
+            IniciarEscuchaNotificaciones();
         }
 
         private async void InicializarDatos()
@@ -33,8 +41,29 @@ namespace Cliente_AdoptMe.Vista
             await MostrarFotoAsync();
         }
 
+        private void IniciarEscuchaNotificaciones()
+        {
+            string token = UsuarioSingleton.Instancia.Token;
+            _cancellationTokenSource = new CancellationTokenSource();
+            _servicioNotificacion = new ServicioNotificacionGrpc();
+
+            _servicioNotificacion.NotificacionRecibida += noti =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    InterfazUsuarioHelper.MostrarToast(noti.Titulo, noti.Mensaje);
+                    BtnNotificaciones.Background = Brushes.Red;
+                });
+            };
+
+            _ = _servicioNotificacion.EscucharNotificacionesAsync(token, _cancellationTokenSource.Token);
+        }
+
         private void Btn_CerrarMenuPrincipal(object sender, RoutedEventArgs e)
         {
+            _cancellationTokenSource?.Cancel();
+            _servicioNotificacion?.Cerrar();
+
             UsuarioSingleton.Instancia.CerrarSesion();
             InicioDeSesion inicioDeSesion = new InicioDeSesion();
             inicioDeSesion.Show();
@@ -118,6 +147,18 @@ namespace Cliente_AdoptMe.Vista
 
         private void Btn_IrMensajes(object sender, RoutedEventArgs e)
         {
+            var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
+
+            if (paginaActual == null || paginaActual.GetType() != typeof(Mensajes))
+            {
+                NavegadorPrincipal.Instancia.Navegar(new Mensajes());
+            }
+        }
+
+        private void Btn_IrNotificaciones(object sender, RoutedEventArgs e)
+        {
+            BtnNotificaciones.Background = Brushes.Transparent;
+
             var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
 
             if (paginaActual == null || paginaActual.GetType() != typeof(Mensajes))

@@ -158,12 +158,12 @@ namespace Cliente_AdoptMe.Vista
             };
 
             bool? resultado = mapaRegistro.ShowDialog();
-
+            
             if (resultado == true)
             {
-                lb_UbicacionConfirmada.Content = "Ubicación confirmada";
                 _ubicacionSeleccionada = mapaRegistro.ResultadoUbicacion;
             }
+            
         }
 
         private bool Validar_Campos()
@@ -228,7 +228,7 @@ namespace Cliente_AdoptMe.Vista
                     Mascota = mascota
                 };
 
-                HttpResponseMessage respuesta = await adopcionServicios.RegistrarAdopcionAsync(adopcion);
+                HttpResponseMessage respuesta = await adopcionServicios.RegistrarAdopcionAsync(UsuarioSingleton.Instancia.Token, adopcion);
 
                 switch (respuesta.StatusCode)
                 {
