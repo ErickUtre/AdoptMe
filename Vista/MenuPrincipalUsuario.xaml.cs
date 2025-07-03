@@ -46,6 +46,7 @@ namespace Cliente_AdoptMe.Vista
             string token = UsuarioSingleton.Instancia.Token;
             _cancellationTokenSource = new CancellationTokenSource();
             _servicioNotificacion = new ServicioNotificacionGrpc();
+            UsuarioSingleton.Instancia.ServicioNotificacion = _servicioNotificacion;
 
             _servicioNotificacion.NotificacionRecibida += noti =>
             {
@@ -161,9 +162,9 @@ namespace Cliente_AdoptMe.Vista
 
             var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
 
-            if (paginaActual == null || paginaActual.GetType() != typeof(Mensajes))
+            if (paginaActual == null || paginaActual.GetType() != typeof(Notificaciones))
             {
-                NavegadorPrincipal.Instancia.Navegar(new Mensajes());
+                NavegadorPrincipal.Instancia.Navegar(new Notificaciones());
             }
         }
     }

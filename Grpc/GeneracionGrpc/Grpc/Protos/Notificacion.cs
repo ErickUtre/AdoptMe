@@ -29,21 +29,22 @@ namespace NotificacionGrpc {
             "YWNpb25JbnB1dBIRCgl1c3VhcmlvSWQYASABKAUSDgoGdGl0dWxvGAIgASgJ",
             "Eg8KB21lbnNhamUYAyABKAkSDAoEdGlwbxgEIAEoCRIUCgxyZWZlcmVuY2lh",
             "SWQYBSABKAUSFgoOcmVmZXJlbmNpYVRpcG8YBiABKAkSDQoFZmVjaGEYByAB",
-            "KAkiegoMTm90aWZpY2FjaW9uEg4KBnRpdHVsbxgBIAEoCRIPCgdtZW5zYWpl",
-            "GAIgASgJEgwKBHRpcG8YAyABKAkSFAoMcmVmZXJlbmNpYUlkGAQgASgFEhYK",
-            "DnJlZmVyZW5jaWFUaXBvGAUgASgJEg0KBWZlY2hhGAYgASgJIisKCVJlc3B1",
-            "ZXN0YRINCgVleGl0bxgBIAEoCBIPCgdtZW5zYWplGAIgASgJIgcKBUVtcHR5",
-            "MrMBChRTZXJ2aWNpb05vdGlmaWNhY2lvbhJLChZFc2N1Y2hhck5vdGlmaWNh",
-            "Y2lvbmVzEhMubm90aWZpY2FjaW9uLkVtcHR5Ghoubm90aWZpY2FjaW9uLk5v",
-            "dGlmaWNhY2lvbjABEk4KEkVudmlhck5vdGlmaWNhY2lvbhIfLm5vdGlmaWNh",
-            "Y2lvbi5Ob3RpZmljYWNpb25JbnB1dBoXLm5vdGlmaWNhY2lvbi5SZXNwdWVz",
-            "dGFCE6oCEE5vdGlmaWNhY2lvbkdycGNiBnByb3RvMw=="));
+            "KAkikgEKDE5vdGlmaWNhY2lvbhIWCg5ub3RpZmljYWNpb25JZBgBIAEoBRIO",
+            "CgZ0aXR1bG8YAiABKAkSDwoHbWVuc2FqZRgDIAEoCRIMCgR0aXBvGAQgASgJ",
+            "EhQKDHJlZmVyZW5jaWFJZBgFIAEoBRIWCg5yZWZlcmVuY2lhVGlwbxgGIAEo",
+            "CRINCgVmZWNoYRgHIAEoCSIrCglSZXNwdWVzdGESDQoFZXhpdG8YASABKAgS",
+            "DwoHbWVuc2FqZRgCIAEoCSIHCgVFbXB0eTKzAQoUU2VydmljaW9Ob3RpZmlj",
+            "YWNpb24SSwoWRXNjdWNoYXJOb3RpZmljYWNpb25lcxITLm5vdGlmaWNhY2lv",
+            "bi5FbXB0eRoaLm5vdGlmaWNhY2lvbi5Ob3RpZmljYWNpb24wARJOChJFbnZp",
+            "YXJOb3RpZmljYWNpb24SHy5ub3RpZmljYWNpb24uTm90aWZpY2FjaW9uSW5w",
+            "dXQaFy5ub3RpZmljYWNpb24uUmVzcHVlc3RhQhOqAhBOb3RpZmljYWNpb25H",
+            "cnBjYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::NotificacionGrpc.UsuarioID), global::NotificacionGrpc.UsuarioID.Parser, new[]{ "UsuarioId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::NotificacionGrpc.NotificacionInput), global::NotificacionGrpc.NotificacionInput.Parser, new[]{ "UsuarioId", "Titulo", "Mensaje", "Tipo", "ReferenciaId", "ReferenciaTipo", "Fecha" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::NotificacionGrpc.Notificacion), global::NotificacionGrpc.Notificacion.Parser, new[]{ "Titulo", "Mensaje", "Tipo", "ReferenciaId", "ReferenciaTipo", "Fecha" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::NotificacionGrpc.Notificacion), global::NotificacionGrpc.Notificacion.Parser, new[]{ "NotificacionId", "Titulo", "Mensaje", "Tipo", "ReferenciaId", "ReferenciaTipo", "Fecha" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::NotificacionGrpc.Respuesta), global::NotificacionGrpc.Respuesta.Parser, new[]{ "Exito", "Mensaje" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::NotificacionGrpc.Empty), global::NotificacionGrpc.Empty.Parser, null, null, null, null, null)
           }));
@@ -705,6 +706,7 @@ namespace NotificacionGrpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Notificacion(Notificacion other) : this() {
+      notificacionId_ = other.notificacionId_;
       titulo_ = other.titulo_;
       mensaje_ = other.mensaje_;
       tipo_ = other.tipo_;
@@ -720,8 +722,20 @@ namespace NotificacionGrpc {
       return new Notificacion(this);
     }
 
+    /// <summary>Field number for the "notificacionId" field.</summary>
+    public const int NotificacionIdFieldNumber = 1;
+    private int notificacionId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int NotificacionId {
+      get { return notificacionId_; }
+      set {
+        notificacionId_ = value;
+      }
+    }
+
     /// <summary>Field number for the "titulo" field.</summary>
-    public const int TituloFieldNumber = 1;
+    public const int TituloFieldNumber = 2;
     private string titulo_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -733,7 +747,7 @@ namespace NotificacionGrpc {
     }
 
     /// <summary>Field number for the "mensaje" field.</summary>
-    public const int MensajeFieldNumber = 2;
+    public const int MensajeFieldNumber = 3;
     private string mensaje_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -745,7 +759,7 @@ namespace NotificacionGrpc {
     }
 
     /// <summary>Field number for the "tipo" field.</summary>
-    public const int TipoFieldNumber = 3;
+    public const int TipoFieldNumber = 4;
     private string tipo_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -757,7 +771,7 @@ namespace NotificacionGrpc {
     }
 
     /// <summary>Field number for the "referenciaId" field.</summary>
-    public const int ReferenciaIdFieldNumber = 4;
+    public const int ReferenciaIdFieldNumber = 5;
     private int referenciaId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -769,7 +783,7 @@ namespace NotificacionGrpc {
     }
 
     /// <summary>Field number for the "referenciaTipo" field.</summary>
-    public const int ReferenciaTipoFieldNumber = 5;
+    public const int ReferenciaTipoFieldNumber = 6;
     private string referenciaTipo_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -781,7 +795,7 @@ namespace NotificacionGrpc {
     }
 
     /// <summary>Field number for the "fecha" field.</summary>
-    public const int FechaFieldNumber = 6;
+    public const int FechaFieldNumber = 7;
     private string fecha_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -807,6 +821,7 @@ namespace NotificacionGrpc {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (NotificacionId != other.NotificacionId) return false;
       if (Titulo != other.Titulo) return false;
       if (Mensaje != other.Mensaje) return false;
       if (Tipo != other.Tipo) return false;
@@ -820,6 +835,7 @@ namespace NotificacionGrpc {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (NotificacionId != 0) hash ^= NotificacionId.GetHashCode();
       if (Titulo.Length != 0) hash ^= Titulo.GetHashCode();
       if (Mensaje.Length != 0) hash ^= Mensaje.GetHashCode();
       if (Tipo.Length != 0) hash ^= Tipo.GetHashCode();
@@ -844,28 +860,32 @@ namespace NotificacionGrpc {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (NotificacionId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(NotificacionId);
+      }
       if (Titulo.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(18);
         output.WriteString(Titulo);
       }
       if (Mensaje.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteString(Mensaje);
       }
       if (Tipo.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteString(Tipo);
       }
       if (ReferenciaId != 0) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt32(ReferenciaId);
       }
       if (ReferenciaTipo.Length != 0) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(50);
         output.WriteString(ReferenciaTipo);
       }
       if (Fecha.Length != 0) {
-        output.WriteRawTag(50);
+        output.WriteRawTag(58);
         output.WriteString(Fecha);
       }
       if (_unknownFields != null) {
@@ -878,28 +898,32 @@ namespace NotificacionGrpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (NotificacionId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(NotificacionId);
+      }
       if (Titulo.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(18);
         output.WriteString(Titulo);
       }
       if (Mensaje.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteString(Mensaje);
       }
       if (Tipo.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteString(Tipo);
       }
       if (ReferenciaId != 0) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt32(ReferenciaId);
       }
       if (ReferenciaTipo.Length != 0) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(50);
         output.WriteString(ReferenciaTipo);
       }
       if (Fecha.Length != 0) {
-        output.WriteRawTag(50);
+        output.WriteRawTag(58);
         output.WriteString(Fecha);
       }
       if (_unknownFields != null) {
@@ -912,6 +936,9 @@ namespace NotificacionGrpc {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (NotificacionId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(NotificacionId);
+      }
       if (Titulo.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Titulo);
       }
@@ -941,6 +968,9 @@ namespace NotificacionGrpc {
     public void MergeFrom(Notificacion other) {
       if (other == null) {
         return;
+      }
+      if (other.NotificacionId != 0) {
+        NotificacionId = other.NotificacionId;
       }
       if (other.Titulo.Length != 0) {
         Titulo = other.Titulo;
@@ -979,27 +1009,31 @@ namespace NotificacionGrpc {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
-            Titulo = input.ReadString();
+          case 8: {
+            NotificacionId = input.ReadInt32();
             break;
           }
           case 18: {
-            Mensaje = input.ReadString();
+            Titulo = input.ReadString();
             break;
           }
           case 26: {
+            Mensaje = input.ReadString();
+            break;
+          }
+          case 34: {
             Tipo = input.ReadString();
             break;
           }
-          case 32: {
+          case 40: {
             ReferenciaId = input.ReadInt32();
             break;
           }
-          case 42: {
+          case 50: {
             ReferenciaTipo = input.ReadString();
             break;
           }
-          case 50: {
+          case 58: {
             Fecha = input.ReadString();
             break;
           }
@@ -1022,27 +1056,31 @@ namespace NotificacionGrpc {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 10: {
-            Titulo = input.ReadString();
+          case 8: {
+            NotificacionId = input.ReadInt32();
             break;
           }
           case 18: {
-            Mensaje = input.ReadString();
+            Titulo = input.ReadString();
             break;
           }
           case 26: {
+            Mensaje = input.ReadString();
+            break;
+          }
+          case 34: {
             Tipo = input.ReadString();
             break;
           }
-          case 32: {
+          case 40: {
             ReferenciaId = input.ReadInt32();
             break;
           }
-          case 42: {
+          case 50: {
             ReferenciaTipo = input.ReadString();
             break;
           }
-          case 50: {
+          case 58: {
             Fecha = input.ReadString();
             break;
           }

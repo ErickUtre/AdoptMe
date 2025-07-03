@@ -310,6 +310,7 @@
     <Compile Include="Servicios\AccesoServicios.cs" />
     <Compile Include="Servicios\AdopcionServicios.cs" />
     <Compile Include="Servicios\ChatServicios.cs" />
+    <Compile Include="Servicios\NotificacionServicios.cs" />
     <Compile Include="Servicios\SolicitudServicios.cs" />
     <Compile Include="Servicios\MascotaServicios.cs" />
     <Compile Include="Servicios\UbicacionServicios.cs" />
@@ -364,6 +365,9 @@
     </Compile>
     <Compile Include="Vista\MenuPrincipalAdministrador.xaml.cs">
       <DependentUpon>MenuPrincipalAdministrador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Notificaciones.xaml.cs">
+      <DependentUpon>Notificaciones.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\RegistrarAdopcion.xaml.cs">
       <DependentUpon>RegistrarAdopcion.xaml</DependentUpon>
@@ -458,6 +462,10 @@
       <DependentUpon>MenuPrincipalUsuario.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Vista\Notificaciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\RegistrarAdopcion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

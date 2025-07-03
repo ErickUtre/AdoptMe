@@ -32,6 +32,12 @@ namespace Cliente_AdoptMe.Vista
         private readonly TimeSpan _esperaAntesDeActualizar = TimeSpan.FromMilliseconds(600);
         private bool _actualizando = false;
         private PointLatLng _ultimoCentro = new PointLatLng();
+        private int? _adopcionId;
+
+        public MapaPrincipal(int adopcionId) : this()
+        {
+            _adopcionId = adopcionId;
+        }
 
         public MapaPrincipal()
         {
@@ -52,7 +58,16 @@ namespace Cliente_AdoptMe.Vista
                 {
                     PointLatLng coordenadasUbicacion = new PointLatLng(latitud.Value, longitud.Value);
                     AgregarMarcadorUbicacionUsuario(coordenadasUbicacion);
-                    MostrarMapaPrincipal(coordenadasUbicacion);
+
+                    if (_adopcionId.HasValue)
+                    {
+                        MostrarAdopcionEspecifica();
+                    }
+                    else
+                    {
+                        MostrarMapaPrincipal(coordenadasUbicacion);
+                    }
+                        
                     await MostrarAdopcionesCercanas(latitud.Value, longitud.Value);
                 }
                 else
@@ -95,6 +110,32 @@ namespace Cliente_AdoptMe.Vista
             };
         }
 
+        private async void MostrarAdopcionEspecifica()
+        {
+            AdopcionServicios adopcionServicios = new AdopcionServicios();
+            Adopcion adopcion = await adopcionServicios.ObtenerAdopcionPorIdAsync(_adopcionId.Value);
+
+            if (adopcion != null && adopcion.Ubicacion != null && adopcion.Mascota != null)
+            {
+                PointLatLng coordenadasAdopcionEspecifica = new PointLatLng(adopcion.Ubicacion.Latitud.Value, adopcion.Ubicacion.Longitud.Value);
+                MostrarMapaPrincipal(coordenadasAdopcionEspecifica);
+
+                UbicacionGrpc.Mascota mascota = new UbicacionGrpc.Mascota()
+                {
+                    MascotaId = adopcion.MascotaID,
+                    Nombre = adopcion.Mascota.Nombre,
+                    Edad = adopcion.Mascota.Edad,
+                    Especie = adopcion.Mascota.Especie,
+                    Raza = adopcion.Mascota.Raza,
+                    Sexo = adopcion.Mascota.Sexo,
+                    Tamano = adopcion.Mascota.Tamaño,
+                    Descripcion = adopcion.Mascota.Descripcion
+                };
+
+                AgregarMarcador(coordenadasAdopcionEspecifica, mascota, adopcion.AdopcionID);
+            }
+        }
+
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             mapaPrincipal.Manager.CancelTileCaching();
@@ -102,7 +143,7 @@ namespace Cliente_AdoptMe.Vista
             GMaps.Instance.CancelTileCaching();
         }
 
-        private void MostrarMapaPrincipal(PointLatLng? ubicacionUsuario = null)
+        private void MostrarMapaPrincipal(PointLatLng? UbicacionAMostrar = null)
         {
             mapaPrincipal.MapProvider = GMapProviders.OpenStreetMap;
 
@@ -110,9 +151,9 @@ namespace Cliente_AdoptMe.Vista
             var posicionDefectoMexico = new PointLatLng(23.6345, -102.5528);
             var posicionAMostrar = posicionDefectoMexico;
 
-            if (ubicacionUsuario.HasValue)
+            if (UbicacionAMostrar.HasValue)
             {
-                posicionAMostrar = ubicacionUsuario.Value;
+                posicionAMostrar = UbicacionAMostrar.Value;
                 zoomInicial = 17;
             }
 
