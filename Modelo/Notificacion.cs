@@ -9,6 +9,8 @@ namespace Cliente_AdoptMe.Modelo
 {
     public class Notificacion
     {
+        [JsonProperty("NotificacionId")]
+        public int NotificacionId { get; set; }
         [JsonProperty("Titulo")]
         public string Titulo {  get; set; }
         [JsonProperty("Mensaje")]
@@ -16,10 +18,10 @@ namespace Cliente_AdoptMe.Modelo
         [JsonProperty("Tipo")]
         public string Tipo { get; set; }
         [JsonProperty("ReferenciaId")]
-        public int ReferenciaId { get; set; }
+        public int? ReferenciaId { get; set; }
         [JsonProperty("ReferenciaTipo")]
         public string ReferenciaTipo { get; set; }
-        [JsonProperty("Fecha")]
+        [JsonProperty("FechaCreacion")]
         public DateTime Fecha { get; set; }
     }
 }

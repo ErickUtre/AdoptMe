@@ -1,4 +1,5 @@
-﻿using Cliente_AdoptMe.Modelo;
+﻿using Cliente_AdoptMe.Grpc.ServiciosGrpc;
+using Cliente_AdoptMe.Modelo;
 using Cliente_AdoptMe.SocketCliente;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace Cliente_AdoptMe.Utilidades
 
         public Usuario UsuarioActual { get; private set; }
         public string Token { get; private set; }
+        public ServicioNotificacionGrpc ServicioNotificacion { get; set; }
+
 
         private UsuarioSingleton() { }
 
