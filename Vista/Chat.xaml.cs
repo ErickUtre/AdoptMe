@@ -15,6 +15,7 @@ namespace Cliente_AdoptMe.Vista
     {
         private readonly ChatServicios _chatServicios = new ChatServicios();
         private readonly UsuarioServicios _usuarioServicios = new UsuarioServicios();
+        private readonly MenuPrincipalUsuario _menuPrincipalUsuario = NavegadorPrincipal.Instancia.GetVentanaContenedora<MenuPrincipalUsuario>();
 
         public ObservableCollection<MensajeUI> MensajesUI { get; set; } = new ObservableCollection<MensajeUI>();
 
@@ -29,8 +30,11 @@ namespace Cliente_AdoptMe.Vista
             UsuarioActualID = UsuarioSingleton.Instancia.UsuarioActual.UsuarioId;
             UsuarioDestinoID = usuarioDestinoID;
 
+            _menuPrincipalUsuario?.MostrarOverlay();
             CargarNombreUsuarioDestino();
             CargarMensajesAsync();
+            _menuPrincipalUsuario.OcultarOverlay();
+
             ConectarSocket();
 
             this.Unloaded += (s, e) =>

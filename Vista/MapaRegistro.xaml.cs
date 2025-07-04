@@ -73,6 +73,7 @@ namespace Cliente_AdoptMe.Vista
             var punto = e.GetPosition(mapaPrincipal);
             var posicion = mapaPrincipal.FromLocalToLatLng((int)punto.X, (int)punto.Y);
 
+            CargandoOverlay.MostrarOverlay();
             UbicacionServicios ubicacionServicios = new UbicacionServicios();
             Ubicacion datosUbicacion = await ubicacionServicios.ObtenerDireccionPorCoordenadasAsync(posicion.Lat, posicion.Lng);
 
@@ -93,6 +94,7 @@ namespace Cliente_AdoptMe.Vista
             {
                 MessageBox.Show(Properties.Resources.mensaje_ErrorUbicacion);
             }
+            CargandoOverlay.OcultarOverlay();
         }
 
         private void AgregarMarcador(double lat, double lon)

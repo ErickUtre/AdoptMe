@@ -1,22 +1,24 @@
-﻿using GMap.NET.MapProviders;
+﻿using Cliente_AdoptMe.Grpc;
+using Cliente_AdoptMe.Modelo;
+using Cliente_AdoptMe.Servicios;
+using Cliente_AdoptMe.Utilidades;
 using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsPresentation;
+using Newtonsoft.Json;
+using NotificacionGrpc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shapes;
-using GMap.NET.WindowsPresentation;
-using System.Windows.Controls.Primitives;
-using Cliente_AdoptMe.Utilidades;
-using Cliente_AdoptMe.Modelo;
 using System.Windows.Media.Imaging;
-using System.Threading.Tasks;
-using Cliente_AdoptMe.Servicios;
-using Newtonsoft.Json;
-using Cliente_AdoptMe.Grpc;
-using System.Linq;
+using System.Windows.Shapes;
 
 namespace Cliente_AdoptMe.Vista
 {
@@ -49,7 +51,14 @@ namespace Cliente_AdoptMe.Vista
         {
             Ubicacion ubicacionUsuario = UsuarioSingleton.Instancia.UsuarioActual.Ubicacion;
 
-            if (ubicacionUsuario != null)
+            if (!UsuarioSingleton.Instancia.MostrarUbicacionRegistrada && UsuarioSingleton.Instancia.UbicacionActual.HasValue)
+            {
+                PointLatLng ubicacionActual = UsuarioSingleton.Instancia.UbicacionActual.Value;
+                AgregarMarcadorUbicacionUsuario(ubicacionActual);
+                MostrarMapaPrincipal(ubicacionActual);
+                await MostrarAdopcionesCercanas(ubicacionActual.Lat, ubicacionActual.Lng);
+            }
+            else if (ubicacionUsuario != null)
             {
                 double? latitud = ubicacionUsuario.Latitud;
                 double? longitud = ubicacionUsuario.Longitud;
@@ -182,6 +191,13 @@ namespace Cliente_AdoptMe.Vista
                 RenderTransformOrigin = new Point(0.5, 0.5)
             };
 
+            if (_marcadorUsuario != null)
+            {
+                mapaPrincipal.Markers.Remove(_marcadorUsuario);
+                _marcadores.Remove(_marcadorUsuario);
+                _marcadorUsuario = null;
+            }
+
             _marcadorUsuario = new GMapMarker(ubicacionUsuario)
             {
                 Shape = imagen,
@@ -294,6 +310,42 @@ namespace Cliente_AdoptMe.Vista
             }
 
             ActualizarVisibilidadMarcadores();
+        }
+
+        private async void Btn_ToggleUbicacion_Click(object sender, RoutedEventArgs e)
+        {
+            if (!UsuarioSingleton.Instancia.MostrarUbicacionRegistrada)
+            {
+                var ubicacionUsuario = UsuarioSingleton.Instancia.UsuarioActual.Ubicacion;
+                if (ubicacionUsuario != null && ubicacionUsuario.Latitud.HasValue && ubicacionUsuario.Longitud.HasValue)
+                {
+                    var coordenadas = new PointLatLng(ubicacionUsuario.Latitud.Value, ubicacionUsuario.Longitud.Value);
+                    UsuarioSingleton.Instancia.UbicacionActual = coordenadas;
+                    MostrarMapaPrincipal(coordenadas);
+                    AgregarMarcadorUbicacionUsuario(coordenadas);
+                    await MostrarAdopcionesCercanas(coordenadas.Lat, coordenadas.Lng);
+                }
+
+                UsuarioSingleton.Instancia.MostrarUbicacionRegistrada = true;
+                Btn_ToggleUbicacion.Content = "Mostrar ubicación actual";
+            }
+            else
+            {
+                UbicacionServicios ubicacionServicios = new UbicacionServicios();
+                var ubicacion = await ubicacionServicios.ObtenerUbicacionPorIPAsync();
+
+                if (ubicacion != null && ubicacion.Latitud.HasValue && ubicacion.Longitud.HasValue)
+                {
+                    var coordenadas = new PointLatLng(ubicacion.Latitud.Value, ubicacion.Longitud.Value);
+                    UsuarioSingleton.Instancia.UbicacionActual = coordenadas;
+                    MostrarMapaPrincipal(coordenadas);
+                    AgregarMarcadorUbicacionUsuario(coordenadas);
+                    await MostrarAdopcionesCercanas(coordenadas.Lat, coordenadas.Lng);
+                }
+
+                UsuarioSingleton.Instancia.MostrarUbicacionRegistrada = false;
+                Btn_ToggleUbicacion.Content = "Mostrar ubicación registrada";
+            }
         }
 
     }

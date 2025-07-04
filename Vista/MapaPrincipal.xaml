@@ -14,5 +14,12 @@
     <Grid>
         <gmap:GMapControl x:Name="mapaPrincipal"
                           Zoom="10"/>
+        <Button x:Name="Btn_ToggleUbicacion" Style="{StaticResource BotonGeneral}" 
+                Content="Mostrar ubicación actual"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="30"
+                Background="DodgerBlue"
+                Click="Btn_ToggleUbicacion_Click"/>
     </Grid>
 </Page>

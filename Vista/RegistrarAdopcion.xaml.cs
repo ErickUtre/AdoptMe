@@ -24,6 +24,7 @@ namespace Cliente_AdoptMe.Vista
         private string _rutaFotoSeleccionada;
         private Ubicacion _ubicacionSeleccionada = null;
         private bool _subioVideo = false;
+        private readonly MenuPrincipalUsuario _menuPrincipalUsuario = NavegadorPrincipal.Instancia.GetVentanaContenedora<MenuPrincipalUsuario>();
 
         public RegistrarAdopcion()
         {
@@ -154,7 +155,8 @@ namespace Cliente_AdoptMe.Vista
 
             MapaRegistro mapaRegistro = new MapaRegistro()
             {
-                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                Owner = _menuPrincipalUsuario,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
 
             bool? resultado = mapaRegistro.ShowDialog();
@@ -186,15 +188,17 @@ namespace Cliente_AdoptMe.Vista
             return true;
         }
 
-        private void Btn_Registrar(object sender, RoutedEventArgs e)
+        private async void Btn_Registrar(object sender, RoutedEventArgs e)
         {
             if (!Validar_Campos())
                 return;
 
-            RegistroAdopcion();
+            _menuPrincipalUsuario.MostrarOverlay();
+            await RegistroAdopcion();
+            _menuPrincipalUsuario.OcultarOverlay();
         }
 
-        private async void RegistroAdopcion()
+        private async Task RegistroAdopcion()
         {
             try
             {
