@@ -86,7 +86,18 @@ namespace Cliente_AdoptMe.Vista
                 {
                     Dispatcher.Invoke(() =>
                     {
-                        ListaNotificaciones.Items.Insert(0, noti);
+                        Notificacion notificacion = new Notificacion
+                        {
+                            NotificacionId = noti.NotificacionId,
+                            Titulo = noti.Titulo,
+                            Mensaje = noti.Mensaje,
+                            Tipo = noti.Tipo,
+                            ReferenciaId = noti.ReferenciaId,
+                            ReferenciaTipo = noti.ReferenciaTipo,
+                            Fecha = DateTime.TryParse(noti.Fecha, out var fecha) ? fecha : DateTime.Now
+                        };
+
+                        ListaNotificaciones.Items.Insert(0, notificacion);
                     });
                 };
             }

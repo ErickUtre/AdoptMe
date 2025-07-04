@@ -18,6 +18,7 @@ namespace Cliente_AdoptMe.Vista
     {
         private readonly AdopcionServicios _adopcionServicios;
         private List<Adopcion> _listaCompletaAdopciones;
+        private readonly MenuPrincipalUsuario _menuPrincipalUsuario = NavegadorPrincipal.Instancia.GetVentanaContenedora<MenuPrincipalUsuario>();
 
         public ConsultarAdopciones()
         {
@@ -28,7 +29,9 @@ namespace Cliente_AdoptMe.Vista
 
         private async void ConsultarAdopciones_Loaded(object sender, RoutedEventArgs e)
         {
+            _menuPrincipalUsuario.MostrarOverlay();
             await CargarAdopcionesPorPublicadorAsync();
+            _menuPrincipalUsuario.OcultarOverlay();
         }
 
         private async Task CargarAdopcionesPorPublicadorAsync()

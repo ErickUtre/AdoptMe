@@ -9,50 +9,66 @@
       Title="Notificaciones"
       Loaded="Page_Loaded">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  Background="#ECECEC">
-        <StackPanel Margin="50">
-            <Grid>
-                <TextBlock Text="Notificaciones" Style="{StaticResource Titulo}"/>
+    <Grid Background="#ECECEC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-                <Button Style="{StaticResource BotonGeneral}" 
-                        Content="Eliminar todas"
-                        Click="Btn_EliminarTodas_Click"
-                        HorizontalAlignment="Right"
-                        Margin="0,0,0,20"
-                        Background="Red"/>
-            </Grid>
-            
+        <Grid Margin="40,40,40,0">
+            <TextBlock Text="Notificaciones" Style="{StaticResource Titulo}"/>
 
-            <ItemsControl Name="ListaNotificaciones" ItemsSource="{Binding}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="0 0 0 10" Padding="10">
-                            <StackPanel>
-                                <Button Click="Btn_Notificacion_Click"
-                                        Tag="{Binding}" 
-                                        Padding="10" 
-                                        Margin="5"
-                                        HorizontalContentAlignment="Left"
-                                        Background="#FFEFEFEF">
-                                    <StackPanel>
-                                        <TextBlock FontWeight="Bold" Text="{Binding Titulo}" FontSize="24"/>
-                                        <TextBlock Text="{Binding Mensaje}" TextWrapping="Wrap" FontSize="18"/>
-                                        <TextBlock Text="{Binding Fecha, StringFormat='{}{0:yyyy-MM-dd}'}" FontSize="14" Foreground="Gray" />
-                                    </StackPanel>
-                                </Button>
+            <Button Style="{StaticResource BotonGeneral}" 
+                    Content="Eliminar todas"
+                    Click="Btn_EliminarTodas_Click"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,0,20"
+                    Background="Red"/>
+        </Grid>
 
-                                <Button Style="{StaticResource BotonGeneral}" 
-                                        Content="Eliminar"
-                                        Tag="{Binding}"
-                                        Margin="5,0,0,0"
-                                        Background="Red"
-                                        Click="Btn_Eliminar_Click" />
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
-    </ScrollViewer>
+        <Grid Grid.Row="1"
+              Margin="40">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl Name="ListaNotificaciones" ItemsSource="{Binding}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="0 0 0 10" Padding="10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1260" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Grid.Column="0"
+                                            Click="Btn_Notificacion_Click"
+                                            Tag="{Binding}" 
+                                            Padding="10" 
+                                            Margin="5"
+                                            HorizontalContentAlignment="Left"
+                                            Background="#FFEFEFEF">
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold" Text="{Binding Titulo}" FontSize="24"/>
+                                            <TextBlock Text="{Binding Mensaje}" TextWrapping="Wrap" FontSize="18"/>
+                                            <TextBlock Text="{Binding Fecha, StringFormat='{}{0:yyyy-MM-dd}'}" FontSize="14" Foreground="Gray" />
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Grid.Column="1"
+                                            Style="{StaticResource BotonGeneral}" 
+                                            Tag="{Binding}"
+                                            Margin="5,0,0,0"
+                                            Background="Red"
+                                            Width="130"
+                                            Click="Btn_Eliminar_Click">
+                                        <Image Source="/Recursos/Imagenes/IconoEliminar.png"/>
+                                    </Button>
+                                </Grid>
+                            </Border>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
 </Page>

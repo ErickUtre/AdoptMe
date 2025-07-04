@@ -52,8 +52,13 @@ namespace Cliente_AdoptMe.Vista
             {
                 Dispatcher.Invoke(() =>
                 {
-                    InterfazUsuarioHelper.MostrarToast(noti.Titulo, noti.Mensaje);
-                    BtnNotificaciones.Background = Brushes.Red;
+                    var paginaActual = NavegadorPrincipal.Instancia.GetContenido();
+
+                    if (paginaActual == null || paginaActual.GetType() != typeof(Notificaciones))
+                    {
+                        InterfazUsuarioHelper.MostrarToast(noti.Titulo, noti.Mensaje);
+                        BtnNotificaciones.Background = Brushes.Red;
+                    }
                 });
             };
 
