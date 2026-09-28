@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="Cliente_AdoptMe.Vista.MascotaToolTip"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+             xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="380"
+             Background="Transparent">
+    <Border Background="#2F558F"
+            CornerRadius="30"
+            BorderThickness="15"
+            BorderBrush="#284060"
+            Width="280"
+            MaxHeight="580">
+        <Grid Margin="25,15">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+                <TextBlock x:Name="txtbl_Nombre" 
+                           Style="{StaticResource Subtitulo2}" 
+                           Text="Max"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+                <TextBlock x:Name="txtbl_Edad"
+                           Style="{StaticResource Normal}"
+                           Text="{x:Static p:Resources.global_Edad}"
+                           Foreground="White"
+                           Margin="0,15,0,5"/>
+                <TextBlock x:Name="txtbl_Sexo"
+                           Style="{StaticResource Normal}"
+                           Text="{x:Static p:Resources.global_Sexo}"
+                           Foreground="White"
+                           Margin="0,5"/>
+                <TextBlock x:Name="txtbl_Especie"
+                           Style="{StaticResource Normal}"
+                           Text="{x:Static p:Resources.global_Especie}"
+                           Foreground="White"
+                           Margin="0,5"/>
+                <TextBlock x:Name="txtbl_Raza"
+                           Style="{StaticResource Normal}"
+                           Text="{x:Static p:Resources.global_Raza}"
+                           Foreground="White"
+                           Margin="0,5,0,20"/>
+            </StackPanel>
+
+            <Button Style="{StaticResource BotonGeneral}"
+                    Grid.Row="1"
+                    Content="{x:Static p:Resources.btn_VerDetalles}"
+                    Foreground="Black"
+                    Background="#FAFAFA"
+                    VerticalAlignment="Center" Click="IrDetallesMascota"/>
+            
+        </Grid>
+    </Border>
+</UserControl>

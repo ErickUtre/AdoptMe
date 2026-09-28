@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btn_Video_Reproducir" xml:space="preserve">
+    <value>▶ Reproducir</value>
+  </data>
+  <data name="btn_Video_Pausar" xml:space="preserve">
+    <value>⏸ Pausar</value>
+  </data>
+  <data name="btn_Video_Detener" xml:space="preserve">
+    <value>⏹ Detener</value>
+  </data>
+  <data name="btn_Video_Cerrar" xml:space="preserve">
+    <value>❌ Cerrar</value>
+  </data>
+  <data name="global_Aceptar" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="global_Cerrar" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="txtbl_ReporteMascotasAdoptadas" xml:space="preserve">
+    <value>Reporte de mascotas adoptadas</value>
+  </data>
+  <data name="txtbl_ReporteMascotasEnAdopcion" xml:space="preserve">
+    <value>Reporte de mascotas en adopción</value>
+  </data>
+  <data name="txtbl_PrevisualizacionReporte" xml:space="preserve">
+    <value>Previsualización reporte</value>
+  </data>
+  <data name="btn_Descargar" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="txtbl_Registro" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="global_Nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="global_Correo" xml:space="preserve">
+    <value>Correo</value>
+  </data>
+  <data name="global_Contrasena" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="global_ConfirmarContrasena" xml:space="preserve">
+    <value>Confirmar contraseña</value>
+  </data>
+  <data name="global_Telefono" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="global_Ciudad" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="btn_Registrar" xml:space="preserve">
+    <value>Registrar</value>
+  </data>
+  <data name="txtbl_RegistrarAdopcion" xml:space="preserve">
+    <value>Registrar adopción</value>
+  </data>
+  <data name="txtbl_InformacionMascota" xml:space="preserve">
+    <value>Información de la mascota</value>
+  </data>
+  <data name="txtbl_NombreMascota" xml:space="preserve">
+    <value>Nombre de la mascota</value>
+  </data>
+  <data name="global_Especie" xml:space="preserve">
+    <value>Especie</value>
+  </data>
+  <data name="global_Raza" xml:space="preserve">
+    <value>Raza</value>
+  </data>
+  <data name="global_Anio" xml:space="preserve">
+    <value>Año</value>
+  </data>
+  <data name="global_Mes" xml:space="preserve">
+    <value>Mes</value>
+  </data>
+  <data name="global_Sexo" xml:space="preserve">
+    <value>Sexo</value>
+  </data>
+  <data name="global_Tamano" xml:space="preserve">
+    <value>Tamaño</value>
+  </data>
+  <data name="global_Descripcion" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="btn_SubirFoto" xml:space="preserve">
+    <value>Subir foto</value>
+  </data>
+  <data name="btn_SubirVideo" xml:space="preserve">
+    <value>Subir video</value>
+  </data>
+  <data name="txtbl_Bienvenido" xml:space="preserve">
+    <value>Bienvenido:</value>
+  </data>
+  <data name="btn_CerrarSesion" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="btn_MenuPrincipal" xml:space="preserve">
+    <value>Menú Principal</value>
+  </data>
+  <data name="btn_RegistrarAdopcion" xml:space="preserve">
+    <value>Registrar adopción</value>
+  </data>
+  <data name="btn_VerAdopciones" xml:space="preserve">
+    <value>Ver adopciones</value>
+  </data>
+  <data name="global_Mensajes" xml:space="preserve">
+    <value>Mensajes</value>
+  </data>
+  <data name="btn_GenerarReportes" xml:space="preserve">
+    <value>Generar reportes</value>
+  </data>
+  <data name="btn_VerDetalles" xml:space="preserve">
+    <value>Ver detalles</value>
+  </data>
+  <data name="txtbl_InicioSesion" xml:space="preserve">
+    <value>Inicio de sesión</value>
+  </data>
+  <data name="global_Usuario" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="btn_Registrate" xml:space="preserve">
+    <value>REGISTRATE</value>
+  </data>
+  <data name="btn_IniciarSesion" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="txtbl_ModificarCampo" xml:space="preserve">
+    <value>Modificar campo</value>
+  </data>
+  <data name="global_Guardar" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="txtbl_NuevoValor" xml:space="preserve">
+    <value>Nuevo valor</value>
+  </data>
+  <data name="global_Cancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="txtbl_InformacionUsuario" xml:space="preserve">
+    <value>Información del usuario</value>
+  </data>
+  <data name="global_Edad" xml:space="preserve">
+    <value>Edad</value>
+  </data>
+  <data name="global_Estatura" xml:space="preserve">
+    <value>Estatura</value>
+  </data>
+  <data name="btn_EnviarMensaje" xml:space="preserve">
+    <value>Enviar mensaje</value>
+  </data>
+  <data name="btn_Solicitar" xml:space="preserve">
+    <value>Solicitar</value>
+  </data>
+  <data name="btn_VerVideo" xml:space="preserve">
+    <value>Ver video</value>
+  </data>
+  <data name="txtbl_AdopcionesRegistradas" xml:space="preserve">
+    <value>Adopciones registradas</value>
+  </data>
+  <data name="txtbl_BuscarAdopciones" xml:space="preserve">
+    <value>Buscar adopciones</value>
+  </data>
+  <data name="btn_Eliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="btn_Consultar" xml:space="preserve">
+    <value>Consultar</value>
+  </data>
+  <data name="btn_SolicitudesPendientes" xml:space="preserve">
+    <value>Solicitudes pendientes</value>
+  </data>
+  <data name="global_Estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="txtbl_EnviaUnMensaje" xml:space="preserve">
+    <value>Envía un mensaje</value>
+  </data>
+  <data name="btn_RegistrarUbicacion" xml:space="preserve">
+    <value>Registrar ubicación</value>
+  </data>
+  <data name="txtbl_Opcional" xml:space="preserve">
+    <value>Opcional</value>
+  </data>
+  <data name="titulo_ConfirmarModificacion" xml:space="preserve">
+    <value>Confirmar modificación</value>
+  </data>
+  <data name="txtbl_SeguroDeModificarUbicacion" xml:space="preserve">
+    <value>¿Seguro qué deseas modificar la ubicación?</value>
+  </data>
+  <data name="txtbl_UbicacionImprecisa" xml:space="preserve">
+    <value>La ubicación no es precisa, por favor, seleccione su ubicación dando doble clic de ser necesario.</value>
+  </data>
+  <data name="mensaje_ErrorUbicacion" xml:space="preserve">
+    <value>Error al obtener la ubicación, favor de intentarlo más tarde.</value>
+  </data>
+  <data name="txtbl_CampoVacioIncorrecto" xml:space="preserve">
+    <value>Campo vacio o incorrecto</value>
+  </data>
+  <data name="global_ErrorServidor" xml:space="preserve">
+    <value>Error con el servidor</value>
+  </data>
+  <data name="mensaje_ErrorServidor" xml:space="preserve">
+    <value>Error de conexión con el servidor</value>
+  </data>
+  <data name="btn_ActualizarUbicacion" xml:space="preserve">
+    <value>Actualizar ubicación</value>
+  </data>
+  <data name="mensaje_ErrorBD" xml:space="preserve">
+    <value>Error de conexión con la base de datos</value>
+  </data>
+  <data name="global_ErrorBD" xml:space="preserve">
+    <value>Error con la base de datos</value>
+  </data>
+  <data name="global_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="mensaje_ErrorGeneral" xml:space="preserve">
+    <value>Ha ocurrido un error inesperado</value>
+  </data>
+  <data name="global_Exito" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="mensaje_PermitirUbicacion" xml:space="preserve">
+    <value>¿Desea permitir que obtengamos su ubicación?</value>
+  </data>
+  <data name="titulo_PermisosUbicacion" xml:space="preserve">
+    <value>Permisos ubicación</value>
+  </data>
+  <data name="global_ErrorTiempo" xml:space="preserve">
+    <value>La solicitud tardó demasiado en responder</value>
+  </data>
+  <data name="mensaje_NoAutenticado" xml:space="preserve">
+    <value>Acceso denegado</value>
+  </data>
+  <data name="titulo_CredencialesIncorrectas" xml:space="preserve">
+    <value>Credenciales incorrectas</value>
+  </data>
+  <data name="mensaje_CredencialesIncorrectas" xml:space="preserve">
+    <value>El usuario y/o contraseña son incorrectos, favor de verificar.</value>
+  </data>
+  <data name="mensaje_PerfilActualizado" xml:space="preserve">
+    <value>Perfil actualizado correctamente</value>
+  </data>
+  <data name="btn_ObtenerUbicacion" xml:space="preserve">
+    <value>Obtener ubicación</value>
+  </data>
+  <data name="mensaje_SolicitudEnviada" xml:space="preserve">
+    <value>Solicitud enviada correctamente</value>
+  </data>
+</root>

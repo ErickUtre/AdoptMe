@@ -1,0 +1,58 @@
+﻿<Window x:Class="Cliente_AdoptMe.Vista.Video"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+        xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        mc:Ignorable="d"
+        Title="Video" Height="450" Width="700">
+    <Grid Background="#207766">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <MediaElement x:Name="mediaPlayer"
+                      Grid.Row="0"
+                      LoadedBehavior="Manual"
+                      UnloadedBehavior="Stop"
+                      Stretch="Uniform"
+                      MediaOpened="mediaPlayer_MediaOpened"/>
+
+        <Slider x:Name="sliderProgreso"
+                Grid.Row="1"
+                Height="25"
+                Margin="10"
+                Minimum="0"
+                PreviewMouseDown="Slider_PreviewMouseDown"
+                PreviewMouseUp="Slider_PreviewMouseUp"/>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+            <Button Style="{StaticResource BotonGeneral}" Content="{x:Static p:Resources.btn_Video_Reproducir}" Width="150" Margin="5" Click="BtnReproducir_Click" Background="#4CAF50" Foreground="#F0F0F0" FontSize="14">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button Style="{StaticResource BotonGeneral}" Content="{x:Static p:Resources.btn_Video_Pausar}" Width="150" Margin="5" Click="BtnPausar_Click" Background="#FF9800 " Foreground="#F0F0F0" FontSize="14">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button Style="{StaticResource BotonGeneral}" Content="{x:Static p:Resources.btn_Video_Detener}" Width="150" Margin="5" Click="BtnDetener_Click" Background="#F44336" Foreground="#F0F0F0" FontSize="14">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+            <Button Style="{StaticResource BotonGeneral}" Content="{x:Static p:Resources.btn_Video_Cerrar}" Width="150" Margin="5" Click="BtnCerrar_Click" Background="#D32F2F" Foreground="#F0F0F0" FontSize="14">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,124 @@
+﻿<Page x:Class="Cliente_AdoptMe.Vista.ConsultarUsuario"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cliente_AdoptMe.Vista"
+      xmlns:p="clr-namespace:Cliente_AdoptMe.Properties"
+      mc:Ignorable="d" 
+      d:DesignHeight="940" d:DesignWidth="1518"
+      Title="ConsultarUsuario">
+
+    <Grid Background="#EEEEEE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="40">
+            <TextBlock Style="{StaticResource Titulo}" 
+                       Text="{x:Static p:Resources.txtbl_InformacionUsuario}" 
+                       VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="100,40,10,0" 
+                        VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,5">
+                    <TextBlock Name="Txt_Nombre" 
+                               Style="{StaticResource TextoInformacion}" 
+                               Text="{x:Static p:Resources.global_Nombre}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap"
+                               Width="550"/>
+                    <Button Width="40" 
+                            Height="40" 
+                            Margin="20,0" 
+                            Click="Btn_EditarNombre">
+                        <Image Source="/Recursos/Imagenes/Editar.png"/>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,5">
+                    <TextBlock Name="Txt_Correo" 
+                               Style="{StaticResource TextoInformacion}" 
+                               Text="{x:Static p:Resources.global_Correo}"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap"
+                               Width="550"/>
+                    <Button Width="40" 
+                            Height="40" 
+                            Margin="20,0" 
+                            Click="Btn_EditarCorreo">
+                        <Image Source="/Recursos/Imagenes/Editar.png"/>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,5,0,55">
+                    <TextBlock Name="Txt_Telefono" 
+                               Style="{StaticResource TextoInformacion}" 
+                               Text="{x:Static p:Resources.global_Telefono}"
+                               Width="550"/>
+                    <Button Width="40" 
+                            Height="40" 
+                            Margin="20,0" 
+                            Click="Btn_EditarTelefono">
+                        <Image Source="/Recursos/Imagenes/Editar.png"/>
+                    </Button>
+                </StackPanel>
+
+                <TextBlock Name="Txt_Ubicacion" 
+                           Style="{StaticResource TextoInformacion}"/>
+
+                <Button Style="{StaticResource BotonGeneral}" 
+                        Content="{x:Static p:Resources.btn_ActualizarUbicacion}"
+                        FontSize="32"
+                        Background="#00DF82"
+                        Click="Btn_EditarUbicacion"/>
+
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="1" 
+                        Margin="40">
+                <Grid>
+                    <Image x:Name="Foto" 
+                           Stretch="UniformToFill"
+                           MaxHeight="400">
+                        <Image.Effect>
+                            <BlurEffect Radius="15"/>
+                        </Image.Effect>
+                    </Image>
+
+                    <Button Width="40" Height="40" Margin="639,302,0,58" Click="Btn_EditarFoto">
+                        <Image Source="/Recursos/Imagenes/Editar.png"/>
+                    </Button>
+
+                    <Image Name="FotoComplemento" 
+                           Source="/Recursos/Imagenes/IconoUsuarioDefecto.png"
+                           Stretch="Uniform"
+                           Margin="80,0"/>
+
+                    <Button Style="{StaticResource EstiloBaseBoton}" 
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Width="50" Click="BtnExpandirImagen">
+                        <Image Source="/Recursos/Imagenes/IconoExpandirImagen.png"
+                               Opacity="0.8"/>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
