@@ -1,0 +1,44 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:paginas="clr-namespace:AdoptMe.Escritorio.Vistas.Paginas"
+                    xmlns:adopciones="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Adopciones;assembly=AdoptMe.Escritorio.Nucleo"
+                    xmlns:chat="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Chat;assembly=AdoptMe.Escritorio.Nucleo"
+                    xmlns:mapa="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Mapa;assembly=AdoptMe.Escritorio.Nucleo"
+                    xmlns:notificaciones="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Notificaciones;assembly=AdoptMe.Escritorio.Nucleo"
+                    xmlns:perfil="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Perfil;assembly=AdoptMe.Escritorio.Nucleo"
+                    xmlns:reportes="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Reportes;assembly=AdoptMe.Escritorio.Nucleo">
+
+    <DataTemplate DataType="{x:Type mapa:MapaAdopcionesVistaModelo}">
+        <paginas:MapaAdopcionesVista />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type adopciones:DetalleAdopcionVistaModelo}">
+        <paginas:DetalleAdopcionVista />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type adopciones:AdopcionesPropiasVistaModelo}">
+        <paginas:AdopcionesPropiasVista />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type adopciones:EdicionAdopcionVistaModelo}">
+        <paginas:EdicionAdopcionVista />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type adopciones:RegistroAdopcionVistaModelo}">
+        <paginas:RegistroAdopcionVista />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type perfil:PerfilVistaModelo}">
+        <paginas:PerfilVista />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type chat:ConversacionesVistaModelo}">
+        <paginas:ConversacionesVista />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type chat:ChatVistaModelo}">
+        <paginas:ChatVista />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type notificaciones:NotificacionesVistaModelo}">
+        <paginas:NotificacionesVista />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type reportes:ReportesVistaModelo}">
+        <paginas:ReportesVista />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type reportes:ReporteVistaModelo}">
+        <paginas:ReporteVista />
+    </DataTemplate>
+</ResourceDictionary>

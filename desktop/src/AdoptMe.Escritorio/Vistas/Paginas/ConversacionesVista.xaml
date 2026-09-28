@@ -1,0 +1,41 @@
+<UserControl x:Class="AdoptMe.Escritorio.Vistas.Paginas.ConversacionesVista"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Chat;assembly=AdoptMe.Escritorio.Nucleo"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:ConversacionesVistaModelo}"
+             d:DesignHeight="940" d:DesignWidth="1508">
+    <Grid Background="White" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Mensajes" FontSize="36" FontWeight="Bold" Margin="10" Foreground="{StaticResource Primario}" />
+
+        <TextBlock Grid.Row="1" Text="No hay mensajes disponibles." FontStyle="Italic" FontSize="18" Foreground="Gray"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Visibility="{Binding SinConversaciones, Converter={StaticResource BooleanoAVisibilidad}}" />
+
+        <ScrollViewer Grid.Row="1" Margin="10" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Conversaciones}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Style="{StaticResource BotonBase}" HorizontalContentAlignment="Stretch"
+                                Command="{Binding DataContext.AbrirCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                CommandParameter="{Binding}">
+                            <Border Padding="10" Margin="0,0,0,10" BorderBrush="{StaticResource Primario}" BorderThickness="0,0,0,1" Width="1400">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Nombre}" FontWeight="Bold" FontSize="28" Foreground="{StaticResource Primario}" />
+                                    <TextBlock Text="{Binding UltimoMensaje}" FontSize="20" Foreground="Gray" TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+                            </Border>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,27 @@
+<Window x:Class="AdoptMe.Escritorio.Vistas.Dialogos.VideoVentana"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Video" Height="480" Width="720"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Background="{StaticResource Primario}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <MediaElement x:Name="Reproductor" LoadedBehavior="Manual" UnloadedBehavior="Stop" Stretch="Uniform"
+                      MediaOpened="AlAbrirMedio" />
+
+        <Slider x:Name="Progreso" Grid.Row="1" Height="25" Margin="10" Minimum="0"
+                Thumb.DragStarted="AlIniciarArrastre" Thumb.DragCompleted="AlTerminarArrastre" />
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+            <Button Style="{StaticResource BotonGeneral}" Content="▶ Reproducir" Width="150" Margin="5" FontSize="14" Background="#4CAF50" Click="Reproducir" />
+            <Button Style="{StaticResource BotonGeneral}" Content="⏸ Pausar" Width="150" Margin="5" FontSize="14" Background="#FF9800" Click="Pausar" />
+            <Button Style="{StaticResource BotonGeneral}" Content="⏹ Detener" Width="150" Margin="5" FontSize="14" Background="#F44336" Click="Detener" />
+            <Button Style="{StaticResource BotonGeneral}" Content="Cerrar" Width="150" Margin="5" FontSize="14" Background="#D32F2F" IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</Window>

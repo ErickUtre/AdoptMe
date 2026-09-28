@@ -1,0 +1,70 @@
+<UserControl x:Class="AdoptMe.Escritorio.Vistas.Paginas.AdopcionesPropiasVista"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Adopciones;assembly=AdoptMe.Escritorio.Nucleo"
+             xmlns:nucleo="clr-namespace:AdoptMe.Escritorio.Nucleo;assembly=AdoptMe.Escritorio.Nucleo"
+             xmlns:controles="clr-namespace:AdoptMe.Escritorio.Controles"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:AdopcionesPropiasVistaModelo}"
+             d:DesignHeight="940" d:DesignWidth="1508">
+    <Grid Background="{StaticResource Fondo}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Style="{StaticResource Titulo}" Margin="40" Text="Adopciones registradas" />
+
+        <TextBox Grid.Row="1" Grid.Column="1" Width="440" Margin="0,0,80,0" VerticalAlignment="Top"
+                 MaxLength="45"
+                 controles:TextoSugerido.Texto="Buscar por nombre"
+                 Text="{Binding Filtro, UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBlock Grid.Row="1" Style="{StaticResource Normal}" Margin="100,0" Text="{x:Static nucleo:Textos.SinAdopcionesRegistradas}"
+                   Visibility="{Binding SinResultados, Converter={StaticResource BooleanoAVisibilidad}}" />
+
+        <ScrollViewer Grid.Row="1" Margin="100,0,40,20" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Visibles}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type vm:ElementoAdopcionVistaModelo}">
+                        <Border Style="{StaticResource Tarjeta}" Width="760" HorizontalAlignment="Left">
+                            <StackPanel>
+                                <DockPanel>
+                                    <Image DockPanel.Dock="Right" Width="306" Height="223" Stretch="UniformToFill" Margin="10,0,0,0"
+                                           Source="{Binding Foto, Converter={StaticResource BytesAImagen}, ConverterParameter='pack://application:,,,/Recursos/Imagenes/MascotaDefault.png'}" />
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Mascota.Nombre}" FontSize="31" Foreground="White" FontWeight="Bold" Margin="0,0,0,16" />
+                                        <TextBlock Text="{Binding Mascota.Especie}" FontSize="18" Margin="0,0,0,8" />
+                                        <TextBlock Text="{Binding Mascota.Raza}" FontSize="18" Margin="0,0,0,8" />
+                                        <TextBlock Text="{Binding Mascota.Edad}" FontSize="18" Margin="0,0,0,8" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding EstadoTexto}" FontSize="18" Margin="0,0,10,0" />
+                                            <Ellipse Width="20" Height="20" Fill="{Binding FueAdoptada, Converter={StaticResource AdoptadaAColor}}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DockPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                                    <Button Style="{StaticResource BotonGeneral}" Content="Solicitudes pendientes" Background="#64CC20" Width="200" FontSize="13" Margin="0,0,10,0"
+                                            Command="{Binding DataContext.VerSolicitudesCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}" />
+                                    <Button Style="{StaticResource BotonGeneral}" Content="Consultar" Background="#0A94AB" Width="200" FontSize="13" Margin="0,0,10,0"
+                                            Command="{Binding DataContext.ConsultarCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}" />
+                                    <Button Style="{StaticResource BotonGeneral}" Content="Eliminar" Background="{StaticResource Peligro}" Width="200" FontSize="13"
+                                            Command="{Binding DataContext.EliminarCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

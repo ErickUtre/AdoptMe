@@ -1,0 +1,28 @@
+<UserControl x:Class="AdoptMe.Escritorio.Vistas.Paginas.TarjetaMascota"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:modelos="clr-namespace:AdoptMe.Escritorio.Nucleo.Modelos;assembly=AdoptMe.Escritorio.Nucleo"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=modelos:Mascota}"
+             Background="Transparent">
+    <Border Background="{StaticResource TarjetaMapa}" CornerRadius="30" BorderThickness="15" BorderBrush="{StaticResource BordeMapa}" Width="280">
+        <StackPanel Margin="25,15">
+            <TextBlock Style="{StaticResource Subtitulo}" HorizontalAlignment="Center" Text="{Binding Nombre}" />
+            <TextBlock Style="{StaticResource Normal}" Foreground="White" Margin="0,15,0,5">
+                <Run Text="Edad:" /> <Run Text="{Binding Edad, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Style="{StaticResource Normal}" Foreground="White" Margin="0,5">
+                <Run Text="Sexo:" /> <Run Text="{Binding Sexo, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Style="{StaticResource Normal}" Foreground="White" Margin="0,5">
+                <Run Text="Especie:" /> <Run Text="{Binding Especie, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Style="{StaticResource Normal}" Foreground="White" Margin="0,5,0,20">
+                <Run Text="Raza:" /> <Run Text="{Binding Raza, Mode=OneWay}" />
+            </TextBlock>
+            <Button Style="{StaticResource BotonGeneral}" Content="Ver detalles" Foreground="Black" Background="#FAFAFA" Click="AlSolicitarDetalles" />
+        </StackPanel>
+    </Border>
+</UserControl>

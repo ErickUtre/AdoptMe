@@ -1,0 +1,35 @@
+<UserControl x:Class="AdoptMe.Escritorio.Vistas.Paginas.ReportesVista"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Reportes;assembly=AdoptMe.Escritorio.Nucleo"
+             xmlns:nucleo="clr-namespace:AdoptMe.Escritorio.Nucleo;assembly=AdoptMe.Escritorio.Nucleo"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:ReportesVistaModelo}"
+             d:DesignHeight="940" d:DesignWidth="1508">
+    <UserControl.Resources>
+        <Style x:Key="BotonReporte" TargetType="Button" BasedOn="{StaticResource BotonBase}">
+            <Setter Property="Width" Value="500" />
+            <Setter Property="Height" Value="550" />
+            <Setter Property="Background" Value="{StaticResource Reporte}" />
+            <Setter Property="Effect" Value="{StaticResource Sombra}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource Fondo}">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Style="{StaticResource BotonReporte}" Margin="0,0,50,0" Command="{Binding VerAdoptadasCommand}">
+                <StackPanel>
+                    <Image Source="/Recursos/Imagenes/Cat.png" Width="234" Height="238" Margin="0,10" />
+                    <TextBlock Text="{x:Static nucleo:Textos.ReporteAdoptadas}" TextAlignment="Center" FontSize="36" Foreground="White" TextWrapping="Wrap" Width="440" />
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource BotonReporte}" Command="{Binding VerEnAdopcionCommand}">
+                <StackPanel>
+                    <Image Source="/Recursos/Imagenes/Dog.png" Width="258" Height="229" Margin="0,10" />
+                    <TextBlock Text="{x:Static nucleo:Textos.ReporteEnAdopcion}" TextAlignment="Center" FontSize="36" Foreground="White" TextWrapping="Wrap" Width="440" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

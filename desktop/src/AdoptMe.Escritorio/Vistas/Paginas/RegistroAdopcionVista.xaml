@@ -1,0 +1,88 @@
+<UserControl x:Class="AdoptMe.Escritorio.Vistas.Paginas.RegistroAdopcionVista"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Adopciones;assembly=AdoptMe.Escritorio.Nucleo"
+             xmlns:edicion="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Edicion;assembly=AdoptMe.Escritorio.Nucleo"
+             xmlns:modelos="clr-namespace:AdoptMe.Escritorio.Nucleo.Modelos;assembly=AdoptMe.Escritorio.Nucleo"
+             xmlns:controles="clr-namespace:AdoptMe.Escritorio.Controles"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:RegistroAdopcionVistaModelo}"
+             d:DesignHeight="940" d:DesignWidth="1508">
+    <Grid Background="{StaticResource Fondo}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="40,40,40,10">
+            <TextBlock Style="{StaticResource Titulo}" Text="Registrar adopción" />
+            <TextBlock Style="{StaticResource Normal}" FontSize="32" Margin="60,10,0,0" Text="Información de la mascota" />
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="100,10,100,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+                <TextBox Width="510" Margin="0,10" MaxLength="45" controles:TextoSugerido.Texto="Nombre de la mascota"
+                         Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Width="510" Margin="0,10" MaxLength="50" controles:TextoSugerido.Texto="Especie"
+                         Text="{Binding Especie, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Width="510" Margin="0,10" MaxLength="100" controles:TextoSugerido.Texto="Raza"
+                         Text="{Binding Raza, UpdateSourceTrigger=PropertyChanged}" />
+
+                <StackPanel Width="510" Orientation="Horizontal" Margin="0,10">
+                    <StackPanel Width="245">
+                        <TextBlock Style="{StaticResource Etiqueta}" Text="Años" />
+                        <ComboBox ItemsSource="{x:Static edicion:CamposMascota.Anios}" SelectedItem="{Binding Anios}" />
+                    </StackPanel>
+                    <StackPanel Width="245" Margin="20,0,0,0">
+                        <TextBlock Style="{StaticResource Etiqueta}" Text="Meses" />
+                        <ComboBox ItemsSource="{x:Static edicion:CamposMascota.Meses}" SelectedItem="{Binding Meses}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Width="510" Margin="0,10">
+                    <TextBlock Style="{StaticResource Etiqueta}" Text="Sexo" />
+                    <ComboBox ItemsSource="{x:Static modelos:SexosMascota.Todos}" SelectedItem="{Binding Sexo}" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <StackPanel Width="510" Margin="0,10">
+                    <TextBlock Style="{StaticResource Etiqueta}" Text="Tamaño" />
+                    <ComboBox ItemsSource="{x:Static edicion:CamposMascota.Tamanos}" SelectedItem="{Binding Tamano}" />
+                </StackPanel>
+                <TextBox Width="510" Height="220" Margin="0,10" MaxLength="2000"
+                         TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top"
+                         controles:TextoSugerido.Texto="Descripción"
+                         Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" />
+                <StackPanel Orientation="Horizontal" Width="510" Margin="0,10">
+                    <Image Width="240" Height="150" Stretch="Uniform" Source="{Binding RutaFoto}" />
+                    <TextBlock Style="{StaticResource FuenteBase}" Margin="16,0,0,0" Width="250" VerticalAlignment="Center" Text="{Binding DescripcionUbicacion}" />
+                </StackPanel>
+                <TextBlock Style="{StaticResource FuenteBase}" Width="510" Text="{Binding RutaVideo, StringFormat='Video: {0}'}"
+                           Visibility="{Binding RutaVideo, Converter={StaticResource NuloAVisibilidad}}" />
+            </StackPanel>
+        </Grid>
+
+        <Border Grid.Row="2" Height="1" Margin="40,0" Background="#706363" VerticalAlignment="Top" />
+        <Grid Grid.Row="2" Margin="40,30">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Style="{StaticResource BotonGeneral}" Content="Obtener ubicación" Background="{StaticResource UbicacionMarca}" Margin="0,0,20,0"
+                        Command="{Binding SeleccionarUbicacionCommand}" />
+                <Button Style="{StaticResource BotonGeneral}" Content="Subir foto" Background="#3AC1CB" Margin="0,0,20,0"
+                        Command="{Binding SeleccionarFotoCommand}" />
+                <Button Style="{StaticResource BotonGeneral}" Content="Subir video" Background="#0D80C1"
+                        Command="{Binding SeleccionarVideoCommand}" />
+            </StackPanel>
+            <Button Style="{StaticResource BotonGeneral}" HorizontalAlignment="Right" Content="Registrar" Background="{StaticResource Exito}"
+                    Command="{Binding RegistrarCommand}" />
+        </Grid>
+    </Grid>
+</UserControl>

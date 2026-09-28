@@ -1,0 +1,10 @@
+<Window x:Class="AdoptMe.Escritorio.Vistas.Dialogos.ImagenVentana"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Imagen" Height="650" Width="1000"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize">
+    <Grid Background="Gray">
+        <Image x:Name="Imagen" Margin="30" Stretch="Uniform" />
+    </Grid>
+</Window>

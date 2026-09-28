@@ -1,0 +1,87 @@
+<Window x:Class="AdoptMe.Escritorio.Vistas.Ventanas.RegistroUsuarioVentana"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:AdoptMe.Escritorio.Nucleo.VistasModelo.Acceso;assembly=AdoptMe.Escritorio.Nucleo"
+        xmlns:nucleo="clr-namespace:AdoptMe.Escritorio.Nucleo;assembly=AdoptMe.Escritorio.Nucleo"
+        xmlns:controles="clr-namespace:AdoptMe.Escritorio.Controles"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:RegistroUsuarioVistaModelo}"
+        Title="AdoptMe - Registro" Height="820" Width="560"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterOwner">
+    <Grid Background="{StaticResource Primario}">
+        <StackPanel Margin="30">
+            <Grid Margin="0,0,0,10">
+                <Button Style="{StaticResource BotonBase}" HorizontalAlignment="Left" Command="{Binding RegresarCommand}" ToolTip="Regresar">
+                    <Image Source="/Recursos/Imagenes/IconoRegresar.png" Width="60" />
+                </Button>
+                <TextBlock Style="{StaticResource Titulo}" Foreground="White" HorizontalAlignment="Center" Text="Registro" />
+            </Grid>
+
+            <TextBox Margin="0,14" MaxLength="100"
+                     controles:TextoSugerido.Texto="Nombre"
+                     BorderBrush="{Binding NombreInvalido, Converter={StaticResource InvalidoABorde}}"
+                     Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBox Margin="0,14" MaxLength="100"
+                     controles:TextoSugerido.Texto="Correo"
+                     BorderBrush="{Binding CorreoInvalido, Converter={StaticResource InvalidoABorde}}"
+                     Text="{Binding Correo, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Grid Width="300" Margin="0,14">
+                <PasswordBox MaxLength="100"
+                             controles:TextoSugerido.Texto="Contraseña"
+                             BorderBrush="{Binding ContrasenaInvalida, Converter={StaticResource InvalidoABorde}}"
+                             controles:ContrasenaEnlazable.Contrasena="{Binding Contrasena}"
+                             Visibility="{Binding ContrasenaVisible, Converter={StaticResource BooleanoInvertidoAVisibilidad}}" />
+                <TextBox MaxLength="100"
+                         controles:TextoSugerido.Texto="Contraseña"
+                         BorderBrush="{Binding ContrasenaInvalida, Converter={StaticResource InvalidoABorde}}"
+                         Text="{Binding Contrasena, UpdateSourceTrigger=PropertyChanged}"
+                         Visibility="{Binding ContrasenaVisible, Converter={StaticResource BooleanoAVisibilidad}}" />
+                <Button Style="{StaticResource BotonBase}" HorizontalAlignment="Right" Margin="0,0,10,0" Width="36"
+                        ToolTip="Mostrar u ocultar contraseña"
+                        Command="{Binding AlternarVisibilidadContrasenaCommand}">
+                    <Image Source="/Recursos/Imagenes/IconoOcultar.png" />
+                </Button>
+                <Image Source="/Recursos/Imagenes/IconoInfo.png" Width="30" Margin="0,0,-50,0" HorizontalAlignment="Right"
+                       ToolTip="{x:Static nucleo:Textos.ReglasContrasena}" />
+            </Grid>
+
+            <Grid Width="300" Margin="0,14">
+                <PasswordBox MaxLength="100"
+                             controles:TextoSugerido.Texto="Confirmar contraseña"
+                             BorderBrush="{Binding ConfirmacionInvalida, Converter={StaticResource InvalidoABorde}}"
+                             controles:ContrasenaEnlazable.Contrasena="{Binding ConfirmacionContrasena}"
+                             Visibility="{Binding ContrasenaVisible, Converter={StaticResource BooleanoInvertidoAVisibilidad}}" />
+                <TextBox MaxLength="100"
+                         controles:TextoSugerido.Texto="Confirmar contraseña"
+                         BorderBrush="{Binding ConfirmacionInvalida, Converter={StaticResource InvalidoABorde}}"
+                         Text="{Binding ConfirmacionContrasena, UpdateSourceTrigger=PropertyChanged}"
+                         Visibility="{Binding ContrasenaVisible, Converter={StaticResource BooleanoAVisibilidad}}" />
+            </Grid>
+
+            <TextBox Margin="0,14" MaxLength="10"
+                     controles:TextoSugerido.Texto="Teléfono"
+                     BorderBrush="{Binding TelefonoInvalido, Converter={StaticResource InvalidoABorde}}"
+                     Text="{Binding Telefono, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Style="{StaticResource FuenteBase}" Foreground="White" FontSize="15" HorizontalAlignment="Center" Text="Opcional" />
+            <Button Style="{StaticResource BotonGeneral}" Margin="0,6,0,6"
+                    Background="{StaticResource UbicacionMarca}"
+                    Content="Registrar ubicación"
+                    Command="{Binding SeleccionarUbicacionCommand}" />
+            <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="13" Text="Ubicación seleccionada ✓"
+                       Visibility="{Binding Ubicacion, Converter={StaticResource NuloAVisibilidad}}" />
+
+            <Button Style="{StaticResource BotonGeneral}" Margin="0,14"
+                    Background="#73EF41"
+                    Content="Registrar"
+                    Command="{Binding RegistrarCommand}" />
+        </StackPanel>
+
+        <controles:IndicadorCarga Visibility="{Binding EstaOcupado, Converter={StaticResource BooleanoAVisibilidad}}" />
+    </Grid>
+</Window>
