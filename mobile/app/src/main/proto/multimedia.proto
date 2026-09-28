@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package multimedia;
+
+option java_multiple_files = true;
+
+service ServicioMultimedia {
+    rpc SubirFotoUsuario(stream ChunkArchivo) returns (RespuestaGeneral);
+    rpc SubirFotoMascota(stream ChunkArchivo) returns (RespuestaGeneral);
+    rpc SubirVideoMascota(stream ChunkArchivo) returns (RespuestaGeneral);
+}
+
+message ChunkArchivo {
+    oneof contenido {
+        Metadata metadata = 1;
+        bytes chunk = 2;
+    }
+}
+
+message Metadata {
+    int32 idReferencia = 1;
+    string nombreArchivo = 2;
+}
+
+message RespuestaGeneral {
+    bool exito = 1;
+    string mensaje = 2;
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    android:background="#207766">
+
+    <ImageView
+        android:id="@+id/miImagen"
+        android:layout_width="233dp"
+        android:layout_height="183dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/adoptmelogo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="Inicio de sesión"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etCorreo"
+        android:layout_width="327dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Correo"
+        android:inputType="text"
+        android:padding="15dp" />
+
+    <!-- Campo de Contraseña -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="329dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:padding="15dp" />
+
+    <!-- Botón "Iniciar sesión" -->
+
+    <!-- Texto "REGISTRATE" (como enlace) -->
+
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTRATE"
+        android:textColor="#2196F3"
+        android:layout_marginBottom="15dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="281dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#187DAC"
+        android:text="Iniciar sesión"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#207766"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvInformacion"
+        android:text="La ubicación puede no ser precisa, por favor, seleccione su ubicación dando un toque de ser necesario. "
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp" />
+
+    <!-- Mapa ocupa el espacio disponible -->
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapaRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1" />
+
+    <!-- Sección inferior con texto y botones -->
+    <TextView
+        android:id="@+id/tvDatosUbicacion"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#44C22B"
+            android:text="Guardar"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#D94F4F"
+            android:text="Cancelar"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+</LinearLayout>

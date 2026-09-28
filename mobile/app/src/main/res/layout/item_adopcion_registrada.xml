@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardElevation="4dp"
+    card_view:cardCornerRadius="8dp"
+    android:layout_marginBottom="12dp"
+    android:padding="12dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_margin="20dp">
+
+        <!-- Imagen de la mascota -->
+        <ImageView
+            android:id="@+id/imgFotoMascota"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Foto mascota"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Info y botones -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Datos de la mascota -->
+            <TextView
+                android:id="@+id/txtNombreMascota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Mascota"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/txtEspecieRazaEdad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Especie · Raza · Edad"
+                android:textSize="18sp"
+                android:textColor="#666666"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/txtEstadoSolicitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado: Disponible"
+                android:textSize="18sp"
+                android:textColor="#007700"
+                android:layout_marginTop="4dp" />
+
+            <!-- Botones en vertical -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:gravity="start">
+
+                <Button
+                    android:id="@+id/btnEliminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar"
+                    android:background="#EF9A9A"
+                    android:textAllCaps="false"
+
+                    android:layout_marginBottom="4dp" />
+
+                <Button
+                    android:id="@+id/btnSolicitudesPendientes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Solicitudes pendientes"
+                    android:textAllCaps="false"
+                    android:background="#90CAF9"
+                    android:layout_marginBottom="4dp" />
+
+                <Button
+                    android:id="@+id/btnDetallesMascota"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver detalles"
+                    android:background="#90CAF9"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
