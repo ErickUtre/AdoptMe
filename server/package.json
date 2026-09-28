@@ -1,1 +1,41 @@
-{}
+{
+  "name": "adoptme-servidor",
+  "version": "2.0.0",
+  "description": "Servidor REST, gRPC y Socket.IO de AdoptMe",
+  "private": true,
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "lint": "eslint .",
+    "test": "jest --selectProjects unitarias",
+    "test:integracion": "jest --selectProjects integracion --runInBand",
+    "test:cobertura": "jest --coverage --runInBand"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.14.5",
+    "@grpc/proto-loader": "^0.8.1",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "redis": "^6.2.1",
+    "sequelize": "^6.37.8",
+    "socket.io": "^4.8.4",
+    "swagger-ui-express": "^5.0.1",
+    "tedious": "^20.0.0",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "jest": "^30.5.2",
+    "socket.io-client": "^4.8.4",
+    "supertest": "^7.3.0"
+  }
+}

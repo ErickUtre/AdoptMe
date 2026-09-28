@@ -1,0 +1,556 @@
+openapi: 3.0.3
+info:
+  title: AdoptMe API
+  version: 2.0.0
+  description: API REST de AdoptMe. Las operaciones en tiempo real se exponen por gRPC y Socket.IO.
+servers:
+  - url: /api
+security:
+  - bearerAuth: []
+tags:
+  - name: Acceso
+  - name: Usuarios
+  - name: Adopciones
+  - name: Solicitudes
+  - name: Multimedia
+  - name: Chat
+  - name: Notificaciones
+paths:
+  /acceso/iniciar-sesion:
+    post:
+      tags: [Acceso]
+      summary: Inicia sesión y devuelve un token JWT
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credenciales'
+      responses:
+        '200':
+          description: Sesión iniciada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sesion'
+        '401':
+          $ref: '#/components/responses/NoAutenticado'
+  /acceso:
+    patch:
+      tags: [Acceso]
+      summary: Actualiza el correo o la contraseña del usuario autenticado
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Correo: { type: string, format: email }
+                Contrasena: { type: string, minLength: 8 }
+      responses:
+        '204': { description: Credenciales actualizadas }
+        '409': { $ref: '#/components/responses/Conflicto' }
+  /usuarios:
+    post:
+      tags: [Usuarios]
+      summary: Registra un usuario
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistroUsuario'
+      responses:
+        '201':
+          description: Usuario registrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  UsuarioID: { type: integer }
+        '400': { $ref: '#/components/responses/Invalido' }
+        '409': { $ref: '#/components/responses/Conflicto' }
+  /usuarios/yo:
+    get:
+      tags: [Usuarios]
+      summary: Obtiene el perfil del usuario autenticado
+      responses:
+        '200':
+          description: Perfil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Perfil'
+    patch:
+      tags: [Usuarios]
+      summary: Actualiza nombre o teléfono
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Nombre: { type: string }
+                Telefono: { type: string, pattern: '^\d{10}$' }
+      responses:
+        '200':
+          description: Perfil actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Perfil'
+  /usuarios/yo/ubicacion:
+    put:
+      tags: [Usuarios]
+      summary: Reemplaza la ubicación del usuario autenticado
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ubicacion'
+      responses:
+        '200':
+          description: Ubicación guardada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ubicacion'
+  /usuarios/yo/foto:
+    get:
+      tags: [Multimedia]
+      summary: Descarga la foto de perfil del usuario autenticado
+      responses:
+        '200':
+          description: Imagen
+          content:
+            image/*: {}
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+  /usuarios/{id}:
+    get:
+      tags: [Usuarios]
+      summary: Obtiene el nombre público de un usuario
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Resumen del usuario
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  UsuarioID: { type: integer }
+                  Nombre: { type: string }
+  /adopciones:
+    get:
+      tags: [Adopciones]
+      summary: Lista adopciones para reportes (solo administradores)
+      parameters:
+        - name: estado
+          in: query
+          schema:
+            type: string
+            enum: [disponible, adoptada]
+      responses:
+        '200':
+          description: Adopciones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdopcionResumen'
+        '403': { $ref: '#/components/responses/Prohibido' }
+    post:
+      tags: [Adopciones]
+      summary: Publica una mascota en adopción
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [Mascota, Ubicacion]
+              properties:
+                Mascota: { $ref: '#/components/schemas/Mascota' }
+                Ubicacion: { $ref: '#/components/schemas/Ubicacion' }
+      responses:
+        '201':
+          description: Adopción publicada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  AdopcionID: { type: integer }
+                  MascotaID: { type: integer }
+  /adopciones/propias:
+    get:
+      tags: [Adopciones]
+      summary: Lista las adopciones publicadas por el usuario autenticado
+      responses:
+        '200':
+          description: Adopciones propias
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Adopcion'
+  /adopciones/{id}:
+    parameters:
+      - $ref: '#/components/parameters/Id'
+    get:
+      tags: [Adopciones]
+      summary: Obtiene el detalle de una adopción
+      responses:
+        '200':
+          description: Adopción
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Adopcion'
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+    patch:
+      tags: [Adopciones]
+      summary: Modifica parcialmente la mascota o la ubicación de una adopción propia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Mascota: { $ref: '#/components/schemas/Mascota' }
+                Ubicacion: { $ref: '#/components/schemas/Ubicacion' }
+      responses:
+        '200':
+          description: Adopción actualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Adopcion'
+        '403': { $ref: '#/components/responses/Prohibido' }
+    delete:
+      tags: [Adopciones]
+      summary: Elimina una adopción propia junto con su mascota, ubicación y archivos
+      responses:
+        '204': { description: Adopción eliminada }
+        '403': { $ref: '#/components/responses/Prohibido' }
+  /adopciones/{adopcionId}/solicitudes:
+    parameters:
+      - $ref: '#/components/parameters/AdopcionId'
+    get:
+      tags: [Solicitudes]
+      summary: Lista las solicitudes de una adopción propia
+      responses:
+        '200':
+          description: Solicitudes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Solicitud'
+    post:
+      tags: [Solicitudes]
+      summary: Solicita adoptar la mascota
+      responses:
+        '201':
+          description: Solicitud registrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Solicitud'
+        '409': { $ref: '#/components/responses/Conflicto' }
+  /adopciones/{adopcionId}/solicitudes/{solicitudId}/aceptacion:
+    parameters:
+      - $ref: '#/components/parameters/AdopcionId'
+      - $ref: '#/components/parameters/SolicitudId'
+    post:
+      tags: [Solicitudes]
+      summary: Acepta la solicitud y marca la mascota como adoptada
+      responses:
+        '204': { description: Solicitud aceptada }
+  /adopciones/{adopcionId}/solicitudes/{solicitudId}:
+    parameters:
+      - $ref: '#/components/parameters/AdopcionId'
+      - $ref: '#/components/parameters/SolicitudId'
+    delete:
+      tags: [Solicitudes]
+      summary: Rechaza o cancela una solicitud
+      responses:
+        '204': { description: Solicitud eliminada }
+  /mascotas/{id}/foto:
+    get:
+      tags: [Multimedia]
+      summary: Descarga la foto de una mascota
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Imagen
+          content:
+            image/*: {}
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+  /mascotas/{id}/video:
+    get:
+      tags: [Multimedia]
+      summary: Transmite el video de una mascota con soporte de rangos
+      parameters:
+        - $ref: '#/components/parameters/Id'
+        - name: Range
+          in: header
+          schema: { type: string, example: bytes=0-1048575 }
+      responses:
+        '200':
+          description: Video completo
+          content:
+            video/mp4: {}
+        '206':
+          description: Fragmento del video
+          content:
+            video/mp4: {}
+  /chat/conversaciones:
+    get:
+      tags: [Chat]
+      summary: Lista las conversaciones del usuario autenticado
+      responses:
+        '200':
+          description: Conversaciones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Conversacion'
+  /chat/conversaciones/{usuarioId}/mensajes:
+    parameters:
+      - name: usuarioId
+        in: path
+        required: true
+        schema: { type: integer }
+    get:
+      tags: [Chat]
+      summary: Obtiene el historial con otro usuario
+      responses:
+        '200':
+          description: Mensajes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mensaje'
+    post:
+      tags: [Chat]
+      summary: Envía un mensaje a otro usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [Contenido]
+              properties:
+                Contenido: { type: string, maxLength: 1000 }
+      responses:
+        '201':
+          description: Mensaje enviado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mensaje'
+  /notificaciones:
+    get:
+      tags: [Notificaciones]
+      summary: Lista las notificaciones del usuario autenticado
+      responses:
+        '200':
+          description: Notificaciones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notificacion'
+    delete:
+      tags: [Notificaciones]
+      summary: Elimina todas las notificaciones del usuario
+      responses:
+        '204': { description: Notificaciones eliminadas }
+  /notificaciones/{id}:
+    delete:
+      tags: [Notificaciones]
+      summary: Elimina una notificación
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        '204': { description: Notificación eliminada }
+        '404': { $ref: '#/components/responses/NoEncontrado' }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1 }
+    AdopcionId:
+      name: adopcionId
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1 }
+    SolicitudId:
+      name: solicitudId
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1 }
+  responses:
+    Invalido:
+      description: Datos inválidos
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NoAutenticado:
+      description: Credenciales inválidas o ausentes
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Prohibido:
+      description: Sin permisos sobre el recurso
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NoEncontrado:
+      description: Recurso no encontrado
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Conflicto:
+      description: Conflicto con el estado actual
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+  schemas:
+    Error:
+      type: object
+      properties:
+        error: { type: string }
+    Credenciales:
+      type: object
+      required: [Correo, Contrasena]
+      properties:
+        Correo: { type: string, format: email }
+        Contrasena: { type: string }
+    RegistroUsuario:
+      type: object
+      required: [Nombre, Acceso]
+      properties:
+        Nombre: { type: string, maxLength: 100 }
+        Telefono: { type: string, pattern: '^\d{10}$' }
+        Ubicacion: { $ref: '#/components/schemas/Ubicacion' }
+        Acceso: { $ref: '#/components/schemas/Credenciales' }
+    Ubicacion:
+      type: object
+      required: [Latitud, Longitud]
+      properties:
+        UbicacionID: { type: integer, readOnly: true }
+        Latitud: { type: number, minimum: -90, maximum: 90 }
+        Longitud: { type: number, minimum: -180, maximum: 180 }
+        Ciudad: { type: string, nullable: true }
+        Estado: { type: string, nullable: true }
+        Pais: { type: string, nullable: true }
+    Perfil:
+      type: object
+      properties:
+        UsuarioID: { type: integer }
+        Nombre: { type: string }
+        Telefono: { type: string, nullable: true }
+        FechaRegistro: { type: string, format: date-time }
+        Ubicacion:
+          allOf:
+            - $ref: '#/components/schemas/Ubicacion'
+          nullable: true
+        Acceso:
+          type: object
+          properties:
+            Correo: { type: string }
+            EsAdmin: { type: boolean }
+    Sesion:
+      type: object
+      properties:
+        token: { type: string }
+        esAdmin: { type: boolean }
+        usuario: { $ref: '#/components/schemas/Perfil' }
+    Mascota:
+      type: object
+      properties:
+        MascotaID: { type: integer, readOnly: true }
+        Nombre: { type: string, maxLength: 45 }
+        Especie: { type: string, maxLength: 50 }
+        Raza: { type: string, maxLength: 100 }
+        Edad: { type: string, maxLength: 100 }
+        Sexo: { type: string, enum: [Macho, Hembra] }
+        Tamaño: { type: string, maxLength: 10 }
+        Descripcion: { type: string, nullable: true }
+    AdopcionResumen:
+      type: object
+      properties:
+        AdopcionID: { type: integer }
+        Estado: { type: boolean, description: Verdadero si la mascota ya fue adoptada }
+        FechaSolicitud: { type: string, format: date-time }
+        MascotaID: { type: integer }
+        PublicadorID: { type: integer }
+    Adopcion:
+      allOf:
+        - $ref: '#/components/schemas/AdopcionResumen'
+        - type: object
+          properties:
+            UbicacionID: { type: integer }
+            Mascota: { $ref: '#/components/schemas/Mascota' }
+            Ubicacion: { $ref: '#/components/schemas/Ubicacion' }
+    Solicitud:
+      type: object
+      properties:
+        SolicitudID: { type: integer }
+        AdopcionID: { type: integer }
+        AdoptanteID: { type: integer }
+        NombreAdoptante: { type: string }
+    Conversacion:
+      type: object
+      properties:
+        UsuarioID: { type: integer }
+        Nombre: { type: string }
+        UltimoMensaje: { type: string }
+        Fecha: { type: string, format: date-time }
+    Mensaje:
+      type: object
+      properties:
+        ChatID: { type: integer }
+        RemitenteID: { type: integer }
+        DestinatarioID: { type: integer }
+        Contenido: { type: string }
+        FechaEnvio: { type: string, format: date-time }
+    Notificacion:
+      type: object
+      properties:
+        NotificacionID: { type: integer }
+        UsuarioID: { type: integer }
+        Titulo: { type: string }
+        Mensaje: { type: string }
+        Tipo: { type: string, enum: [AdopcionCercana, SolicitudRecibida, SolicitudAceptada] }
+        FechaCreacion: { type: string, format: date-time }
+        Leida: { type: boolean }
+        ReferenciaID: { type: integer, nullable: true }
+        ReferenciaTipo: { type: string, nullable: true }

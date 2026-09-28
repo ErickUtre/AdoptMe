@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package multimedia;
+
+option csharp_namespace = "AdoptMe.Escritorio.Grpc.Multimedia";
+option java_multiple_files = true;
+option java_package = "com.adoptme.movil.grpc.multimedia";
+
+service ServicioMultimedia {
+  rpc SubirFotoUsuario (stream FragmentoArchivo) returns (ResultadoSubida);
+  rpc SubirFotoMascota (stream FragmentoArchivo) returns (ResultadoSubida);
+  rpc SubirVideoMascota (stream FragmentoArchivo) returns (ResultadoSubida);
+}
+
+message MetadatosArchivo {
+  int32 id_referencia = 1;
+  string nombre_archivo = 2;
+}
+
+message FragmentoArchivo {
+  oneof contenido {
+    MetadatosArchivo metadatos = 1;
+    bytes datos = 2;
+  }
+}
+
+message ResultadoSubida {
+  bool exito = 1;
+  string mensaje = 2;
+}

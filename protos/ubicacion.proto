@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package ubicacion;
+
+option csharp_namespace = "AdoptMe.Escritorio.Grpc.Ubicacion";
+option java_multiple_files = true;
+option java_package = "com.adoptme.movil.grpc.ubicacion";
+
+service ServicioUbicacion {
+  rpc ObtenerAdopcionesCercanas (Coordenadas) returns (AdopcionesCercanas);
+}
+
+message Coordenadas {
+  double latitud = 1;
+  double longitud = 2;
+}
+
+message MascotaCercana {
+  int32 mascota_id = 1;
+  string nombre = 2;
+  string especie = 3;
+  string raza = 4;
+  string edad = 5;
+  string sexo = 6;
+  string tamano = 7;
+  string descripcion = 8;
+}
+
+message AdopcionCercana {
+  int32 adopcion_id = 1;
+  int32 publicador_id = 2;
+  double distancia_metros = 3;
+  double latitud = 4;
+  double longitud = 5;
+  MascotaCercana mascota = 6;
+}
+
+message AdopcionesCercanas {
+  repeated AdopcionCercana resultados = 1;
+}

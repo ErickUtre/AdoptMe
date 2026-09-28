@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package notificacion;
+
+option csharp_namespace = "AdoptMe.Escritorio.Grpc.Notificacion";
+option java_multiple_files = true;
+option java_package = "com.adoptme.movil.grpc.notificacion";
+
+service ServicioNotificacion {
+  rpc EscucharNotificaciones (SolicitudSuscripcion) returns (stream Notificacion);
+}
+
+message SolicitudSuscripcion {}
+
+message Notificacion {
+  int32 notificacion_id = 1;
+  string titulo = 2;
+  string mensaje = 3;
+  string tipo = 4;
+  int32 referencia_id = 5;
+  string referencia_tipo = 6;
+  string fecha = 7;
+}

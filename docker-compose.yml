@@ -1,0 +1,84 @@
+name: adoptme
+
+x-conexiones-servidor: &conexiones-servidor
+  DB_HOST: sqlserver
+  DB_PORT: "1433"
+  REDIS_URL: redis://redis:6379
+  PROTOS_DIR: /app/protos
+
+services:
+  nginx:
+    build: ./infraestructura/nginx
+    ports:
+      - "${HTTP_PUBLIC_PORT:-8080}:80"
+    depends_on:
+      servidor:
+        condition: service_healthy
+    restart: unless-stopped
+
+  servidor:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+      target: produccion
+    env_file: .env
+    environment:
+      <<: *conexiones-servidor
+      MEDIA_DIR: /app/server/multimedia
+    ports:
+      - "${GRPC_PUBLIC_PORT:-50051}:50051"
+    volumes:
+      - multimedia:/app/server/multimedia
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  pruebas:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+      target: pruebas
+    profiles: ["pruebas"]
+    env_file: .env
+    environment:
+      <<: *conexiones-servidor
+      NODE_ENV: test
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:${REDIS_PUBLIC_PORT:-6379}:6379"
+    volumes:
+      - redis-datos:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  sqlserver:
+    build: ./infraestructura/sqlserver
+    env_file: .env
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Express
+    ports:
+      - "127.0.0.1:${SQL_PUBLIC_PORT:-14330}:1433"
+    volumes:
+      - sql-datos:/var/opt/mssql
+    restart: unless-stopped
+
+volumes:
+  sql-datos:
+  redis-datos:
+  multimedia:

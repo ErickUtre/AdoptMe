@@ -1,0 +1,7 @@
+**/node_modules
+**/coverage
+server/multimedia
+**/.env
+.git
+desktop
+mobile
