@@ -71,6 +71,8 @@ dotnet test desktop/AdoptMe.Escritorio.sln
 
 Las direcciones del servidor están en `desktop/src/AdoptMe.Escritorio/appsettings.json`. Para incluir las pruebas de integración, define `ADOPTME_SERVIDOR=http://localhost:8080` antes de `dotnet test`.
 
+La ubicación del usuario se obtiene del servicio de ubicación de Windows (Wi-Fi o GPS). Requiere tener activada la ubicación en *Configuración > Privacidad y seguridad > Ubicación*, incluida la opción para aplicaciones de escritorio. Si no está disponible, el cliente usa una ubicación aproximada por IP y lo avisa.
+
 ### Android
 
 Requiere JDK 17 y el SDK de Android 35. Crea `mobile/local.properties` con `sdk.dir` o define `ANDROID_HOME`.

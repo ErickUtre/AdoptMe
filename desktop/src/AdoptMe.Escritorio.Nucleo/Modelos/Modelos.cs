@@ -4,6 +4,8 @@ namespace AdoptMe.Escritorio.Nucleo.Modelos;
 
 public sealed record Coordenadas(double Latitud, double Longitud);
 
+public sealed record UbicacionDetectada(Ubicacion Ubicacion, bool EsPrecisa);
+
 public sealed record Ubicacion
 {
     public int? UbicacionID { get; init; }

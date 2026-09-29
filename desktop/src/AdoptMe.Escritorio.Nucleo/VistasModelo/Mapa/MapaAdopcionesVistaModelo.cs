@@ -95,16 +95,21 @@ public sealed partial class MapaAdopcionesVistaModelo(
             return;
         }
 
-        var aproximada = await MientrasOcupadoAsync(geolocalizacion.ObtenerUbicacionAproximadaAsync).ConfigureAwait(true);
-        if (!aproximada.Exito)
+        var detectada = await MientrasOcupadoAsync(geolocalizacion.ObtenerUbicacionActualAsync).ConfigureAwait(true);
+        if (!detectada.Exito)
         {
-            dialogos.Mostrar(aproximada.Error.Mensaje, TipoMensaje.Error, Textos.Error);
+            dialogos.Mostrar(detectada.Error.Mensaje, TipoMensaje.Error, Textos.Error);
             return;
         }
-        sesion.UbicacionTemporal = aproximada.Valor.Coordenadas;
+        var coordenadas = detectada.Valor.Ubicacion.Coordenadas;
+        sesion.UbicacionTemporal = coordenadas;
         MostrandoUbicacionTemporal = true;
-        UbicacionUsuario = aproximada.Valor.Coordenadas;
-        await CentrarEnAsync(UbicacionUsuario).ConfigureAwait(true);
+        UbicacionUsuario = coordenadas;
+        await CentrarEnAsync(coordenadas).ConfigureAwait(true);
+        if (!detectada.Valor.EsPrecisa)
+        {
+            dialogos.Mostrar(Textos.UbicacionAproximada, TipoMensaje.Advertencia, Textos.Advertencia);
+        }
     }
 
     private async Task CentrarEnAsync(Coordenadas destino)

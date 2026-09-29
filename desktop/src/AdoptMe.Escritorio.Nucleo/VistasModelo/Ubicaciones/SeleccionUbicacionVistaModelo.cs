@@ -34,14 +34,16 @@ public sealed partial class SeleccionUbicacionVistaModelo(IServicioGeolocalizaci
         {
             return;
         }
-        var aproximada = await MientrasOcupadoAsync(geolocalizacion.ObtenerUbicacionAproximadaAsync);
-        if (aproximada.Exito)
+        var detectada = await MientrasOcupadoAsync(geolocalizacion.ObtenerUbicacionActualAsync);
+        if (!detectada.Exito)
         {
-            Seleccionada = aproximada.Valor;
+            dialogos.Mostrar(detectada.Error.Mensaje, TipoMensaje.Advertencia, Textos.Advertencia);
+            return;
         }
-        else
+        Seleccionada = detectada.Valor.Ubicacion;
+        if (!detectada.Valor.EsPrecisa)
         {
-            dialogos.Mostrar(aproximada.Error.Mensaje, TipoMensaje.Advertencia, Textos.Advertencia);
+            dialogos.Mostrar(Textos.UbicacionAproximada, TipoMensaje.Advertencia, Textos.Advertencia);
         }
     }
 

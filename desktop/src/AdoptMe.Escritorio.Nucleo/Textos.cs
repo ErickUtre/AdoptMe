@@ -24,6 +24,8 @@ public static class Textos
 
     public const string PermitirUbicacion = "¿Deseas permitir que obtengamos tu ubicación?";
     public const string ConfirmarModificarUbicacion = "¿Seguro que deseas modificar la ubicación?";
+    public const string UbicacionDispositivoNoDisponible = "No se pudo acceder a la ubicación del dispositivo.";
+    public const string UbicacionAproximada = "No se pudo usar la ubicación de Windows, así que se muestra una ubicación aproximada. Para mayor precisión activa la ubicación en Configuración > Privacidad y seguridad > Ubicación, incluida la opción para aplicaciones de escritorio.";
     public const string UbicacionImprecisa = "La ubicación puede no ser precisa. Da doble clic en el mapa para seleccionar tu ubicación.";
     public const string SoloMexico = "Por ahora solo hay soporte para ubicaciones dentro de México.";
     public const string SeleccionaUbicacion = "Selecciona una ubicación antes de continuar.";

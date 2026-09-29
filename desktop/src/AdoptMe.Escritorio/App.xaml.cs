@@ -4,6 +4,7 @@ using AdoptMe.Escritorio.Infraestructura;
 using AdoptMe.Escritorio.Nucleo;
 using AdoptMe.Escritorio.Nucleo.Presentacion;
 using AdoptMe.Escritorio.Nucleo.Reportes;
+using AdoptMe.Escritorio.Nucleo.Servicios.Geolocalizacion;
 using AdoptMe.Escritorio.Nucleo.VistasModelo.Acceso;
 using AdoptMe.Escritorio.Nucleo.VistasModelo.Edicion;
 using AdoptMe.Escritorio.Nucleo.VistasModelo.Solicitudes;
@@ -56,6 +57,7 @@ public partial class App : Application
     {
         servicios.AgregarNucleoAdoptMe(configuracion);
         servicios.AddSingleton<IDespachadorUi, DespachadorWpf>();
+        servicios.AddSingleton<IProveedorPosicion, ProveedorPosicionWindows>();
         servicios.AddSingleton<IDialogos, Dialogos>();
         servicios.AddSingleton<IVentanas, Ventanas>();
         servicios.AddSingleton<INotificadorEmergente, NotificadorEmergente>();
