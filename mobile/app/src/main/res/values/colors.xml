@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primario">#207766</color>
+    <color name="barra_navegacion">#2D7A6C</color>
+    <color name="fondo">#F2F2F2</color>
+    <color name="texto">#000000</color>
+    <color name="texto_secundario">#666666</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="exito">#4CAF50</color>
+    <color name="peligro">#F44336</color>
+    <color name="informacion">#187DAC</color>
+    <color name="enlace">#2196F3</color>
+    <color name="ubicacion">#00DF82</color>
+    <color name="naranja">#FF9800</color>
+    <color name="cian">#3AC1CB</color>
+    <color name="indigo">#3F51B5</color>
+    <color name="reporte">#9C27B0</color>
+    <color name="disponible">#007700</color>
+    <color name="adoptado">#BB0000</color>
 </resources>

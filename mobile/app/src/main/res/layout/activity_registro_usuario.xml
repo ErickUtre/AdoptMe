@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/margen_pantalla">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/espacio_grande">
+
+                <ImageButton
+                    android:id="@+id/botonRegresar"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/regresar"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/retroceso" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/registro"
+                    android:textColor="@color/blanco"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Campo"
+                android:layout_width="@dimen/ancho_formulario"
+                android:hint="@string/nombre">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/campoNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:maxLength="100" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Campo"
+                android:layout_width="@dimen/ancho_formulario"
+                android:hint="@string/correo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/campoCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="100" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Campo"
+                android:layout_width="@dimen/ancho_formulario"
+                android:hint="@string/contrasena"
+                app:endIconMode="password_toggle"
+                app:helperText="@string/error_contrasena">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/campoContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:maxLength="100" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Campo"
+                android:layout_width="@dimen/ancho_formulario"
+                android:hint="@string/confirmar_contrasena"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/campoConfirmacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:maxLength="100" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Campo"
+                android:layout_width="@dimen/ancho_formulario"
+                android:hint="@string/telefono">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/campoTelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLength="10" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textoUbicacion"
+                android:layout_width="@dimen/ancho_formulario"
+                android:layout_height="wrap_content"
+                android:text="@string/opcional"
+                android:textColor="@color/blanco" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/botonUbicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/ubicacion"
+                android:text="@string/registrar_ubicacion" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/botonRegistrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/espacio_normal"
+                android:backgroundTint="@color/exito"
+                android:text="@string/registrar" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/carga"
+        layout="@layout/vista_carga" />
+</FrameLayout>

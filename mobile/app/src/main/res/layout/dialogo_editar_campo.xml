@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contenedorCampo"
+    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/espacio_grande"
+    android:paddingTop="@dimen/espacio_normal"
+    android:paddingEnd="@dimen/espacio_grande">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/campoValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1" />
+</com.google.android.material.textfield.TextInputLayout>

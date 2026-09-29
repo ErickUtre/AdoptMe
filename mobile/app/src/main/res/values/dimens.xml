@@ -1,9 +1,10 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="fragment_horizontal_margin">16dp</dimen>
-    <dimen name="item_transform_image_length">48dp</dimen>
-    <dimen name="reflow_text_block_max_percent">1</dimen>
-    <dimen name="reflow_text_block_horizontal_gap">8dp</dimen>
-    <dimen name="reflow_text_title_size">22sp</dimen>
-    <dimen name="reflow_text_description_size">13sp</dimen>
+    <dimen name="espacio_pequeno">6dp</dimen>
+    <dimen name="espacio_normal">12dp</dimen>
+    <dimen name="espacio_grande">20dp</dimen>
+    <dimen name="margen_pantalla">20dp</dimen>
+    <dimen name="radio_campo">10dp</dimen>
+    <dimen name="ancho_formulario">300dp</dimen>
+    <dimen name="tamano_foto">150dp</dimen>
+    <dimen name="tamano_miniatura">80dp</dimen>
 </resources>

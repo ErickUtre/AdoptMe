@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sexos" translatable="false">
+        <item>Macho</item>
+        <item>Hembra</item>
+    </string-array>
+    <string-array name="tamanos" translatable="false">
+        <item>Pequeño</item>
+        <item>Mediano</item>
+        <item>Grande</item>
+    </string-array>
+</resources>

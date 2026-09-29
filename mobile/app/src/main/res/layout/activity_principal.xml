@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/contenedorPantallas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/barra_navegacion"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/espacio_normal">
+
+        <ImageButton
+            android:id="@+id/botonInicio"
+            style="@style/BotonNavegacion"
+            android:contentDescription="@string/inicio"
+            android:src="@drawable/home" />
+
+        <ImageButton
+            android:id="@+id/botonRegistrarAdopcion"
+            style="@style/BotonNavegacion"
+            android:contentDescription="@string/registrar_adopcion"
+            android:src="@drawable/registrar" />
+
+        <ImageButton
+            android:id="@+id/botonMisAdopciones"
+            style="@style/BotonNavegacion"
+            android:contentDescription="@string/mis_adopciones"
+            android:src="@drawable/mascotas" />
+
+        <ImageButton
+            android:id="@+id/botonPerfil"
+            style="@style/BotonNavegacion"
+            android:contentDescription="@string/perfil"
+            android:src="@drawable/ic_perfil_defecto" />
+
+        <ImageButton
+            android:id="@+id/botonCerrarSesion"
+            style="@style/BotonNavegacion"
+            android:contentDescription="@string/cerrar_sesion"
+            android:src="@drawable/logout" />
+    </LinearLayout>
+</LinearLayout>

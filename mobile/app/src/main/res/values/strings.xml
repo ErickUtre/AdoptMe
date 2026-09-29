@@ -1,28 +1,120 @@
 <resources>
     <string name="app_name">AdoptMe</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_mapa_registro">MapaRegistroActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_transform">Transform</string>
-    <string name="menu_reflow">Reflow</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_settings">Settings</string>
+    <string name="inicio_sesion">Inicio de sesión</string>
+    <string name="correo">Correo</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="confirmar_contrasena">Confirmar contraseña</string>
+    <string name="nombre">Nombre</string>
+    <string name="telefono">Teléfono</string>
+    <string name="registrate">REGÍSTRATE</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="registro">Registro</string>
+    <string name="opcional">Opcional</string>
+    <string name="registrar_ubicacion">Registrar ubicación</string>
+    <string name="actualizar_ubicacion">Actualizar ubicación</string>
+    <string name="registrar">Registrar</string>
+    <string name="regresar">Regresar</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="rechazar">Rechazar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="inicio">Inicio</string>
+    <string name="mis_adopciones">Mis adopciones</string>
+    <string name="perfil">Perfil</string>
+    <string name="foto_perfil">Foto de perfil</string>
+    <string name="editar">Editar</string>
+    <string name="cargando">Cargando…</string>
 
-    <string name="lorem_ipsum_title">Lorem Ipsum"</string>
-    <string name="lorem_ipsum">Lorem Ipsum is simply placeholder text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry\'s standard placeholder text ever
-        since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-        type specimen book"
-    </string>
-    <string name="fab_content_description">Represents a view to invoke an action</string>
-    <string name="image_view_item_transform_content_description">Represents an image view in the
-        item
-    </string>
+    <string name="ubicacion_imprecisa">La ubicación puede no ser precisa. Toca el mapa para seleccionar la ubicación correcta.</string>
+    <string name="descripcion_ubicacion">Ciudad: %1$s\nEstado: %2$s\nPaís: %3$s\nLatitud: %4$.6f\nLongitud: %5$.6f</string>
+    <string name="ubicacion_seleccionada">Ubicación seleccionada</string>
+    <string name="tu_ubicacion">Tu ubicación</string>
+
+    <string name="registrar_adopcion">Registrar adopción</string>
+    <string name="informacion_mascota">Información de la mascota</string>
+    <string name="nombre_mascota">Nombre de la mascota</string>
+    <string name="especie">Especie</string>
+    <string name="raza">Raza</string>
+    <string name="edad">Edad</string>
+    <string name="edad_anios_meses">Edad (años y meses)</string>
+    <string name="sexo">Sexo</string>
+    <string name="tamano">Tamaño</string>
+    <string name="descripcion">Descripción</string>
+    <string name="elegir_ubicacion">Elegir ubicación</string>
+    <string name="subir_foto">Subir foto</string>
+    <string name="subir_video">Subir video</string>
+    <string name="selecciona_edad">Selecciona la edad</string>
+    <string name="formato_edad">%1$s y %2$s</string>
+    <plurals name="anios">
+        <item quantity="one">%d año</item>
+        <item quantity="other">%d años</item>
+    </plurals>
+    <plurals name="meses">
+        <item quantity="one">%d mes</item>
+        <item quantity="other">%d meses</item>
+    </plurals>
+    <string name="video_seleccionado">Video seleccionado</string>
+    <string name="vista_previa">Vista previa de la imagen</string>
+
+    <string name="adopciones_registradas">Adopciones registradas</string>
+    <string name="sin_adopciones">Aún no has registrado adopciones.</string>
+    <string name="solicitudes_pendientes">Solicitudes pendientes</string>
+    <string name="sin_solicitudes">No hay solicitudes pendientes.</string>
+    <string name="ver_detalles">Ver detalles</string>
+    <string name="ver_video">Ver video</string>
+    <string name="solicitar_adopcion">Solicitar adopción</string>
+    <string name="estado_disponible">Estado: Disponible</string>
+    <string name="estado_adoptado">Estado: Adoptado</string>
+    <string name="resumen_mascota">%1$s · %2$s · %3$s</string>
+    <string name="campo_valor">%1$s: %2$s</string>
+    <string name="foto_mascota">Foto de la mascota</string>
+
+    <string name="informacion_usuario">Información del usuario</string>
+    <string name="editar_campo">Editar %1$s</string>
+
+    <string name="reporte_adoptadas">Reporte de mascotas adoptadas</string>
+    <string name="reporte_en_adopcion">Reporte de mascotas en adopción</string>
+    <string name="guardar_imagen">Guardar imagen</string>
+    <string name="leyenda_grafica">Adopciones por mes</string>
+    <string name="icono_perro">Ícono de perro</string>
+    <string name="icono_gato">Ícono de gato</string>
+
+    <string name="error_campos_obligatorios">Completa correctamente todos los campos.</string>
+    <string name="error_nombre">Ingresa un nombre válido.</string>
+    <string name="error_correo">Ingresa un correo válido (ejemplo@dominio.com).</string>
+    <string name="error_contrasena">La contraseña debe tener 8 caracteres, una mayúscula, dos números y ningún espacio.</string>
+    <string name="error_confirmacion">Las contraseñas no coinciden.</string>
+    <string name="error_telefono">El teléfono debe tener 10 dígitos.</string>
+    <string name="error_mismo_valor">Es el valor actual.</string>
+    <string name="error_foto_obligatoria">Selecciona una foto de la mascota.</string>
+    <string name="error_ubicacion_obligatoria">Selecciona una ubicación.</string>
+    <string name="error_permiso_ubicacion">Permiso de ubicación denegado.</string>
+    <string name="error_obtener_ubicacion">No se pudo obtener la ubicación.</string>
+    <string name="error_direccion">No se pudo obtener la dirección.</string>
+    <string name="error_grafica_vacia">No hay datos para guardar.</string>
+    <string name="error_guardar_imagen">No se pudo guardar la imagen.</string>
+    <string name="error_conexion">No fue posible conectar con el servidor. Intenta más tarde.</string>
+    <string name="error_servidor">Ocurrió un error en el servidor.</string>
+    <string name="error_no_autenticado">Tu sesión expiró. Inicia sesión nuevamente.</string>
+    <string name="error_base_datos">Error de conexión con la base de datos.</string>
+    <string name="credenciales_incorrectas">El correo y/o la contraseña son incorrectos.</string>
+    <string name="correo_registrado">El correo ya está registrado.</string>
+    <string name="solicitud_duplicada">Ya enviaste una solicitud para esta adopción.</string>
+
+    <string name="registro_exitoso">Registro exitoso.</string>
+    <string name="adopcion_registrada">Adopción registrada correctamente.</string>
+    <string name="adopcion_eliminada">Adopción eliminada.</string>
+    <string name="archivo_no_subido">La adopción se registró, pero no se pudo subir un archivo: %1$s</string>
+    <string name="solicitud_enviada">Solicitud enviada correctamente.</string>
+    <string name="solicitud_aceptada">Solicitud aceptada; la mascota quedó como adoptada.</string>
+    <string name="solicitud_rechazada">Solicitud rechazada.</string>
+    <string name="perfil_actualizado">Perfil actualizado correctamente.</string>
+    <string name="foto_actualizada">Foto actualizada correctamente.</string>
+    <string name="imagen_guardada">Imagen guardada en la galería.</string>
+    <string name="confirmar_eliminar">¿Seguro que deseas eliminar la adopción de %1$s?</string>
+    <string name="confirmar_aceptar">¿Aceptar la solicitud de %1$s y marcar la mascota como adoptada?</string>
+    <string name="confirmacion">Confirmación</string>
 </resources>

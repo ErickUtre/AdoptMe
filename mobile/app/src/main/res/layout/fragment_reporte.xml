@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txtTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Previsualización de reporte"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"/>
-
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/txtTitulo"
-        android:layout_margin="16dp" />
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/margen_pantalla">
 
-    <Button
-        android:id="@+id/btnGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Guardar imagen"
-        android:layout_below="@id/barChart"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="#2196F3"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="16dp"/>
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textoTitulo"
+            style="@style/Titulo"
+            android:textSize="22sp" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/grafica"
+            android:layout_width="match_parent"
+            android:layout_height="400dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/botonGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/espacio_grande"
+            android:backgroundTint="@color/enlace"
+            android:text="@string/guardar_imagen" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/carga"
+        layout="@layout/vista_carga" />
+</FrameLayout>

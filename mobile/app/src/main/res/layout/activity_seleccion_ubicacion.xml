@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/margen_pantalla">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ubicacion_imprecisa"
+            android:textColor="@color/blanco"
+            android:textStyle="bold" />
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/mapa"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginVertical="@dimen/espacio_normal"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/textoDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="5"
+            android:textColor="@color/blanco"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/botonGuardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/espacio_normal"
+                android:backgroundTint="@color/exito"
+                android:text="@string/guardar" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/botonCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/peligro"
+                android:text="@string/cancelar" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/carga"
+        layout="@layout/vista_carga" />
+</FrameLayout>

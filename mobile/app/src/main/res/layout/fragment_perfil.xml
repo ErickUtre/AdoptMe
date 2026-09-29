@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margen_pantalla">
+
+            <TextView
+                style="@style/Titulo"
+                android:text="@string/informacion_usuario" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/espacio_grande">
+
+                <ImageView
+                    android:id="@+id/imagenPerfil"
+                    android:layout_width="@dimen/tamano_foto"
+                    android:layout_height="@dimen/tamano_foto"
+                    android:contentDescription="@string/foto_perfil"
+                    android:scaleType="centerCrop" />
+
+                <ImageButton
+                    android:id="@+id/botonEditarFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/editar"
+                    android:src="@android:drawable/ic_menu_edit" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/espacio_grande"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textoNombre"
+                    style="@style/TextoInformacion" />
+
+                <ImageButton
+                    android:id="@+id/botonEditarNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/editar"
+                    android:src="@android:drawable/ic_menu_edit" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/espacio_grande"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textoCorreo"
+                    style="@style/TextoInformacion" />
+
+                <ImageButton
+                    android:id="@+id/botonEditarCorreo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/editar"
+                    android:src="@android:drawable/ic_menu_edit" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/espacio_grande"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textoTelefono"
+                    style="@style/TextoInformacion" />
+
+                <ImageButton
+                    android:id="@+id/botonEditarTelefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/editar"
+                    android:src="@android:drawable/ic_menu_edit" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textoUbicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/espacio_grande"
+                android:textColor="@color/texto"
+                android:textSize="16sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/botonUbicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/ubicacion"
+                android:text="@string/actualizar_ubicacion" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/carga"
+        layout="@layout/vista_carga" />
+</FrameLayout>
