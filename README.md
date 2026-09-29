@@ -1,81 +1,81 @@
 # AdoptMe
 
-Plataforma para publicar mascotas en adopción, encontrarlas por cercanía y coordinar la adopción mediante solicitudes, chat y notificaciones en tiempo real.
+A platform to list pets for adoption, find them by proximity and coordinate the adoption through requests, chat and real-time notifications.
 
-## Estructura
+## Structure
 
-| Carpeta | Contenido |
+| Folder | Contents |
 | --- | --- |
-| `server/` | API REST, servicios gRPC y Socket.IO en Node.js 22 |
-| `desktop/` | Cliente de escritorio WPF en .NET 8 con MVVM |
-| `mobile/` | Cliente Android en Java 17 con MVVM |
-| `protos/` | Contratos gRPC compartidos por los tres proyectos |
-| `infraestructura/` | Imágenes de nginx y SQL Server con el esquema de la base de datos |
+| `server/` | REST API, gRPC services and Socket.IO on Node.js 22 |
+| `desktop/` | WPF desktop client on .NET 8 with MVVM |
+| `mobile/` | Android client in Java 17 with MVVM |
+| `protos/` | gRPC contracts shared by the three projects |
+| `infraestructura/` | nginx and SQL Server images, including the database schema |
 
-## Arquitectura
+## Architecture
 
 ```
-Escritorio (WPF) ─┐                       ┌─ SQL Server
+Desktop (WPF) ────┐                       ┌─ SQL Server
                   ├─ nginx :8080 ─ REST ──┤
-Android ──────────┤        Socket.IO      ├─ Redis (índice geográfico)
+Android ──────────┤        Socket.IO      ├─ Redis (geospatial index)
                   └─ gRPC :50051 ─────────┘
-                           servidor Node.js
+                            Node.js server
 ```
 
-- **Servidor.** Cada módulo de `server/src/modulos` separa repositorio, servicio, controlador, rutas y, cuando aplica, servicio gRPC. `contenedor.js` es la raíz de composición donde se inyectan las dependencias. Los errores de dominio (`ErrorAplicacion`) se traducen a códigos HTTP y gRPC en un solo lugar.
-- **Escritorio.** `AdoptMe.Escritorio.Nucleo` contiene modelos, servicios y ViewModels sin dependencia de WPF, por eso se prueba de forma aislada. `AdoptMe.Escritorio` solo aporta vistas, estilos y servicios de plataforma.
-- **Android.** Tiene cuatro capas:
-  - `dominio`: modelos.
-  - `datos`: repositorios REST, gRPC y de dispositivo detrás de interfaces.
-  - `di`: `ContenedorDependencias` y la fábrica de ViewModels.
-  - `ui`: pantallas agrupadas por funcionalidad.
+- **Server.** Each module in `server/src/modulos` separates repository, service, controller, routes and, where applicable, a gRPC service. `contenedor.js` is the composition root where dependencies are injected. Domain errors (`ErrorAplicacion`) are translated into HTTP and gRPC status codes in a single place.
+- **Desktop.** `AdoptMe.Escritorio.Nucleo` holds models, services and ViewModels with no WPF dependency, so it is tested in isolation. `AdoptMe.Escritorio` only provides views, styles and platform services.
+- **Android.** It has four layers:
+  - `dominio`: models.
+  - `datos`: REST, gRPC and device repositories behind interfaces.
+  - `di`: `ContenedorDependencias` and the ViewModel factory.
+  - `ui`: screens grouped by feature.
 
-  Los ViewModels solo conocen interfaces de repositorio.
+  ViewModels only know repository interfaces.
 
-## Puesta en marcha
+## Getting started
 
-### Servidor
+### Server
 
-Requiere Docker con Compose.
+Requires Docker with Compose.
 
 ```bash
 cp .env.example .env
 docker compose up -d --build
 ```
 
-Verifica que el servidor responda:
+Check that the server responds:
 
-- Salud: `http://localhost:8080/salud`
-- Documentación OpenAPI: `http://localhost:8080/api-docs`
+- Health: `http://localhost:8080/salud`
+- OpenAPI documentation: `http://localhost:8080/api-docs`
 - gRPC: `localhost:50051`
 
-La cuenta de administrador se crea al arrancar con `ADMIN_EMAIL` y `ADMIN_PASSWORD` de `.env`. Cambia esos valores, `JWT_SECRET` y las contraseñas de base de datos antes de cualquier despliegue.
+The administrator account is created at startup from `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `.env`. Change those values, `JWT_SECRET` and the database passwords before any deployment.
 
-Pruebas:
+Tests:
 
 ```bash
 cd server && npm ci && npm test
 docker compose --profile pruebas run --rm pruebas
 ```
 
-El primer comando ejecuta las pruebas unitarias; el segundo, las de integración contra SQL Server y Redis en contenedores.
+The first command runs the unit tests; the second runs the integration tests against SQL Server and Redis in containers.
 
-### Escritorio
+### Desktop
 
-Requiere Windows y el SDK de .NET 8 o superior.
+Requires Windows and the .NET 8 SDK or later.
 
 ```bash
 dotnet run --project desktop/src/AdoptMe.Escritorio
 dotnet test desktop/AdoptMe.Escritorio.sln
 ```
 
-Las direcciones del servidor están en `desktop/src/AdoptMe.Escritorio/appsettings.json`. Para incluir las pruebas de integración, define `ADOPTME_SERVIDOR=http://localhost:8080` antes de `dotnet test`.
+The server addresses are in `desktop/src/AdoptMe.Escritorio/appsettings.json`. To include the integration tests, set `ADOPTME_SERVIDOR=http://localhost:8080` before running `dotnet test`.
 
-La ubicación del usuario se obtiene del servicio de ubicación de Windows (Wi-Fi o GPS). Requiere tener activada la ubicación en *Configuración > Privacidad y seguridad > Ubicación*, incluida la opción para aplicaciones de escritorio. Si no está disponible, el cliente usa una ubicación aproximada por IP y lo avisa.
+The user's location comes from the Windows location service (Wi-Fi or GPS). Location must be enabled under *Settings > Privacy & security > Location*, including the option that lets desktop apps access it. If it is unavailable, the client falls back to an approximate IP-based location and warns the user.
 
 ### Android
 
-Requiere JDK 17 y el SDK de Android 35. Crea `mobile/local.properties` con `sdk.dir` o define `ANDROID_HOME`.
+Requires JDK 17 and Android SDK 35. Create `mobile/local.properties` with `sdk.dir`, or set `ANDROID_HOME`.
 
 ```bash
 cd mobile
@@ -83,25 +83,25 @@ cd mobile
 ./gradlew testDebugUnitTest lintDebug
 ```
 
-La dirección del servidor se configura en `mobile/gradle.properties`:
+The server address is configured in `mobile/gradle.properties`:
 
-- `adoptme.servidor.host` vale `10.0.2.2` por defecto, que es el equipo anfitrión visto desde el emulador. En un dispositivo físico usa la IP del equipo en la red local.
-- `adoptme.servidor.puertoHttp` y `adoptme.servidor.puertoGrpc` definen los puertos.
+- `adoptme.servidor.host` defaults to `10.0.2.2`, which is how the emulator reaches the host machine. On a physical device, use the host's IP address on the local network.
+- `adoptme.servidor.puertoHttp` and `adoptme.servidor.puertoGrpc` set the ports.
 
-Solo la variante `debug` permite tráfico HTTP sin cifrar.
+Only the `debug` build variant allows unencrypted HTTP traffic.
 
-## Contrato
+## Contract
 
-- **REST.** Todo vive bajo `/api` y está documentado en `server/src/http/openapi.yaml`. Todas las rutas requieren `Authorization: Bearer <token>`, salvo `POST /api/acceso/iniciar-sesion` y `POST /api/usuarios`.
-- **gRPC.** Los servicios están definidos en `protos/`:
-  - `ServicioUbicacion`: adopciones cercanas.
-  - `ServicioMultimedia`: subida de fotos y videos por flujo.
-  - `ServicioNotificacion`: flujo de notificaciones.
+- **REST.** Everything lives under `/api` and is documented in `server/src/http/openapi.yaml`. Every route requires `Authorization: Bearer <token>`, except `POST /api/acceso/iniciar-sesion` and `POST /api/usuarios`.
+- **gRPC.** The services are defined in `protos/`:
+  - `ServicioUbicacion`: nearby adoptions.
+  - `ServicioMultimedia`: streamed photo and video uploads.
+  - `ServicioNotificacion`: notification stream.
 
-  El token viaja en el metadato `authorization`.
-- **Socket.IO.** El token se envía en `auth.token` del handshake. Hay tres eventos:
-  - `enviar_mensaje`: el cliente lo emite con `{DestinatarioID, Contenido}`.
-  - `nuevo_mensaje`: el servidor lo emite al remitente y al destinatario.
-  - `error_mensaje`: el servidor avisa de un envío fallido.
+  The token is sent in the `authorization` metadata.
+- **Socket.IO.** The token is sent in the handshake's `auth.token`. There are three events:
+  - `enviar_mensaje`: emitted by the client with `{DestinatarioID, Contenido}`.
+  - `nuevo_mensaje`: emitted by the server to both the sender and the recipient.
+  - `error_mensaje`: emitted by the server when a message fails to send.
 
-Cualquier cambio en `protos/` regenera automáticamente el código de escritorio (Grpc.Tools) y de Android (protobuf-gradle-plugin) en la siguiente compilación.
+Any change in `protos/` automatically regenerates the desktop code (Grpc.Tools) and the Android code (protobuf-gradle-plugin) on the next build.
