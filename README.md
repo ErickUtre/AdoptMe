@@ -2,6 +2,16 @@
 
 A platform to list pets for adoption, find them by proximity and coordinate the adoption through requests, chat and real-time notifications.
 
+## Original repositories
+
+This repository unifies three projects that were originally developed separately. Their full commit history is preserved here.
+
+| Project | Original repository | Folder |
+| --- | --- | --- |
+| Server | [ErickUtre/AdoptMeServer](https://github.com/ErickUtre/AdoptMeServer) | `server/` |
+| Desktop client | [ErickUtre/AdoptMeCliente](https://github.com/ErickUtre/AdoptMeCliente) | `desktop/` |
+| Mobile client | [ErickUtre/AdoptMeMovil](https://github.com/ErickUtre/AdoptMeMovil) | `mobile/` |
+
 ## Structure
 
 | Folder | Contents |
