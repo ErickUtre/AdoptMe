@@ -26,7 +26,7 @@
     <SolidColorBrush x:Key="Informacion" Color="{StaticResource ColorInformacion}" />
     <SolidColorBrush x:Key="Acento" Color="{StaticResource ColorAcento}" />
     <SolidColorBrush x:Key="UbicacionMarca" Color="{StaticResource ColorUbicacion}" />
-    <SolidColorBrush x:Key="Tarjeta" Color="{StaticResource ColorTarjeta}" />
+    <SolidColorBrush x:Key="FondoTarjeta" Color="{StaticResource ColorTarjeta}" />
     <SolidColorBrush x:Key="TarjetaMapa" Color="{StaticResource ColorTarjetaMapa}" />
     <SolidColorBrush x:Key="BordeMapa" Color="{StaticResource ColorBordeMapa}" />
     <SolidColorBrush x:Key="Reporte" Color="{StaticResource ColorReporte}" />

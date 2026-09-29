@@ -18,6 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="../../src/AdoptMe.Escritorio/Estilos/*.xaml" Link="Estilos/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\AdoptMe.Escritorio.Nucleo\AdoptMe.Escritorio.Nucleo.csproj" />
   </ItemGroup>
 

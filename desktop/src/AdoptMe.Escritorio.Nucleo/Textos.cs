@@ -12,6 +12,7 @@ public static class Textos
     public const string ErrorTiempoAgotado = "La solicitud tardó demasiado en responder.";
     public const string ErrorRespuestaInvalida = "El servidor devolvió una respuesta inesperada.";
     public const string ErrorServidor = "Ocurrió un error en el servidor.";
+    public const string ErrorInesperado = "Ocurrió un error inesperado y la aplicación se cerrará. El detalle quedó registrado.";
     public const string ErrorUbicacion = "Error al obtener la ubicación, intenta más tarde.";
 
     public const string CredencialesIncorrectas = "El correo y/o la contraseña son incorrectos, favor de verificar.";

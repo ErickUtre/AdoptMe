@@ -22,6 +22,7 @@ namespace AdoptMe.Escritorio;
 public partial class App : Application
 {
     private IHost? anfitrion;
+    private bool cerrandoPorError;
 
     protected override async void OnStartup(StartupEventArgs e)
     {
@@ -68,12 +69,22 @@ public partial class App : Application
 
     private void AlOcurrirErrorNoControlado(object remitente, DispatcherUnhandledExceptionEventArgs argumentos)
     {
+        argumentos.Handled = true;
         if (anfitrion is not null)
         {
             RegistrarErrorNoControlado(anfitrion.Services.GetRequiredService<ILogger<App>>(), argumentos.Exception);
         }
-        MessageBox.Show(Textos.ErrorServidor, Textos.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-        argumentos.Handled = true;
+        if (cerrandoPorError)
+        {
+            return;
+        }
+        cerrandoPorError = true;
+        foreach (Window ventana in Windows)
+        {
+            ventana.Hide();
+        }
+        MessageBox.Show(Textos.ErrorInesperado, Textos.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+        Shutdown(1);
     }
 
     [LoggerMessage(Level = LogLevel.Error, Message = "Error no controlado en la interfaz")]
